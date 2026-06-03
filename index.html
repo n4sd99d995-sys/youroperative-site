@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Operative — Your vision, made undeniable.</title>
+  <meta name="description" content="Marketing built for local businesses. We build your online presence. You run your business." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Variables ─── */
+    :root {
+      --green: #004D40;
+      --gold: #F2A900;
+      --off-white: #faf8f4;
+      --text-muted: rgba(255,255,255,0.7);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      transition: box-shadow 0.3s ease;
+      gap: 1rem;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.10); }
+
+    .nav-logo { display: flex; align-items: center; flex-shrink: 0; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #333;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .nav-cta {
+      background: var(--gold);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: #d99600; transform: translateY(-1px); }
+
+    /* ─── LANG TOGGLE ─── */
+    .lang-toggle {
+      display: flex;
+      gap: 0;
+      background: rgba(0,77,64,0.07);
+      border-radius: 30px;
+      padding: 3px;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #666;
+      padding: 0.28rem 0.6rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+    .lang-btn:hover { color: var(--green); }
+    .lang-btn.active {
+      background: var(--green);
+      color: #fff;
+    }
+    /* Mobile: show short labels */
+    .lang-btn .lbl-full { display: inline; }
+    .lang-btn .lbl-short { display: none; }
+    @media (max-width: 700px) {
+      .lang-btn .lbl-full { display: none; }
+      .lang-btn .lbl-short { display: inline; }
+      .lang-btn { padding: 0.28rem 0.5rem; font-size: 0.7rem; }
+      .nav-cta { display: none; }
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=90');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 60, 38, 0.70);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+    .hero-logo {
+      margin-bottom: 2.5rem;
+      opacity: 0.92;
+    }
+
+    .hero-headline {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      white-space: pre-line;
+    }
+
+    .hero-subhead {
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border: 2px solid rgba(255,255,255,0.75);
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+
+    .btn-gold {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--gold);
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-gold:hover { background: #d99600; transform: translateY(-2px); }
+
+    .trust-badges {
+      display: flex;
+      gap: 0.5rem 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .trust-badge::before {
+      content: '·';
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+    .trust-badge:first-child::before { display: none; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 100px 5%; }
+    .section-label {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.85rem;
+    }
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      color: var(--green);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      line-height: 1.65;
+      max-width: 560px;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    #how {
+      background: var(--off-white);
+      text-align: center;
+    }
+    #how .section-subtitle { margin: 0 auto 4rem; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+    .step {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 2px 24px rgba(0,77,64,0.07);
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(0,77,64,0.13); }
+
+    .step-number {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 4rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      opacity: 0.18;
+      position: absolute;
+      top: 1.2rem;
+      right: 1.6rem;
+    }
+    .step-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(0,77,64,0.08);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.6rem;
+    }
+    .step-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    .step p { font-size: 0.95rem; color: #555; line-height: 1.65; }
+
+    /* ─── SERVICES ─── */
+    #services {
+      background: #fff;
+      text-align: center;
+    }
+    #services .section-subtitle { margin: 0 auto 3.5rem; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1060px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .pricing-card {
+      border: 2px solid #e8e4de;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: left;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .pricing-card:hover { border-color: var(--green); box-shadow: 0 8px 40px rgba(0,77,64,0.10); transform: translateY(-3px); }
+
+    .pricing-card.featured {
+      border-color: var(--gold);
+      box-shadow: 0 8px 40px rgba(242,169,0,0.18);
+    }
+    .pricing-card.featured:hover { border-color: #d99600; }
+
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .plan-price {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: #1a1a1a;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .plan-price span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #888;
+    }
+    .plan-tagline {
+      font-size: 0.88rem;
+      color: #888;
+      margin-bottom: 1.5rem;
+    }
+    .plan-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    .plan-features li {
+      font-size: 0.93rem;
+      color: #444;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0ece6;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      line-height: 1.45;
+    }
+    .plan-features li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .btn-plan {
+      display: block;
+      text-align: center;
+      padding: 0.85rem;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-plan-outline {
+      border: 2px solid var(--green);
+      color: var(--green);
+    }
+    .btn-plan-outline:hover { background: var(--green); color: #fff; }
+    .btn-plan-gold {
+      background: var(--gold);
+      color: #fff;
+    }
+    .btn-plan-gold:hover { background: #d99600; }
+
+    /* ─── WHY US ─── */
+    #why {
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+    }
+    #why .section-label { color: var(--gold); }
+    #why .section-title { color: #fff; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      max-width: 1000px;
+      margin: 0 auto 4rem;
+    }
+
+    .why-card {
+      padding: 2rem 1.5rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.07);
+      text-align: left;
+      transition: background 0.2s;
+    }
+    .why-card:hover { background: rgba(255,255,255,0.12); }
+
+    .why-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .why-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+      color: #fff;
+    }
+    .why-card p { font-size: 0.93rem; color: rgba(255,255,255,0.72); line-height: 1.65; }
+
+    .pull-quote {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--gold);
+      letter-spacing: -0.02em;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.25;
+    }
+    .pull-quote::before { content: '\201C'; }
+    .pull-quote::after { content: '\201D'; }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--off-white); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1060px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .about-img {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,77,64,0.15);
+      aspect-ratio: 4/3;
+    }
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.9);
+    }
+
+    .about-text .section-title { margin-bottom: 1.2rem; }
+    .about-text p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-highlight {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--green);
+    }
+
+    /* ─── CTA SECTION ─── */
+    #cta {
+      background: var(--gold);
+      text-align: center;
+      padding: 100px 5%;
+    }
+    .cta-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: #fff;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .cta-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-input {
+      padding: 0.9rem 1.4rem;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      min-width: 260px;
+      outline: none;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    .cta-input::placeholder { color: #aaa; }
+    .btn-dark {
+      padding: 0.9rem 2rem;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-dark:hover { background: #003530; transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--green);
+      color: rgba(255,255,255,0.75);
+      padding: 60px 5% 40px;
+    }
+    .footer-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .footer-brand { flex: 1; min-width: 200px; }
+    .footer-tagline {
+      margin-top: 0.75rem;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      font-style: italic;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer-nav a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+
+    .footer-contact {
+      font-size: 0.88rem;
+    }
+    .footer-contact a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .footer-contact a:hover { text-decoration: underline; }
+
+    .footer-bottom {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.38);
+      text-align: center;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .steps, .pricing-grid, .why-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+      }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-img { aspect-ratio: 16/9; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 70px 6%; }
+      nav { padding: 0 6%; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .btn-outline, .btn-gold { width: 100%; text-align: center; }
+      .trust-badges { flex-direction: column; align-items: center; gap: 0.4rem; }
+      .trust-badge::before { display: none; }
+      .cta-input { min-width: 100%; }
+      .footer-top { flex-direction: column; }
+    }
+
+    /* ─── Scroll reveal utility ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo" aria-label="Your Operative">
+      <svg width="200" height="36" viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="14,26 5,38 23,38" fill="#004D40" opacity="0.88"/>
+        <polygon points="14,19 7,30 21,30" fill="#004D40" opacity="0.92"/>
+        <polygon points="14,12 8,22 20,22" fill="#004D40" opacity="0.96"/>
+        <polygon points="14,5 9,14 19,14" fill="#004D40"/>
+        <rect x="12" y="38" width="4" height="4" rx="1" fill="#004D40" opacity="0.88"/>
+        <polygon points="26,26 15,40 37,40" fill="#F2A900" opacity="0.88"/>
+        <polygon points="26,18 16,32 36,32" fill="#F2A900" opacity="0.92"/>
+        <polygon points="26,10 17,24 35,24" fill="#F2A900" opacity="0.96"/>
+        <polygon points="26,2 19,13 33,13" fill="#F2A900"/>
+        <rect x="24" y="40" width="4" height="2" rx="1" fill="#F2A900"/>
+        <rect x="12" y="40" width="16" height="2" rx="1" fill="#004D40" opacity="0.12"/>
+        <text x="46" y="26" font-family="Outfit, sans-serif" font-weight="800" font-size="18" letter-spacing="-0.3"><tspan fill="#004D40">Your</tspan><tspan fill="#F2A900"> Operative</tspan></text>
+      </svg>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#services" data-i18n="nav-services">Services</a></li>
+      <li><a href="#how" data-i18n="nav-how">How It Works</a></li>
+      <li><a href="#about" data-i18n="nav-about">About</a></li>
+      <li><a href="#cta" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- Language toggle pill -->
+      <div class="lang-toggle" role="group" aria-label="Language selector">
+        <button class="lang-btn active" data-lang="en" aria-pressed="true">
+          <span class="lbl-full">EN</span><span class="lbl-short">EN</span>
+        </button>
+        <button class="lang-btn" data-lang="es" aria-pressed="false">
+          <span class="lbl-full">ES</span><span class="lbl-short">ES</span>
+        </button>
+        <button class="lang-btn" data-lang="zh" aria-pressed="false">
+          <span class="lbl-full">中文</span><span class="lbl-short">中</span>
+        </button>
+        <button class="lang-btn" data-lang="ko" aria-pressed="false">
+          <span class="lbl-full">한국어</span><span class="lbl-short">한</span>
+        </button>
+      </div>
+      <a href="#cta" class="nav-cta" data-i18n="nav-cta">Get Your Free Site</a>
+    </div>
+  </nav>
+
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-logo">
+        <svg width="240" height="44" viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="14,26 5,38 23,38" fill="#fff" opacity="0.75"/>
+          <polygon points="14,19 7,30 21,30" fill="#fff" opacity="0.82"/>
+          <polygon points="14,12 8,22 20,22" fill="#fff" opacity="0.90"/>
+          <polygon points="14,5 9,14 19,14" fill="#fff"/>
+          <rect x="12" y="38" width="4" height="4" rx="1" fill="#fff" opacity="0.75"/>
+          <polygon points="26,26 15,40 37,40" fill="#F2A900" opacity="0.88"/>
+          <polygon points="26,18 16,32 36,32" fill="#F2A900" opacity="0.92"/>
+          <polygon points="26,10 17,24 35,24" fill="#F2A900" opacity="0.96"/>
+          <polygon points="26,2 19,13 33,13" fill="#F2A900"/>
+          <rect x="24" y="40" width="4" height="2" rx="1" fill="#F2A900"/>
+          <rect x="12" y="40" width="16" height="2" rx="1" fill="#fff" opacity="0.12"/>
+          <text x="46" y="26" font-family="Outfit, sans-serif" font-weight="800" font-size="18" letter-spacing="-0.3"><tspan fill="#fff">Your</tspan><tspan fill="#F2A900"> Operative</tspan></text>
+        </svg>
+      </div>
+
+      <h1 class="hero-headline" data-i18n="hero-headline">Your vision,&#10;made undeniable.</h1>
+      <p class="hero-subhead" data-i18n="hero-subhead">We build your online presence. You run your business.</p>
+
+      <div class="hero-ctas">
+        <a href="#how" class="btn-outline" data-i18n="hero-btn-how">See How It Works</a>
+        <a href="#cta" class="btn-gold" data-i18n="hero-btn-free">Get Your Free Website</a>
+      </div>
+
+      <div class="trust-badges">
+        <span class="trust-badge" data-i18n="trust-1">No Setup Fees</span>
+        <span class="trust-badge" data-i18n="trust-2">No Contracts</span>
+        <span class="trust-badge" data-i18n="trust-3">Cancel Anytime</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section id="how">
+    <div class="section-label" data-i18n="how-label">How It Works</div>
+    <h2 class="section-title" data-i18n-html="how-title">Three steps.<br/>Zero friction.</h2>
+    <p class="section-subtitle" data-i18n="how-subtitle">From zero to live without lifting a finger. Here's what working with Your Operative looks like.</p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-number">01</span>
+        <div class="step-icon">🔍</div>
+        <div class="step-title" data-i18n="step1-title">We find you</div>
+        <p data-i18n="step1-body">We research your business and build a professional website tailored to you. No forms. No onboarding. No headache.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.12s">
+        <span class="step-number">02</span>
+        <div class="step-icon">📬</div>
+        <div class="step-title" data-i18n="step2-title">You see it first</div>
+        <p data-i18n="step2-body">We mail you a postcard with a QR code. Scan it. Your site is live and waiting — built for your business, ready to impress.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.24s">
+        <span class="step-number">03</span>
+        <div class="step-icon">🌱</div>
+        <div class="step-title" data-i18n="step3-title">We grow together</div>
+        <p data-i18n="step3-body">Like what you see? We handle the rest — social, Google, ads — while you focus on your craft.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ CALLOUT BAR ═══ -->
+  <section style="
+    background: #004D40;
+    padding: 5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  ">
+    <div style="
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(242,169,0,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    "></div>
+    <div style="position: relative; z-index: 1; max-width: 680px; margin: 0 auto;">
+      <div style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.72rem; font-weight: 700;
+        letter-spacing: 0.2em; text-transform: uppercase;
+        color: #F2A900; margin-bottom: 1.25rem;
+      " data-i18n="callout-eyebrow">The difference</div>
+      <h2 style="
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(1.75rem, 4vw, 2.8rem);
+        font-weight: 800; color: #fff;
+        letter-spacing: -0.02em; line-height: 1.2;
+        margin-bottom: 1.5rem;
+      " data-i18n="callout-headline">You should be running your business,<br/>not editing templates.</h2>
+      <p style="
+        font-size: clamp(1rem, 2vw, 1.1rem);
+        color: rgba(255,255,255,0.7);
+        line-height: 1.75; margin: 0 auto;
+        max-width: 520px;
+      " data-i18n="callout-sub">Hours changed? New menu item? Want a different photo? Just tell us. We handle it, immediately. No logins. No drag-and-drop. No learning curve.<br/><strong style="color:#fff;">That's Your Operative.</strong></p>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section id="services">
+    <div class="section-label" data-i18n="services-label">Pricing</div>
+    <h2 class="section-title" data-i18n="services-title">Simple, honest plans.</h2>
+    <p class="section-subtitle" data-i18n="services-subtitle">No hidden fees. No lock-in. Just results. Start with what you need and grow from there.</p>
+
+    <div class="pricing-grid">
+      <!-- Foundation -->
+      <div class="pricing-card reveal">
+        <div class="plan-name">Foundation</div>
+        <div class="plan-price">$150<span>/mo</span></div>
+        <div class="plan-tagline" data-i18n="foundation-tagline">Get found online, fast</div>
+        <ul class="plan-features">
+          <li data-i18n="f-feat-1">Professional website built for you</li>
+          <li data-i18n="f-feat-2">Google Business Profile setup &amp; optimization</li>
+          <li data-i18n="f-feat-3">Monthly performance report</li>
+          <li data-i18n="f-feat-4">Hosting &amp; maintenance included</li>
+          <li data-i18n="f-feat-5">Mobile-first responsive design</li>
+        </ul>
+        <a href="#cta" class="btn-plan btn-plan-outline" data-i18n="btn-foundation">Get Started</a>
+      </div>
+
+      <!-- Growth (featured) -->
+      <div class="pricing-card featured reveal" style="transition-delay:0.12s">
+        <div class="popular-badge" data-i18n="growth-badge">⭐ Most Popular</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-price">$500<span>/mo</span></div>
+        <div class="plan-tagline" data-i18n="growth-tagline">Build real momentum</div>
+        <ul class="plan-features">
+          <li data-i18n="g-feat-1">Everything in Foundation</li>
+          <li data-i18n="g-feat-2">Social media management (3 platforms)</li>
+          <li data-i18n="g-feat-3">Weekly content creation &amp; posting</li>
+          <li data-i18n="g-feat-4">Review generation campaigns</li>
+          <li data-i18n="g-feat-5">Monthly strategy call</li>
+          <li data-i18n="g-feat-6">Competitor monitoring</li>
+        </ul>
+        <a href="#cta" class="btn-plan btn-plan-gold" data-i18n="btn-growth">Get Started</a>
+      </div>
+
+      <!-- Accelerator -->
+      <div class="pricing-card reveal" style="transition-delay:0.24s">
+        <div class="plan-name">Accelerator</div>
+        <div class="plan-price">$1,000<span>/mo</span></div>
+        <div class="plan-tagline" data-i18n="accelerator-tagline">Full-throttle growth</div>
+        <ul class="plan-features">
+          <li data-i18n="a-feat-1">Everything in Growth</li>
+          <li data-i18n="a-feat-2">Meta Ads campaigns (FB + IG)</li>
+          <li data-i18n="a-feat-3">Ad creative &amp; copywriting</li>
+          <li data-i18n="a-feat-4">Advanced targeting &amp; retargeting</li>
+          <li data-i18n="a-feat-5">Weekly performance review</li>
+          <li data-i18n="a-feat-6">Priority support &amp; dedicated strategist</li>
+        </ul>
+        <a href="#cta" class="btn-plan btn-plan-outline" data-i18n="btn-accelerator">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ WHY US ═══ -->
+  <section id="why">
+    <div class="section-label" data-i18n="why-label">Why Your Operative</div>
+    <h2 class="section-title" data-i18n-html="why-title" style="color:#fff; margin-bottom:3rem;">Built different.<br/>For businesses that are too.</h2>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">⚡</div>
+        <div class="why-title" data-i18n="why1-title">Always On</div>
+        <p data-i18n="why1-body">We work fast, move smart, and stay ahead of the curve — so your marketing never sleeps, even when you do.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.12s">
+        <div class="why-icon">🌳</div>
+        <div class="why-title" data-i18n="why2-title">Built for Local</div>
+        <p data-i18n="why2-body">We're local. We know the neighborhoods, the culture, and the customers. Your marketing will actually resonate.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.24s">
+        <div class="why-icon">💡</div>
+        <div class="why-title" data-i18n="why3-title">No BS Pricing</div>
+        <p data-i18n="why3-body">What you see is what you pay. No setup fees, no surprise charges, no 12-month lock-ins. Cancel anytime, no questions asked.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote reveal" data-i18n="pull-quote">Every brand deserves an operative.</div>
+  </section>
+
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-img reveal">
+        <img
+          src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=900&q=85"
+          alt="Hands holding a small tree seedling — growth, care, roots"
+          loading="lazy"
+        />
+      </div>
+      <div class="about-text reveal" style="transition-delay:0.15s">
+        <div class="section-label" data-i18n="about-label">About</div>
+        <h2 class="section-title" data-i18n="about-title">Marketing built for the people who build things.</h2>
+        <p data-i18n="about-p1">Your Operative started with a simple observation: local businesses with incredible products and real community roots getting buried online by companies with bigger ad budgets and worse coffee.</p>
+        <p data-i18n="about-p2">We're a marketing agency built exclusively for independent businesses. We combine focused strategy with real human investment in your brand — so you get a professional presence you deserve, without the overhead.</p>
+        <p data-i18n="about-p3">We find you, build for you, and grow with you.</p>
+        <p class="about-highlight" data-i18n="about-highlight">That's the operative mission.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ CTA SECTION ═══ -->
+  <section id="cta">
+    <h2 class="cta-title" data-i18n="cta-title">Ready to be undeniable?</h2>
+    <p class="cta-sub" data-i18n="cta-sub">We'll build your site for free. No catch. Scan the QR code when it arrives — or drop your email now and we'll reach out first.</p>
+
+    <form class="cta-form" onsubmit="handleSubmit(event)">
+      <input
+        type="email"
+        class="cta-input"
+        placeholder="your@email.com"
+        data-i18n-placeholder="cta-placeholder"
+        required
+        aria-label="Email address"
+      />
+      <button type="submit" class="btn-dark" data-i18n="cta-btn">Get Started →</button>
+    </form>
+  </section>
+
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <svg width="180" height="32" viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="14,26 5,38 23,38" fill="#fff" opacity="0.6"/>
+            <polygon points="14,19 7,30 21,30" fill="#fff" opacity="0.7"/>
+            <polygon points="14,12 8,22 20,22" fill="#fff" opacity="0.82"/>
+            <polygon points="14,5 9,14 19,14" fill="#fff" opacity="0.92"/>
+            <rect x="12" y="38" width="4" height="4" rx="1" fill="#fff" opacity="0.6"/>
+            <polygon points="26,26 15,40 37,40" fill="#F2A900" opacity="0.75"/>
+            <polygon points="26,18 16,32 36,32" fill="#F2A900" opacity="0.85"/>
+            <polygon points="26,10 17,24 35,24" fill="#F2A900" opacity="0.92"/>
+            <polygon points="26,2 19,13 33,13" fill="#F2A900"/>
+            <rect x="24" y="40" width="4" height="2" rx="1" fill="#F2A900" opacity="0.9"/>
+            <rect x="12" y="40" width="16" height="2" rx="1" fill="#fff" opacity="0.08"/>
+            <text x="46" y="26" font-family="Outfit, sans-serif" font-weight="800" font-size="18" letter-spacing="-0.3"><tspan fill="#fff">Your</tspan><tspan fill="#F2A900"> Operative</tspan></text>
+          </svg>
+          <p class="footer-tagline" data-i18n="footer-tagline">Your vision, made undeniable.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#services" data-i18n="footer-services">Services</a>
+          <a href="#how" data-i18n="footer-how">How It Works</a>
+          <a href="#about" data-i18n="footer-about">About</a>
+          <a href="#cta" data-i18n="footer-contact">Contact</a>
+        </nav>
+
+        <div class="footer-contact">
+          <a href="mailto:hello@youroperative.com">hello@youroperative.com</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 Your Operative.
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // ══════════════════════════════════════════════
+    // TRANSLATIONS
+    // ══════════════════════════════════════════════
+    const T = {
+      en: {
+        'nav-services': 'Services',
+        'nav-how': 'How It Works',
+        'nav-about': 'About',
+        'nav-contact': 'Contact',
+        'nav-cta': 'Get Your Free Site',
+        'hero-headline': 'Your vision,\nmade undeniable.',
+        'hero-subhead': 'We build your online presence. You run your business.',
+        'hero-btn-how': 'See How It Works',
+        'hero-btn-free': 'Get Your Free Website',
+        'trust-1': 'No Setup Fees',
+        'trust-2': 'No Contracts',
+        'trust-3': 'Cancel Anytime',
+        'how-label': 'How It Works',
+        'how-title': 'Three steps.<br/>Zero friction.',
+        'how-subtitle': "From zero to live without lifting a finger. Here's what working with Your Operative looks like.",
+        'step1-title': 'We find you',
+        'step1-body': 'We research your business and build a professional website tailored to you. No forms. No onboarding. No headache.',
+        'step2-title': 'You see it first',
+        'step2-body': 'We mail you a postcard with a QR code. Scan it. Your site is live and waiting — built for your business, ready to impress.',
+        'step3-title': 'We grow together',
+        'step3-body': 'Like what you see? We handle the rest — social, Google, ads — while you focus on your craft.',
+        'services-label': 'Pricing',
+        'services-title': 'Simple, honest plans.',
+        'services-subtitle': 'No hidden fees. No lock-in. Just results. Start with what you need and grow from there.',
+        'foundation-tagline': 'Get found online, fast',
+        'growth-badge': '⭐ Most Popular',
+        'growth-tagline': 'Build real momentum',
+        'accelerator-tagline': 'Full-throttle growth',
+        'btn-foundation': 'Get Started',
+        'btn-growth': 'Get Started',
+        'btn-accelerator': 'Get Started',
+        'f-feat-1': 'Professional website built for you',
+        'f-feat-2': 'Google Business Profile setup & optimization',
+        'f-feat-3': 'Monthly performance report',
+        'f-feat-4': 'Hosting & maintenance included',
+        'f-feat-5': 'Mobile-first responsive design',
+        'g-feat-1': 'Everything in Foundation',
+        'g-feat-2': 'Social media management (3 platforms)',
+        'g-feat-3': 'Weekly content creation & posting',
+        'g-feat-4': 'Review generation campaigns',
+        'g-feat-5': 'Monthly strategy call',
+        'g-feat-6': 'Competitor monitoring',
+        'a-feat-1': 'Everything in Growth',
+        'a-feat-2': 'Meta Ads campaigns (FB + IG)',
+        'a-feat-3': 'Ad creative & copywriting',
+        'a-feat-4': 'Advanced targeting & retargeting',
+        'a-feat-5': 'Weekly performance review',
+        'a-feat-6': 'Priority support & dedicated strategist',
+        'why-label': 'Why Your Operative',
+        'why-title': 'Built different.<br/>For businesses that are too.',
+        'why1-title': 'Always On',
+        'why1-body': 'We work fast, move smart, and stay ahead of the curve — so your marketing never sleeps, even when you do.',
+        'why2-title': 'Built for Local',
+        'why2-body': "We're local. We know the neighborhoods, the culture, and the customers. Your marketing will actually resonate.",
+        'why3-title': 'No BS Pricing',
+        'why3-body': 'What you see is what you pay. No setup fees, no surprise charges, no 12-month lock-ins. Cancel anytime, no questions asked.',
+        'pull-quote': 'Every brand deserves an operative.',
+        'about-label': 'About',
+        'about-title': 'Marketing built for the people who build things.',
+        'about-p1': 'Your Operative started with a simple observation: local businesses with incredible products and real community roots getting buried online by companies with bigger ad budgets and worse coffee.',
+        'about-p2': "We're a marketing agency built exclusively for independent businesses. We combine focused strategy with real human investment in your brand — so you get a professional presence you deserve, without the overhead.",
+        'about-p3': 'We find you, build for you, and grow with you.', 'about-highlight': "That's the operative mission.",
+        'cta-title': 'Ready to be undeniable?',
+        'cta-sub': "We'll build your site for free. No catch. Scan the QR code when it arrives — or drop your email now and we'll reach out first.",
+        'cta-btn': 'Get Started →',
+        'cta-placeholder': 'your@email.com',
+        'cta-success': "✓ We'll be in touch!",
+        'footer-tagline': 'Your vision, made undeniable.',
+        'footer-services': 'Services',
+        'footer-how': 'How It Works',
+        'footer-about': 'About',
+        'footer-contact': 'Contact',
+      },
+
+      es: {
+        'nav-services': 'Servicios',
+        'nav-how': 'Cómo Funciona',
+        'nav-about': 'Nosotros',
+        'nav-contact': 'Contacto',
+        'nav-cta': 'Obtén Tu Sitio Gratis',
+        'hero-headline': 'Tu visión,\ninnegable.',
+        'hero-subhead': 'Construimos tu presencia en línea. Tú manejas tu negocio.',
+        'hero-btn-how': 'Ver Cómo Funciona',
+        'hero-btn-free': 'Obtén Tu Sitio Web Gratis',
+        'trust-1': 'Sin Costo de Configuración',
+        'trust-2': 'Sin Costo de Configuración',
+        'trust-3': 'Cancela Cuando Quieras',
+        'how-label': 'Cómo Funciona',
+        'how-title': 'Tres pasos.<br/>Sin fricción.',
+        'how-subtitle': 'De cero a activo sin mover un dedo. Así es como se trabaja con Your Operative.',
+        'step1-title': 'Te encontramos',
+        'step1-body': 'Investigamos tu negocio y construimos un sitio web profesional a tu medida. Sin formularios. Sin registro. Sin dolores de cabeza.',
+        'step2-title': 'Tú lo ves primero',
+        'step2-body': 'Te enviamos una postal con un código QR. Escanéalo. Tu sitio está activo y listo — hecho para tu negocio, listo para impresionar.',
+        'step3-title': 'Crecemos juntos',
+        'step3-body': '¿Te gusta lo que ves? Nosotros nos encargamos del resto — redes sociales, Google, anuncios — mientras tú te enfocas en tu oficio.',
+        'services-label': 'Precios',
+        'services-title': 'Planes simples y honestos.',
+        'services-subtitle': 'Sin costos ocultos. Sin contratos. Solo resultados. Empieza con lo que necesitas y crece desde ahí.',
+        'foundation-tagline': 'Aparece en línea, rápido',
+        'growth-badge': '⭐ Más Popular',
+        'growth-tagline': 'Construye momentum real',
+        'accelerator-tagline': 'Crecimiento a toda marcha',
+        'btn-foundation': 'Comenzar',
+        'btn-growth': 'Comenzar',
+        'btn-accelerator': 'Comenzar',
+        'f-feat-1': 'Sitio web profesional creado para ti',
+        'f-feat-2': 'Configuración y optimización de Google Business Profile',
+        'f-feat-3': 'Reporte mensual de rendimiento',
+        'f-feat-4': 'Hosting y mantenimiento incluidos',
+        'f-feat-5': 'Diseño responsivo mobile-first',
+        'g-feat-1': 'Todo lo de Foundation',
+        'g-feat-2': 'Gestión de redes sociales (3 plataformas)',
+        'g-feat-3': 'Creación y publicación de contenido semanal',
+        'g-feat-4': 'Campañas de generación de reseñas',
+        'g-feat-5': 'Llamada mensual de estrategia',
+        'g-feat-6': 'Monitoreo de competidores',
+        'a-feat-1': 'Todo lo de Growth',
+        'a-feat-2': 'Campañas de Meta Ads (FB + IG)',
+        'a-feat-3': 'Creatividad publicitaria y copywriting',
+        'a-feat-4': 'Segmentación avanzada y retargeting',
+        'a-feat-5': 'Revisión semanal de rendimiento',
+        'a-feat-6': 'Soporte prioritario y estratega dedicado',
+        'why-label': 'Por Qué Your Operative',
+        'why-title': 'Diferente.<br/>Para negocios que también lo son.',
+        'why1-title': 'Potenciado por IA',
+        'why1-body': 'Trabajamos rápido, nos movemos con inteligencia y nos adelantamos — para que tu marketing nunca duerma, aunque tú sí.',
+        'why2-title': 'Hecho para lo Local',
+        'why2-body': 'Somos locales. Conocemos los barrios, la cultura y los clientes. Tu marketing realmente resonará.',
+        'why3-title': 'Precios Transparentes',
+        'why3-body': 'Lo que ves es lo que pagas. Sin costos de configuración, sin cargos sorpresa, sin contratos de 12 meses. Cancela cuando quieras, sin preguntas.',
+        'pull-quote': 'Cada marca merece un operativo.',
+        'about-label': 'Nosotros',
+        'about-title': 'Marketing hecho para los que construyen cosas.',
+        'about-p1': 'Your Operative nació de una simple frustración: negocios locales con productos increíbles y raíces comunitarias reales que se pierden en línea ante empresas con mayores presupuestos publicitarios y peor café.',
+        'about-p2': 'Somos una agencia de marketing impulsada por IA para negocios independientes. Combinamos automatización inteligente con un cuidado genuino por tu marca — para que obtengas la presencia profesional que mereces, sin el recargo de agencia.',
+        'about-highlight': 'Te encontramos, construimos para ti y crecemos contigo. Esa es la misión operativa.',
+        'cta-title': '¿Listo para ser innegable?',
+        'cta-sub': 'Construiremos tu sitio gratis. Sin trampa. Escanea el código QR cuando llegue — o deja tu correo ahora y te contactamos primero.',
+        'cta-btn': 'Comenzar →',
+        'cta-placeholder': 'tu@correo.com',
+        'cta-success': '✓ ¡Nos pondremos en contacto!',
+        'footer-tagline': 'Tu visión, innegable.',
+        'footer-services': 'Servicios',
+        'footer-how': 'Cómo Funciona',
+        'footer-about': 'Nosotros',
+        'footer-contact': 'Contacto',
+      },
+
+      zh: {
+        'nav-services': '服务',
+        'nav-how': '工作原理',
+        'nav-about': '关于我们',
+        'nav-contact': '联系我们',
+        'nav-cta': '获取免费网站',
+        'hero-headline': '您的愿景，\n无可置疑。',
+        'hero-subhead': '我们打造您的网络形象，您专注经营业务。',
+        'hero-btn-how': '了解工作原理',
+        'hero-btn-free': '获取免费网站',
+        'trust-1': '无设置费用',
+        'trust-2': '无设置费用',
+        'trust-3': '随时取消',
+        'how-label': '工作原理',
+        'how-title': '三个步骤，<br/>零障碍。',
+        'how-subtitle': '从零到上线，无需您动一根手指。以下是与Your Operative合作的流程。',
+        'step1-title': '我们找到您',
+        'step1-body': '我们研究您的业务，为您量身打造专业网站。无需填表，无需入职培训，轻松无忧。',
+        'step2-title': '您第一个看到',
+        'step2-body': '我们邮寄给您一张带有二维码的明信片。扫描后，您的网站即刻上线——专为您的业务打造，随时给人留下深刻印象。',
+        'step3-title': '共同成长',
+        'step3-body': '喜欢您所看到的？我们处理其余一切——社交媒体、谷歌、广告——让您专注于您的事业。',
+        'services-label': '定价',
+        'services-title': '简单透明的方案。',
+        'services-subtitle': '无隐藏费用。无锁定合同。只有结果。从您需要的开始，逐步扩展。',
+        'foundation-tagline': '快速建立网络形象',
+        'growth-badge': '⭐ 最受欢迎',
+        'growth-tagline': '建立真正的增长动力',
+        'accelerator-tagline': '全速增长',
+        'btn-foundation': '立即开始',
+        'btn-growth': '立即开始',
+        'btn-accelerator': '立即开始',
+        'f-feat-1': '为您量身打造的专业网站',
+        'f-feat-2': 'Google商业档案设置与优化',
+        'f-feat-3': '每月绩效报告',
+        'f-feat-4': '含托管与维护',
+        'f-feat-5': '移动优先响应式设计',
+        'g-feat-1': '包含Foundation所有功能',
+        'g-feat-2': '社交媒体管理（3个平台）',
+        'g-feat-3': '每周内容创作与发布',
+        'g-feat-4': '评价获取活动',
+        'g-feat-5': '每月战略通话',
+        'g-feat-6': '竞争对手监测',
+        'a-feat-1': '包含Growth所有功能',
+        'a-feat-2': 'Meta广告投放（FB + IG）',
+        'a-feat-3': '广告创意与文案',
+        'a-feat-4': '高级定向与再定向',
+        'a-feat-5': '每周绩效回顾',
+        'a-feat-6': '优先支持与专属策略师',
+        'why-label': '为什么选择Your Operative',
+        'why-title': '与众不同。<br/>为同样与众不同的企业。',
+        'why1-title': 'AI赋能',
+        'why1-body': '我们快速行动，精明运营，保持领先——让您的营销永不停歇，即使您休息时也是如此。',
+        'why2-title': '专为本地打造',
+        'why2-body': '我们是本地的。我们了解社区、文化和客户。您的营销将真正产生共鸣。',
+        'why3-title': '透明定价',
+        'why3-body': '所见即所付。无设置费用，无意外收费，无12个月锁定。随时取消，无需说明原因。',
+        'pull-quote': '每个品牌都值得拥有一个运营专家。',
+        'about-label': '关于我们',
+        'about-title': '为建设者打造的营销服务。',
+        'about-p1': 'Your Operative诞生于一个简单的挫败感：拥有出色产品和真实社区根基的本地企业，被广告预算更多的公司在网络上所淹没。',
+        'about-p2': '我们是一家为独立企业打造的AI驱动营销机构。我们将智能自动化与对品牌的真诚关怀相结合，让您获得真正值得拥有的专业形象，而无需支付代理机构溢价。',
+        'about-highlight': '我们找到您、为您打造、与您共同成长。这就是我们的运营使命。',
+        'cta-title': '准备好让您的品牌无可置疑了吗？',
+        'cta-sub': '我们将免费为您建立网站。没有任何陷阱。收到后扫描二维码——或者现在留下您的邮箱，我们会第一时间联系您。',
+        'cta-btn': '立即开始 →',
+        'cta-placeholder': '您的邮箱地址',
+        'cta-success': '✓ 我们会尽快联系您！',
+        'footer-tagline': '您的愿景，无可置疑。',
+        'footer-services': '服务',
+        'footer-how': '工作原理',
+        'footer-about': '关于我们',
+        'footer-contact': '联系我们',
+      },
+
+      ko: {
+        'nav-services': '서비스',
+        'nav-how': '작동 방식',
+        'nav-about': '소개',
+        'nav-contact': '문의',
+        'nav-cta': '무료 사이트 받기',
+        'hero-headline': '당신의 비전,\n부정할 수 없게.',
+        'hero-subhead': '우리가 온라인 존재감을 만듭니다. 당신은 사업에 집중하세요.',
+        'hero-btn-how': '작동 방식 보기',
+        'hero-btn-free': '무료 웹사이트 받기',
+        'trust-1': '설정 비용 없음',
+        'trust-2': '설정 비용 없음',
+        'trust-3': '언제든지 취소',
+        'how-label': '작동 방식',
+        'how-title': '세 단계.<br/>마찰 없이.',
+        'how-subtitle': '손가락 하나 까딱하지 않고 제로에서 라이브까지. Your Operative와 함께하는 방식입니다.',
+        'step1-title': '우리가 찾아갑니다',
+        'step1-body': '귀하의 비즈니스를 연구하고 맞춤형 전문 웹사이트를 구축합니다. 양식 없음. 온보딩 없음. 번거로움 없음.',
+        'step2-title': '먼저 확인하세요',
+        'step2-body': 'QR 코드가 담긴 엽서를 우편으로 보내드립니다. 스캔하세요. 귀하의 사이트가 준비되어 있습니다 — 비즈니스를 위해 구축되었으며, 감동을 줄 준비가 되어 있습니다.',
+        'step3-title': '함께 성장합니다',
+        'step3-body': '마음에 드셨나요? 나머지는 저희가 처리합니다 — 소셜, 구글, 광고 — 귀하는 본업에 집중하세요.',
+        'services-label': '가격',
+        'services-title': '단순하고 솔직한 요금제.',
+        'services-subtitle': '숨겨진 요금 없음. 묶음 계약 없음. 오직 결과만. 필요한 것부터 시작하여 성장하세요.',
+        'foundation-tagline': '빠르게 온라인에서 발견되세요',
+        'growth-badge': '⭐ 가장 인기',
+        'growth-tagline': '진정한 모멘텀 구축',
+        'accelerator-tagline': '전속력 성장',
+        'btn-foundation': '시작하기',
+        'btn-growth': '시작하기',
+        'btn-accelerator': '시작하기',
+        'f-feat-1': '맞춤형 전문 웹사이트 구축',
+        'f-feat-2': 'Google 비즈니스 프로필 설정 및 최적화',
+        'f-feat-3': '월간 성과 보고서',
+        'f-feat-4': '호스팅 및 유지보수 포함',
+        'f-feat-5': '모바일 우선 반응형 디자인',
+        'g-feat-1': 'Foundation의 모든 기능 포함',
+        'g-feat-2': '소셜 미디어 관리 (3개 플랫폼)',
+        'g-feat-3': '주간 콘텐츠 제작 및 게시',
+        'g-feat-4': '리뷰 생성 캠페인',
+        'g-feat-5': '월간 전략 통화',
+        'g-feat-6': '경쟁사 모니터링',
+        'a-feat-1': 'Growth의 모든 기능 포함',
+        'a-feat-2': 'Meta 광고 캠페인 (FB + IG)',
+        'a-feat-3': '광고 크리에이티브 및 카피라이팅',
+        'a-feat-4': '고급 타겟팅 및 리타겟팅',
+        'a-feat-5': '주간 성과 검토',
+        'a-feat-6': '우선 지원 및 전담 전략가',
+        'why-label': 'Why Your Operative',
+        'why-title': '다릅니다.<br/>당신의 비즈니스처럼.',
+        'why1-title': 'AI 기반',
+        'why1-body': '빠르게 움직이고, 스마트하게 운영하며, 앞서 나갑니다 — 당신이 쉬는 동안에도 마케팅은 멈추지 않습니다.',
+        'why2-title': '로컬을 위해 구축',
+        'why2-body': '저희는 로컬입니다. 동네, 문화, 고객을 잘 알고 있습니다. 귀하의 마케팅이 실제로 공감을 얻을 것입니다.',
+        'why3-title': '투명한 가격',
+        'why3-body': '보이는 것이 지불하는 금액입니다. 설정 비용 없음, 예상치 못한 요금 없음, 12개월 묶음 계약 없음. 언제든지 취소 가능, 이유 묻지 않음.',
+        'pull-quote': '모든 브랜드는 전담 운영자를 받을 자격이 있습니다.',
+        'about-label': '소개',
+        'about-title': '무언가를 만드는 사람들을 위한 마케팅.',
+        'about-p1': 'Your Operative는 단순한 좌절에서 탄생했습니다: 훌륭한 제품과 진정한 커뮤니티 뿌리를 가진 지역 비즈니스들이 더 큰 광고 예산을 가진 회사들에 의해 온라인에서 묻히고 있었습니다.',
+        'about-p2': '저희는 독립 비즈니스를 위해 구축된 AI 기반 마케팅 대행사입니다. 스마트 자동화와 브랜드에 대한 진정한 관심을 결합하여, 대행사 마진 없이 실제로 받을 자격이 있는 전문적인 존재감을 제공합니다.',
+        'about-highlight': '우리가 찾아가고, 구축하고, 함께 성장합니다. 그것이 우리의 운영 미션입니다.',
+        'cta-title': '부정할 수 없는 존재가 될 준비가 되셨나요?',
+        'cta-sub': '귀하의 사이트를 무료로 구축해 드립니다. 함정 없음. 도착하면 QR 코드를 스캔하거나, 지금 이메일을 남겨주시면 먼저 연락드리겠습니다.',
+        'cta-btn': '시작하기 →',
+        'cta-placeholder': '이메일@example.com',
+        'cta-success': '✓ 곧 연락드리겠습니다!',
+        'footer-tagline': '당신의 비전, 부정할 수 없게.',
+        'footer-services': '서비스',
+        'footer-how': '작동 방식',
+        'footer-about': '소개',
+        'footer-contact': '문의',
+      }
+    };
+
+    // ── Lang codes → <html lang> values ──
+    const LANG_CODES = { en: 'en', es: 'es', zh: 'zh-Hans', ko: 'ko' };
+
+    // ── Current language ──
+    let currentLang = 'en';
+
+    // ── Apply translations to the DOM ──
+    function applyLang(lang) {
+      const dict = T[lang];
+      if (!dict) return;
+      currentLang = lang;
+
+      // Update html[lang]
+      document.documentElement.lang = LANG_CODES[lang] || lang;
+
+      // textContent nodes
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+
+      // innerHTML nodes (elements with <br/> etc.)
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+
+      // Placeholder attributes
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (dict[key] !== undefined) el.placeholder = dict[key];
+      });
+
+      // Update toggle button states
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const active = btn.dataset.lang === lang;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      // Persist preference
+      try { localStorage.setItem('yo-lang', lang); } catch(e) {}
+    }
+
+    // ── Lang toggle click handler ──
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    // ── Restore saved language ──
+    try {
+      const saved = localStorage.getItem('yo-lang');
+      if (saved && T[saved]) applyLang(saved);
+    } catch(e) {}
+
+
+    // ── i18n ──
+    const translations = {
+      en: {
+        nav_services:'Services', nav_how:'How It Works', nav_about:'About',
+        nav_contact:'Contact', nav_cta:'Get Your Free Site',
+        hero_headline:'Your vision,\nmade undeniable.',
+        hero_sub:'We build your online presence. You run your business.',
+        hero_cta1:'See How It Works', hero_cta2:'Get Your Free Website',
+        badge1:'No Setup Fees', badge2:'No Contracts', badge3:'Cancel Anytime',
+        how_label:'How It Works', how_title:'Three steps.<br/>Zero friction.',
+        how_sub:"From zero to live without lifting a finger. Here's what working with Your Operative looks like.",
+        step1_title:'We find you', step1_body:'We research your business and build a professional website tailored to you. No forms. No onboarding. No headache.',
+        step2_title:'You see it first', step2_body:'We mail you a postcard with a QR code. Scan it. Your site is live and waiting — built for your business, ready to impress.',
+        step3_title:'We grow together', step3_body:'Like what you see? We handle the rest — social, Google, ads — while you focus on your craft.',
+        svc_label:'Pricing', svc_title:'Simple, honest plans.',
+        svc_sub:'No hidden fees. No lock-in. Just results. Start with what you need and grow from there.',
+        popular:'⭐ Most Popular',
+        why_label:'Why Your Operative', why_title:'Built different.<br/>For businesses that are too.',
+        why1_title:'Always On', why2_title:'Built for Local', why3_title:'No BS Pricing',
+        pull_quote:'Every brand deserves an operative.',
+        about_label:'About', about_title:'Marketing built for the people who build things.',
+        cta_title:'Ready to be undeniable?',
+        cta_sub:"We'll build your site for free. No catch. Scan the QR code when it arrives — or drop your email now and we'll reach out first.",
+        footer_tagline:'Your vision, made undeniable.',
+        'callout-eyebrow': 'The difference',
+        'callout-headline': 'You should be running your business,<br/>not editing templates.',
+        'callout-sub': "Hours changed? New menu item? Want a different photo? Just tell us. We handle it, immediately. No logins. No drag-and-drop. No learning curve.<br/><strong>That's Your Operative.</strong>",
+      },
+      es: {
+        nav_services:'Servicios', nav_how:'Cómo Funciona', nav_about:'Nosotros',
+        nav_contact:'Contacto', nav_cta:'Obtén Tu Sitio Gratis',
+        hero_headline:'Tu visión,\nhecha innegable.',
+        hero_sub:'Construimos tu presencia en línea. Tú manejas tu negocio.',
+        hero_cta1:'Ver Cómo Funciona', hero_cta2:'Obtén Tu Sitio Web Gratis',
+        badge1:'Sin Costos de Configuración', badge2:'Sin Contratos', badge3:'Cancela Cuando Quieras',
+        how_label:'Cómo Funciona', how_title:'Tres pasos.<br/>Sin complicaciones.',
+        how_sub:'De cero a en línea sin mover un dedo. Así es trabajar con Your Operative.',
+        step1_title:'Te encontramos', step1_body:'Investigamos tu negocio y construimos un sitio web profesional hecho para ti. Sin formularios. Sin incorporación. Sin dolores de cabeza.',
+        step2_title:'Tú lo ves primero', step2_body:'Te enviamos una postal con un código QR. Escanéalo. Tu sitio está listo — construido para tu negocio, listo para impresionar.',
+        step3_title:'Crecemos juntos', step3_body:'¿Te gusta lo que ves? Nosotros nos encargamos del resto — redes sociales, Google, anuncios — mientras tú te enfocas en tu trabajo.',
+        svc_label:'Precios', svc_title:'Planes simples y honestos.',
+        svc_sub:'Sin cargos ocultos. Sin contratos forzosos. Solo resultados. Comienza con lo que necesitas y crece desde ahí.',
+        popular:'⭐ Más Popular',
+        why_label:'Por Qué Your Operative', why_title:'Construido diferente.<br/>Para negocios que también lo son.',
+        why1_title:'Siempre Activo', why2_title:'Hecho para lo Local', why3_title:'Precios Sin Engaños',
+        pull_quote:'Cada marca merece un operativo.',
+        about_label:'Nosotros', about_title:'Marketing construido para quienes construyen cosas.',
+        cta_title:'¿Listo para ser innegable?',
+        cta_sub:'Construiremos tu sitio gratis. Sin truco. Escanea el código QR cuando llegue — o déjanos tu email ahora y te contactamos primero.',
+        footer_tagline:'Tu visión, hecha innegable.',
+        'callout-eyebrow': 'La diferencia',
+        'callout-headline': "No deberías editar plantillas.<br/>Deberías estar manejando tu negocio.",
+        'callout-sub': '¿Cambiaron los horarios? ¿Nuevo artículo en el menú? ¿Quieres una foto diferente? <strong>Solo dínos.</strong> Hacemos el cambio y confirmamos que está listo. Sin inicios de sesión. Sin arrastrar y soltar. Eso es lo que significa tener un operativo.',
+      },
+      zh: {
+        nav_services:'服务', nav_how:'工作原理', nav_about:'关于我们',
+        nav_contact:'联系我们', nav_cta:'获取免费网站',
+        hero_headline:'您的愿景，\n无可置疑。',
+        hero_sub:'我们打造您的网络形象，您专注经营业务。',
+        hero_cta1:'了解工作原理', hero_cta2:'获取免费网站',
+        badge1:'无设置费用', badge2:'无合同限制', badge3:'随时取消',
+        how_label:'工作原理', how_title:'三个步骤。<br/>零障碍。',
+        how_sub:'无需任何操作，从零到上线。这就是与 Your Operative 合作的方式。',
+        step1_title:'我们找到您', step1_body:'我们研究您的业务，为您量身打造专业网站。无需填写表格，无需入职培训，无烦恼。',
+        step2_title:'您第一个看到', step2_body:'我们邮寄带有二维码的明信片。扫描即可。您的网站已上线——专为您的业务打造，随时可以展示。',
+        step3_title:'共同成长', step3_body:'喜欢您看到的？我们负责其余的一切——社交媒体、谷歌、广告——让您专注于自己的事业。',
+        svc_label:'价格方案', svc_title:'简单透明的方案。',
+        svc_sub:'无隐藏费用。无合同限制。只有成果。从您需要的开始，逐步成长。',
+        popular:'⭐ 最受欢迎',
+        why_label:'为什么选择 Your Operative', why_title:'与众不同。<br/>专为如此的企业打造。',
+        why1_title:'全时运转', why2_title:'专为本地打造', why3_title:'透明定价',
+        pull_quote:'每个品牌都值得拥有一个运营专家。',
+        about_label:'关于我们', about_title:'为建设者打造的营销。',
+        cta_title:'准备好让您的品牌无可置疑了吗？',
+        cta_sub:'我们将免费为您建站。没有陷阱。收到二维码明信片后扫描即可——或者现在留下您的邮箱，我们会主动联系您。',
+        footer_tagline:'您的愿景，无可置疑。',
+        'callout-eyebrow': '我们的不同之处',
+        'callout-headline': "您不应该编辑模板。<br/>您应该专注于经营业务。",
+        'callout-sub': '营业时间变了？新菜单项目？想换张照片？<strong>告诉我们就好。</strong>我们负责更新并确认完成。无需登录，无需拖拽，没有学习曲线。这就是拥有一个运营专家的意义。',
+      },
+      ko: {
+        nav_services:'서비스', nav_how:'작동 방식', nav_about:'소개',
+        nav_contact:'문의', nav_cta:'무료 사이트 받기',
+        hero_headline:'당신의 비전,\n부정할 수 없게.',
+        hero_sub:'우리가 온라인 존재감을 만듭니다. 당신은 사업에 집중하세요.',
+        hero_cta1:'작동 방식 보기', hero_cta2:'무료 웹사이트 받기',
+        badge1:'설정 비용 없음', badge2:'계약 없음', badge3:'언제든지 취소',
+        how_label:'작동 방식', how_title:'세 단계.<br/>마찰 없이.',
+        how_sub:'아무것도 하지 않고 제로에서 라이브까지. Your Operative와 함께하는 방식입니다.',
+        step1_title:'우리가 찾아갑니다', step1_body:'귀하의 비즈니스를 조사하고 맞춤형 전문 웹사이트를 구축합니다. 양식 없음. 온보딩 없음. 번거로움 없음.',
+        step2_title:'먼저 확인하세요', step2_body:'QR 코드가 있는 엽서를 우편으로 보냅니다. 스캔하세요. 귀하의 사이트가 라이브 상태입니다 — 비즈니스에 맞게 구축되어 감동을 줄 준비가 되어 있습니다.',
+        step3_title:'함께 성장합니다', step3_body:'보이는 것이 마음에 드시나요? 나머지는 저희가 처리합니다 — 소셜, 구글, 광고 — 당신은 일에 집중하세요.',
+        svc_label:'요금제', svc_title:'단순하고 솔직한 요금제.',
+        svc_sub:'숨겨진 수수료 없음. 구속 없음. 결과만 있습니다. 필요한 것부터 시작하여 성장하세요.',
+        popular:'⭐ 가장 인기',
+        why_label:'왜 Your Operative인가', why_title:'다르게 만들어졌습니다.<br/>그런 비즈니스를 위해.',
+        why1_title:'항상 활성', why2_title:'로컬을 위해 구축', why3_title:'투명한 가격',
+        pull_quote:'모든 브랜드는 전담 운영자를 받을 자격이 있습니다.',
+        about_label:'소개', about_title:'무언가를 만드는 사람들을 위한 마케팅.',
+        cta_title:'부정할 수 없는 존재가 될 준비가 되셨나요?',
+        cta_sub:'무료로 사이트를 구축해 드립니다. 속임수 없음. QR 코드가 도착하면 스캔하세요 — 또는 지금 이메일을 남기시면 먼저 연락드리겠습니다.',
+        footer_tagline:'당신의 비전, 부정할 수 없게.',
+        'callout-eyebrow': '우리의 차이점',
+        'callout-headline': "템플릿을 편집할 필요가 없습니다.<br/>당신은 사업에 집중해야 합니다.",
+        'callout-sub': '영업시간이 바뀌었나요? 새 메뉴 항목? 다른 사진을 원하시나요? <strong>그냥 말씀해 주세요.</strong> 우리가 업데이트하고 완료를 확인합니다. 로그인 없음, 드래그앤드롭 없음. 이것이 전담 운영자를 두는 의미입니다.',
+      }
+    };
+
+    function setLang(lang) {
+      // Update buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('onclick').includes("'" + lang + "'"));
+      });
+      // Update text
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          if (el.tagName === 'INPUT') {
+            el.placeholder = translations[lang][key];
+          } else if (el.innerHTML.includes('<br')) {
+            el.innerHTML = translations[lang][key];
+          } else {
+            el.textContent = translations[lang][key];
+          }
+        }
+      });
+      // Update placeholder
+      const emailInput = document.querySelector('.cta-input');
+      if (emailInput) {
+        const placeholders = {en:'your@email.com', es:'tu@email.com', zh:'您的邮箱@example.com', ko:'이메일@example.com'};
+        emailInput.placeholder = placeholders[lang] || 'your@email.com';
+      }
+      localStorage.setItem('yo_lang', lang);
+      document.documentElement.lang = lang;
+    }
+
+    // Restore saved language
+    const savedLang = localStorage.getItem('yo_lang');
+    if (savedLang && savedLang !== 'en') setLang(savedLang);
+
+    // ── Nav shadow on scroll ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // ── Scroll reveal ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── CTA form handler ──
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const input = e.target.querySelector('input');
+      const dict = T[currentLang] || T.en;
+      btn.textContent = dict['cta-success'] || "✓ We'll be in touch!";
+      btn.style.background = '#003530';
+      input.value = '';
+      input.disabled = true;
+      btn.disabled = true;
+    }
+  </script>
+
+</body>
+</html>
