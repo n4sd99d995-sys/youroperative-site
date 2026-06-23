@@ -3,1651 +3,1273 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Operative — Your vision, made undeniable.</title>
-  <meta name="description" content="Marketing built for local businesses. We build your online presence. You run your business." />
+  <title>[Direction A — Space Grotesk + Inter] Operative — The presence you've earned.</title>
+  <meta name="description" content="We build your whole website before you pay a cent. See it live, then decide. Built for local trades — plumbers, roofers, electricians." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    /* ─── Reset & Base ─── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: 'Inter', sans-serif;
-      color: #1a1a1a;
-      background: #fff;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── Variables ─── */
     :root {
-      --green: #004D40;
-      --gold: #F2A900;
-      --off-white: #faf8f4;
-      --text-muted: rgba(255,255,255,0.7);
+      --black:    #080808;
+      --surface:  #0f0f0f;
+      --s2:       #161616;
+      --s3:       #1e1e1e;
+      --border:   rgba(255,255,255,0.07);
+      --gold:     #F2A900;
+      --green:    #004D40;
+      --white:    #ffffff;
+      --off:      #d8d8d2;
+      --muted:    rgba(255,255,255,0.55);
+      --sidebar:  220px;
+
+  /* ── TYPE SYSTEM OVERRIDES ─────────────────────── */
+  --text-primary: #F5F3EE;
+  --text-accent:  #E6A53A;
+  --text-body:    #C9C7BE;
+  --text-muted:   #9A988F;
+  --on-amber:     #1A1407;
+  /* remap legacy tokens */
+  --gold:   #E6A53A;
+  --white:  #F5F3EE;
+  --off:    #C9C7BE;
+  --muted:  #9A988F;
+  --green:  #21453A;
+        --fd: 'Space Grotesk', sans-serif;
+      --fb:       'Inter', sans-serif;
     }
 
-    /* ─── NAV ─── */
-    nav {
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: var(--fb);
+      background: var(--black);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── CURSOR ─────────────────────────────────────────────────────── */
+    #cur  { position:fixed; width:7px; height:7px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .18s,height .18s; }
+    #cring{ position:fixed; width:32px; height:32px; border:1px solid rgba(242,169,0,.38); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .22s,height .22s,border-color .22s; }
+    @media(max-width:700px){ #cur,#cring{ display:none; } body{ cursor:auto; } }
+
+    /* ── SIDEBAR ────────────────────────────────────────────────────── */
+    .sidebar {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5%;
-      height: 70px;
-      transition: box-shadow 0.3s ease;
-      gap: 1rem;
+      left: 0; top: 0; bottom: 0;
+      width: var(--sidebar);
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      padding: 36px 28px;
+      z-index: 200;
     }
-    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.10); }
+    .sb-logo {
+      display: flex; align-items: center; gap: 9px;
+      font-family: var(--fd); font-weight: 900;
+      font-size: 1rem; letter-spacing: -0.02em;
+      margin-bottom: 48px; flex-shrink: 0;
+    }
+    .sb-logo svg { width: 24px; height: 24px; flex-shrink: 0; }
 
-    .nav-logo { display: flex; align-items: center; flex-shrink: 0; }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: #333;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--green); }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      flex-shrink: 0;
-    }
-
-    .nav-cta {
-      background: var(--gold);
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.6rem 1.4rem;
-      border-radius: 6px;
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      transition: background 0.2s, transform 0.15s;
-      white-space: nowrap;
-    }
-    .nav-cta:hover { background: #d99600; transform: translateY(-1px); }
-
-    /* ─── LANG TOGGLE ─── */
-    .lang-toggle {
-      display: flex;
-      gap: 0;
-      background: rgba(0,77,64,0.07);
-      border-radius: 30px;
-      padding: 3px;
-      flex-shrink: 0;
-    }
-    .lang-btn {
-      border: none;
-      background: transparent;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #666;
-      padding: 0.28rem 0.6rem;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
-      letter-spacing: 0.01em;
-      line-height: 1;
-    }
-    .lang-btn:hover { color: var(--green); }
-    .lang-btn.active {
-      background: var(--green);
-      color: #fff;
-    }
-    /* Mobile: show short labels */
-    .lang-btn .lbl-full { display: inline; }
-    .lang-btn .lbl-short { display: none; }
-    @media (max-width: 700px) {
-      .lang-btn .lbl-full { display: none; }
-      .lang-btn .lbl-short { display: inline; }
-      .lang-btn { padding: 0.28rem 0.5rem; font-size: 0.7rem; }
-      .nav-cta { display: none; }
-    }
-
-    /* ─── HERO ─── */
-    #hero {
+    .sb-nav { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .sb-link {
+      display: flex; align-items: center; gap: 14px;
+      padding: 10px 0;
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--muted); letter-spacing: 0.04em;
+      transition: color .18s;
       position: relative;
+      cursor: none;
+    }
+    .sb-link:hover { color: var(--off); }
+    .sb-link.active { color: var(--white); }
+
+    /* Gold indicator bar */
+    .sb-link::before {
+      content: '';
+      width: 2px; height: 0;
+      background: var(--gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+      transition: height .3s cubic-bezier(.16,1,.3,1);
+    }
+    .sb-link.active::before { height: 20px; }
+
+    .sb-num {
+      font-family: var(--fd); font-weight: 700;
+      font-size: 0.62rem; color: var(--muted);
+      letter-spacing: 0.1em; min-width: 18px;
+      transition: color .18s;
+    }
+    .sb-link.active .sb-num { color: var(--gold); }
+    .sb-link-label { transition: color .18s; }
+
+    .sb-cta {
+      display: block; flex-shrink: 0;
+      margin-top: 24px;
+      background: var(--gold); color: var(--black);
+      font-family: var(--fd); font-weight: 800;
+      font-size: 0.8rem; letter-spacing: 0.04em;
+      padding: 12px 16px; border-radius: 3px;
+      text-align: center;
+      transition: opacity .15s, transform .15s;
+    }
+    .sb-cta:hover { opacity: .85; transform: translateY(-1px); }
+
+    /* ── MAIN CONTENT ────────────────────────────────────────────────── */
+    .main {
+      margin-left: var(--sidebar);
+    }
+
+    /* ── SECTION BASE ────────────────────────────────────────────────── */
+    .panel {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 5% 80px;
-      overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 7%;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--border);
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
+    .panel:last-child { border-bottom: none; }
+
+    /* Grid texture */
+    .panel-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 80%);
     }
-    .hero-slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.1) brightness(0.9);
+
+    /* ── SLIDE-IN ANIMATION ──────────────────────────────────────────── */
+    .slide {
       opacity: 0;
-      transition: opacity 1.6s ease-in-out;
+      transform: translateX(48px);
+      transition:
+        opacity .8s cubic-bezier(.16,1,.3,1),
+        transform .8s cubic-bezier(.16,1,.3,1);
     }
-    .hero-slide.active { opacity: 1; }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 20, 12, 0.32) 0%,
-        rgba(0, 40, 24, 0.48) 55%,
-        rgba(0, 55, 32, 0.68) 100%
-      );
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+    .slide.in { opacity: 1; transform: translateX(0); }
+    .sd1 { transition-delay: .08s; }
+    .sd2 { transition-delay: .18s; }
+    .sd3 { transition-delay: .28s; }
+    .sd4 { transition-delay: .38s; }
+    .sd5 { transition-delay: .48s; }
 
-    .hero-logo {
-      margin-bottom: 2.5rem;
-      opacity: 0.92;
+    /* ── ATOMS ───────────────────────────────────────────────────────── */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 22px;
     }
+    .eyebrow::before { content:''; width:20px; height:1px; background:var(--gold); display:block; }
 
-    .hero-headline {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 900;
-      font-size: clamp(4rem, 10vw, 8rem);
-      color: #fff;
-      line-height: 0.96;
-      letter-spacing: -0.04em;
-      margin-bottom: 2rem;
-      white-space: pre-line;
-      text-transform: lowercase;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.55), 0 1px 6px rgba(0,0,0,0.3);
+    .gold  { color: var(--gold); }
+    .muted { color: var(--muted); }
+
+    /* ── PANEL 1: HERO ───────────────────────────────────────────────── */
+    #p-hero {
+      justify-content: flex-end;
+      padding-bottom: 64px;
     }
-
-    .hero-subhead {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.7;
-      margin-bottom: 2.8rem;
-      max-width: 420px;
-      margin-left: auto;
-      margin-right: auto;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+    .hero-orb {
+      position: absolute; z-index: 0;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(242,169,0,.1) 0%, transparent 65%);
+      top: -160px; right: -160px;
+      animation: pulse 10s ease-in-out infinite;
     }
-
-    .hero-ctas {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-      align-items: center;
+    .hero-orb2 {
+      position: absolute; z-index: 0;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,77,64,.16) 0%, transparent 65%);
+      bottom: 0; left: -80px;
+      animation: pulse 14s ease-in-out infinite reverse;
+    }
+    @keyframes pulse {
+      0%,100%{ transform:scale(1); opacity:.8; }
+      50%{ transform:scale(1.12); opacity:1; }
     }
 
-    .btn-outline {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      border: 2px solid rgba(255,255,255,0.75);
-      border-radius: 8px;
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+    .hero-inner { position: relative; z-index: 1; }
 
-    .btn-gold {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      background: var(--gold);
-      border-radius: 8px;
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      transition: background 0.2s, transform 0.15s;
+    /* Gold rule that draws in */
+    .hero-rule {
+      width: 0; height: 1px; background: var(--gold);
+      margin-bottom: 32px;
+      animation: draw 0.9s cubic-bezier(.16,1,.3,1) forwards .25s;
     }
-    .btn-gold:hover { background: #d99600; transform: translateY(-2px); }
+    @keyframes draw { to { width: 52px; } }
 
-    .btn-text-arrow {
-      display: inline-flex;
-      align-items: center;
-      color: rgba(255,255,255,0.82);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding-bottom: 0.25rem;
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .btn-text-arrow:hover { color: #fff; border-color: var(--gold); }
-    .btn-text-arrow::after {
-      content: '→';
-      margin-left: 0.55rem;
-      transition: margin-left 0.25s ease;
-    }
-    .btn-text-arrow:hover::after { margin-left: 0.95rem; }
-
-    .trust-badges {
-      display: flex;
-      gap: 0.3rem 1.6rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 0;
-    }
-    .trust-badge {
-      color: rgba(255,255,255,0.38);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .trust-badge::before {
-      content: '—';
+    .hero-over {
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
       color: var(--gold);
-      opacity: 0.6;
-      font-size: 0.7rem;
+      opacity: 0;
+      animation: fadeup .6s ease forwards .45s;
+      margin-bottom: 28px;
     }
-    .trust-badge:first-child::before { display: none; }
+    @keyframes fadeup { to { opacity:1; transform:translateY(0); } }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255,255,255,0.3);
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-family: 'Inter', sans-serif;
-      z-index: 2;
+    /* Massive headline — lines slide up */
+    .hero-h1 {
+      font-family: var(--fd); font-weight: 900;
+      font-size: clamp(4rem, 9.5vw, 11rem);
+      letter-spacing: -.05em; line-height: .9;
+      margin-bottom: 0;
     }
-    .hero-scroll-line {
-      width: 1px;
-      height: 36px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
-      animation: scrollpulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollpulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
-      50% { opacity: 0.8; transform: scaleY(1); }
-    }
-
-    /* ─── SECTION BASE ─── */
-    section { padding: 100px 5%; }
-    .section-label {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.85rem;
-    }
-    .section-title {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2rem, 4vw, 2.9rem);
-      color: var(--green);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-    .section-subtitle {
-      font-size: 1.05rem;
-      color: #555;
-      line-height: 1.65;
-      max-width: 560px;
-    }
-
-    /* ─── HOW IT WORKS ─── */
-    #how {
-      background: #fff;
-      text-align: left;
-      padding: 100px 5%;
-    }
-    #how .section-label,
-    #how .section-title { text-align: left; max-width: 1060px; margin-left: auto; margin-right: auto; }
-    #how .section-subtitle { text-align: left; max-width: 1060px; margin: 0 auto 5rem; }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      max-width: 1060px;
-      margin: 0 auto;
-      border-top: 1.5px solid #e8e4de;
-    }
-    .step {
-      padding: 2.8rem 2.5rem 2.8rem 0;
-      border-right: 1.5px solid #e8e4de;
-      position: relative;
-      background: none;
-      border-radius: 0;
-      box-shadow: none;
-      transition: none;
-    }
-    .step:first-child { padding-left: 0; }
-    .step:last-child { border-right: none; padding-right: 0; }
-    .step:not(:first-child) { padding-left: 2.5rem; }
-
-    .step-accent {
-      width: 36px;
-      height: 3px;
-      background: var(--gold);
-      margin-bottom: 2rem;
-      transition: width 0.35s ease;
-    }
-    .step:hover .step-accent { width: 64px; }
-
-    .step-title {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 900;
-      font-size: clamp(1.3rem, 2.2vw, 1.65rem);
-      color: var(--green);
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-    }
-    .step p { font-size: 0.95rem; color: #666; line-height: 1.8; }
-
-    /* ─── SERVICES ─── */
-    #services {
-      background: #fff;
-      text-align: center;
-    }
-    #services .section-subtitle { margin: 0 auto 3.5rem; }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      max-width: 1060px;
-      margin: 0 auto;
-      align-items: start;
-    }
-
-    .pricing-card {
-      border: 2px solid #e8e4de;
-      border-radius: 16px;
-      padding: 2.5rem 2rem;
-      text-align: left;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-      position: relative;
-    }
-    .pricing-card:hover { border-color: var(--green); box-shadow: 0 8px 40px rgba(0,77,64,0.10); transform: translateY(-3px); }
-
-    .pricing-card.featured {
-      border-color: var(--gold);
-      box-shadow: 0 8px 40px rgba(242,169,0,0.18);
-    }
-    .pricing-card.featured:hover { border-color: #d99600; }
-
-    .popular-badge {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gold);
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.3rem 1rem;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-
-    .plan-name {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1.3rem;
-      color: var(--green);
-      margin-bottom: 0.4rem;
-    }
-    .plan-price {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 900;
-      font-size: 2.5rem;
-      color: #1a1a1a;
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-    .plan-price span {
-      font-size: 1rem;
-      font-weight: 500;
-      color: #888;
-    }
-    .plan-tagline {
-      font-size: 0.88rem;
-      color: #888;
-      margin-bottom: 1.5rem;
-    }
-    .plan-features {
-      list-style: none;
-      margin-bottom: 2rem;
-    }
-    .plan-features li {
-      font-size: 0.93rem;
-      color: #444;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #f0ece6;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      line-height: 1.45;
-    }
-    .plan-features li::before {
-      content: '✓';
-      color: var(--green);
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 0.05rem;
-    }
-    .btn-plan {
+    .hl { overflow: hidden; display: block; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+    .hl .i {
       display: block;
-      text-align: center;
-      padding: 0.85rem;
-      border-radius: 8px;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.2s;
+      transform: translateY(110%);
+      animation: slideup 1s cubic-bezier(.16,1,.3,1) forwards;
     }
-    .btn-plan-outline {
-      border: 2px solid var(--green);
-      color: var(--green);
-    }
-    .btn-plan-outline:hover { background: var(--green); color: #fff; }
-    .btn-plan-gold {
-      background: var(--gold);
-      color: #fff;
-    }
-    .btn-plan-gold:hover { background: #d99600; }
+    .hl:nth-child(1) .i { animation-delay:.5s; }
+    .hl:nth-child(2) .i { animation-delay:.65s; }
+    .hl:nth-child(3) .i { animation-delay:.8s; color:var(--gold); }
+    @keyframes slideup { to { transform: translateY(0); } }
 
-    /* ─── WHY US ─── */
-    #why {
-      background: var(--green);
-      color: #fff;
-      text-align: left;
-      padding: 100px 5%;
+    /* Hero bottom bar */
+    .hero-bottom {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 28px;
+      border-top: 1px solid var(--border); padding-top: 32px;
+      margin-top: 56px;
+      opacity: 0;
+      animation: fadeup .7s ease forwards 1.15s;
     }
-    #why .section-label { color: var(--gold); max-width: 1060px; margin-left: auto; margin-right: auto; }
-    #why .section-title { color: #fff; max-width: 1060px; margin-left: auto; margin-right: auto; margin-bottom: 4rem; }
+    .hero-util {
+      font-size: .93rem; color: var(--muted);
+      max-width: 360px; line-height: 1.75;
+    }
+    .hero-util strong { color: var(--off); font-weight: 500; }
+    .hero-acts { display: flex; gap: 14px; align-items: center; }
 
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      max-width: 1060px;
-      margin: 0 auto 5rem;
-      border-top: 1px solid rgba(255,255,255,0.14);
+    .btn-g {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--gold); color:var(--black);
+      font-family:var(--fd); font-weight:800;
+      font-size:.86rem; letter-spacing:.03em;
+      padding:13px 26px; border-radius:3px;
+      transition:opacity .15s, transform .15s;
     }
+    .btn-g:hover { opacity:.86; transform:translateY(-1px); }
+    .btn-t {
+      font-family:var(--fd); font-weight:600;
+      font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--muted); border-bottom:1px solid rgba(255,255,255,.14);
+      padding-bottom:2px; transition:color .15s, border-color .15s;
+    }
+    .btn-t:hover { color:var(--white); border-color:var(--gold); }
+    .btn-t::after { content:' →'; }
 
-    .why-card {
-      padding: 2.8rem 2.5rem 2.8rem 0;
-      border-right: 1px solid rgba(255,255,255,0.1);
-      background: none;
-      border-radius: 0;
-      transition: none;
+    /* ── PANEL 2: MISSION ────────────────────────────────────────────── */
+    #p-mission { background: var(--surface); }
+    .mission-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 80px; align-items: start;
+      position: relative; z-index: 1;
     }
-    .why-card:first-child { padding-left: 0; }
-    .why-card:last-child { border-right: none; padding-right: 0; }
-    .why-card:not(:first-child) { padding-left: 2.5rem; }
+    .mission-left h2 {
+      font-family: var(--fd); font-weight: 900;
+      font-size: clamp(3rem, 6.5vw, 7rem);
+      letter-spacing: -.05em; line-height: .88;
+    }
+    .mission-left h2 em { font-style:normal; color:var(--gold); display:block; }
+    .mission-right {}
+    .mission-body p {
+      font-family: var(--fd); font-weight: 700;
+      font-size: clamp(1rem, 1.8vw, 1.45rem);
+      line-height: 1.58; letter-spacing: -.01em;
+      color: rgba(255,255,255,.58);
+      margin-bottom: 24px;
+    }
+    .mission-body p:last-child { margin-bottom: 0; }
+    .mission-body strong { color: var(--white); font-weight: 800; }
+    .mission-body em { font-style:normal; color:var(--gold); }
 
-    .why-accent {
-      width: 36px;
-      height: 3px;
-      background: var(--gold);
-      margin-bottom: 2rem;
-      transition: width 0.35s ease;
+    /* Pillars under mission grid */
+    .pillars {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 2px;
+      overflow: hidden; margin-top: 64px;
+      position: relative; z-index: 1;
     }
-    .why-card:hover .why-accent { width: 64px; }
+    .pillar { background:var(--s2); padding:32px 28px; transition:background .2s; }
+    .pillar:hover { background:var(--s3); }
+    .p-num {
+      font-family:var(--fd); font-weight:900;
+      font-size:2.4rem; letter-spacing:-.04em;
+      color:var(--gold); line-height:1; margin-bottom:8px;
+    }
+    .p-lbl { font-size:.82rem; color:var(--muted); line-height:1.6; }
+    .p-lbl strong { color:var(--off); display:block; margin-bottom:4px; font-size:.9rem; }
 
-    .why-title {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 900;
-      font-size: clamp(1.3rem, 2.2vw, 1.65rem);
-      color: #fff;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+    /* ── PANEL 3: HOW IT WORKS ───────────────────────────────────────── */
+    #p-how { background: var(--black); }
+    .how-head {
+      font-family:var(--fd); font-weight:900;
+      font-size:clamp(2.4rem,5vw,4.5rem);
+      letter-spacing:-.04em; line-height:.94;
+      margin-bottom:60px;
+      position: relative; z-index:1;
     }
-    .why-card p { font-size: 0.95rem; color: rgba(255,255,255,0.58); line-height: 1.8; }
-
-    .pull-quote {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.8rem, 5.5vw, 5rem);
-      color: var(--gold);
-      letter-spacing: -0.035em;
-      max-width: 1060px;
-      margin: 0 auto;
-      line-height: 1.0;
-      text-transform: lowercase;
-      border-top: 1px solid rgba(255,255,255,0.14);
-      padding-top: 3.5rem;
+    .how-head em { font-style:normal; color:var(--gold); }
+    .process-list { position: relative; z-index:1; }
+    .pi {
+      display: grid; grid-template-columns: 56px 1fr 1fr;
+      gap: 0; align-items: start;
+      padding: 36px 0; border-bottom: 1px solid var(--border);
+      transition: background .18s;
     }
-
-    /* ─── ABOUT ─── */
-    #about {
-      background: #fff;
-      padding: 0;
-      overflow: hidden;
+    .pi:last-child { border-bottom: none; }
+    .pi:hover { background: rgba(255,255,255,.012); }
+    .pi-num {
+      font-family:var(--fd); font-weight:900;
+      font-size:clamp(2rem, 4vw, 3.5rem); letter-spacing:.04em; color:var(--gold);
+      padding-top:4px; line-height:1;
     }
-
-    .about-inner {
-      display: grid;
-      grid-template-columns: 55% 45%;
-      min-height: 640px;
-      max-width: none;
-      margin: 0;
-      gap: 0;
+    .pi-title {
+      font-family:var(--fd); font-weight:800;
+      font-size:clamp(1.1rem,2vw,1.6rem);
+      letter-spacing:-.03em; line-height:1.1; color:var(--white);
     }
-
-    .about-img {
-      border-radius: 0;
-      overflow: hidden;
-      box-shadow: none;
-      aspect-ratio: unset;
-      min-height: 640px;
-      position: relative;
-    }
-    .about-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      filter: saturate(1.05) contrast(1.02);
-    }
-
-    .about-text {
-      padding: 90px 7% 90px 6%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .about-text .section-title { margin-bottom: 1.4rem; }
-    .about-text p {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.8;
-      margin-bottom: 1.2rem;
-    }
-    .about-text p:last-child { margin-bottom: 0; }
-    .about-highlight {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      color: var(--green);
-      border-left: 3px solid var(--gold);
-      padding-left: 1rem;
-      margin-top: 0.5rem;
+    .pi-desc {
+      font-size:.88rem; color:var(--muted);
+      line-height:1.7; padding-top:5px; max-width:360px;
     }
 
-    /* ─── CTA SECTION ─── */
-    #cta {
-      background: var(--gold);
-      text-align: center;
-      padding: 100px 5%;
+    /* ── PANEL 4: THE DIFFERENCE ─────────────────────────────────────── */
+    #p-diff { background: var(--surface); }
+    .diff-inner { max-width: 860px; position: relative; z-index:1; }
+    .diff-h {
+      font-family:var(--fd); font-weight:900;
+      font-size:clamp(2.8rem,6.5vw,6.5rem);
+      letter-spacing:-.05em; line-height:.9;
+      margin-bottom:48px;
     }
-    .cta-title {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      color: #fff;
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
+    .diff-h em { font-style:normal; color:var(--gold); }
+    .diff-body p {
+      font-family:var(--fd); font-weight:700;
+      font-size:clamp(1rem,1.8vw,1.4rem);
+      color:rgba(255,255,255,.55); line-height:1.65;
+      letter-spacing:-.01em; margin-bottom:20px;
     }
-    .cta-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.6;
-      max-width: 520px;
-      margin: 0 auto 2.5rem;
+    .diff-body strong { color:var(--white); }
+    .diff-sign {
+      font-family:var(--fd); font-weight:900;
+      font-size:clamp(1.2rem,2vw,1.7rem);
+      letter-spacing:-.02em; color:var(--gold);
+      margin-top:44px;
+    }
+    .diff-sign span { color:var(--muted); font-weight:400; }
+
+    /* ── PANEL 5: PRICING ────────────────────────────────────────────── */
+    #p-pricing { background: var(--black); }
+    .pricing-head {
+      font-family:var(--fd); font-weight:900;
+      font-size:clamp(2.4rem,5vw,4rem);
+      letter-spacing:-.04em; line-height:.94;
+      margin-bottom:8px;
+      position: relative; z-index:1;
+    }
+    .pricing-head em { font-style:normal; color:var(--gold); }
+    .pricing-sub {
+      font-size:.92rem; color:var(--muted); line-height:1.7;
+      max-width:360px; margin-bottom:48px;
+      position: relative; z-index:1;
     }
 
-    .cta-form {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      flex-wrap: wrap;
+    .tiers {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:2px; background:var(--border);
+      border:1px solid var(--border); border-radius:2px;
+      overflow:hidden; position:relative; z-index:1;
     }
-    .cta-input {
-      padding: 0.9rem 1.4rem;
-      border-radius: 8px;
-      border: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      min-width: 260px;
+    .tier { background:var(--s2); padding:44px 32px; transition:background .22s; display:flex; flex-direction:column; }
+    .tier:hover { background:var(--s3); }
+    .tier-hero { background:var(--green); }
+    .tier-hero:hover { background:#005a4a; }
+    .t-tag {
+      font-size:.67rem; font-weight:700; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:18px;
+    }
+    .tier-hero .t-tag { color:rgba(255,255,255,.5); }
+    .t-name {
+      font-family:var(--fd); font-weight:900;
+      font-size:1.35rem; letter-spacing:-.03em; margin-bottom:4px;
+    }
+    .t-price {
+      font-family:var(--fd); font-weight:900;
+      font-size:3rem; letter-spacing:-.045em;
+      line-height:1; margin-bottom:4px;
+    }
+    .t-price sup { font-size:1.1rem; font-weight:400; color:var(--muted); vertical-align:super; }
+    .t-price span { font-size:.95rem; font-weight:400; color:var(--muted); letter-spacing:0; }
+    .t-mo { font-size:.74rem; color:var(--muted); margin-bottom:32px; }
+    .t-hr { height:1px; background:var(--border); margin-bottom:28px; }
+    .tier-hero .t-hr { background:rgba(255,255,255,.14); }
+    .t-feats { list-style:none; }
+    .t-feats li {
+      display:flex; align-items:flex-start; gap:10px;
+      font-size:.84rem; color:var(--muted); line-height:1.5; margin-bottom:12px;
+    }
+    .tier-hero .t-feats li { color:rgba(255,255,255,.68); }
+    .t-feats li::before {
+      content:''; flex-shrink:0; width:14px; height:14px; margin-top:1px;
+      background: rgba(255,255,255,0.08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/8px no-repeat;
+      border-radius:50%;
+    }
+    .t-btn {
+      display:block; text-align:center; margin-top:auto; padding-top:28px; padding:12px;
+      border:1px solid var(--border); border-radius:3px;
+      font-family:var(--fd); font-weight:700;
+      font-size:.82rem; letter-spacing:.04em; color:var(--muted);
+      transition:all .18s;
+    }
+    .tier:hover .t-btn { color:var(--white); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06); }
+    .tier-hero .t-btn { background:var(--gold); border-color:var(--gold); color:var(--black); }
+    .tier-hero:hover .t-btn { background:#ffc107; border-color:#ffc107; }
+    .no-contract {
+      margin-top:20px; text-align:center;
+      font-size:.76rem; color:var(--muted);
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      position:relative; z-index:1;
+    }
+    .no-contract::before,.no-contract::after {
+      content:''; flex:1; height:1px; background:var(--border); max-width:100px;
+    }
+
+    /* ── PANEL 6: CONTACT ────────────────────────────────────────────── */
+    #p-contact { background: var(--surface); }
+    .contact-orb {
+      position:absolute; z-index:0;
+      width:800px; height:800px;
+      background:radial-gradient(circle, rgba(242,169,0,.07) 0%, transparent 65%);
+      bottom:-300px; left:50%; transform:translateX(-50%);
+    }
+    .contact-inner { position:relative; z-index:1; max-width:780px; }
+    .contact-inner h2 {
+      font-family:var(--fd); font-weight:900;
+      font-size:clamp(3rem,7.5vw,7.5rem);
+      letter-spacing:-.05em; line-height:.9; margin-bottom:36px;
+    }
+    .contact-inner h2 em { font-style:normal; color:var(--gold); }
+    .contact-sub {
+      font-size:.95rem; color:var(--muted);
+      line-height:1.75; max-width:400px; margin-bottom:44px;
+    }
+    .contact-sub strong { color:var(--off); }
+    .contact-acts { display:flex; gap:16px; flex-wrap:wrap; }
+
+    /* ── INTAKE FORM ──────────────────────────────────────────────────── */
+    .intake-form { margin-top: 40px; max-width: 680px; }
+    .intake-hidden { display: none; }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-bottom: 16px;
+    }
+    .form-full { margin-bottom: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group label {
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--s2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 12px 14px;
+      font-family: var(--fb); font-size: .9rem;
+      color: var(--white);
       outline: none;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      transition: border-color .18s;
+      -webkit-appearance: none;
     }
-    .cta-input::placeholder { color: #aaa; }
-    .btn-dark {
-      padding: 0.9rem 2rem;
-      background: var(--green);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,.22); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: #1e1e1e; color: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 88px; }
+    .form-submit {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--black);
+      font-family: var(--fd); font-weight: 800;
+      font-size: .88rem; letter-spacing: .04em;
+      padding: 14px 32px; border-radius: 3px;
+      border: none; cursor: none;
+      transition: opacity .15s, transform .15s;
+      margin-top: 8px;
     }
-    .btn-dark:hover { background: #003530; transform: translateY(-2px); }
+    .form-submit:hover { opacity: .86; transform: translateY(-1px); }
+    @media(max-width:600px){ .form-row{ grid-template-columns:1fr; } }
+    /* Platform ticker */
+    .platform-ticker { margin: 44px 0 36px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .pt-label {
+      font-size: .67rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 16px;
+    }
+    .pt-track-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+      position: relative;
+    }
+    .pt-track-wrap::before,
+    .pt-track-wrap::after {
+      content: '';
+      position: absolute; top: 0; bottom: 0; width: 60px;
+      z-index: 2; pointer-events: none;
+    }
+    .pt-track-wrap::before { left: 0; background: linear-gradient(90deg, var(--surface), transparent); }
+    .pt-track-wrap::after  { right: 0; background: linear-gradient(-90deg, var(--surface), transparent); }
+    .pt-track {
+      display: flex; width: max-content;
+      animation: pt-scroll 18s linear infinite;
+    }
+    .pt-track:hover { animation-play-state: paused; }
+    @keyframes pt-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .pt-item {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 12px;
+      font-family: var(--fd); font-weight: 600;
+      font-size: .82rem; letter-spacing: .04em;
+      color: var(--muted); white-space: nowrap;
+      transition: color .18s;
+    }
+    .pt-item:hover { color: var(--white); }
+    .pt-item svg { flex-shrink: 0; width: 26px; height: 26px; }
 
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--green);
-      color: rgba(255,255,255,0.75);
-      padding: 60px 5% 40px;
-    }
-    .footer-inner {
-      max-width: 1060px;
-      margin: 0 auto;
-    }
-    .footer-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 3rem;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
-    .footer-brand { flex: 1; min-width: 200px; }
-    .footer-tagline {
-      margin-top: 0.75rem;
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.55);
-      font-style: italic;
-    }
-    .footer-nav {
-      display: flex;
-      gap: 1.8rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .footer-nav a {
-      text-decoration: none;
-      color: rgba(255,255,255,0.65);
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .footer-nav a:hover { color: var(--gold); }
-
-    .footer-contact {
-      font-size: 0.88rem;
-    }
-    .footer-contact a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-    .footer-contact a:hover { text-decoration: underline; }
-
-    .footer-bottom {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.38);
+    .file-drop {
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 3px;
+      padding: 28px 20px;
       text-align: center;
+      cursor: none;
+      transition: border-color .18s, background .18s;
     }
+    .file-drop:hover, .file-drop.drag-over {
+      border-color: var(--gold);
+      background: rgba(242,169,0,.04);
+    }
+    .file-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--s3); border: 1px solid var(--border);
+      border-radius: 3px; padding: 5px 10px;
+      font-size: .74rem; color: var(--off);
+    }
+    .file-chip button {
+      background: none; border: none; color: var(--muted);
+      font-size: .9rem; cursor: none; line-height:1;
+      padding: 0; transition: color .15s;
+    }
+    .file-chip button:hover { color: var(--white); }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      .steps, .pricing-grid, .why-grid {
-        grid-template-columns: 1fr;
-        max-width: 480px;
+    /* ── FOOTER ─────────────────────────────────────────────────────── */
+    .footer-strip {
+      margin-left: var(--sidebar);
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 28px 7%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+      font-size: .76rem; color: rgba(255,255,255,.2);
+    }
+    .footer-strip a { color:var(--gold); }
+
+    /* ── MOBILE ──────────────────────────────────────────────────────── */
+    @media(max-width:860px){
+      .sidebar {
+        width:100%; height:56px;
+        flex-direction:row; align-items:center;
+        padding:0 5%; bottom:auto;
+        border-right:none; border-bottom:1px solid var(--border);
       }
-      .about-inner { grid-template-columns: 1fr; }
-      .about-img { min-height: 320px; aspect-ratio: 4/3; }
-      .about-text { padding: 60px 5%; }
-      .nav-links { display: none; }
+      .sb-logo { margin-bottom:0; }
+      .sb-nav { display:none; }
+      .sb-cta { margin-top:0; padding:9px 16px; }
+      .main { margin-left:0; }
+      .footer-strip { margin-left:0; }
+      .panel { padding-top:100px; }
+      .mission-grid { grid-template-columns:1fr; gap:44px; }
+      .pillars { grid-template-columns:1fr 1fr; }
+      .pi {
+    /* ── SHARED TYPE SYSTEM ───────────────────────── */
+    body { color: var(--text-body); }
+    .eyebrow { font-family: var(--fb); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.20em; color: var(--text-muted); }
+    .eyebrow::before { background: var(--text-muted); }
+    .mission-body p { font-family: var(--fb); font-weight: 400; font-size: clamp(1.125rem, 2vw, 1.375rem); line-height: 1.5; letter-spacing: 0; color: var(--text-body); }
+    .hero-util { font-family: var(--fb); font-size: clamp(1.125rem, 2vw, 1.375rem); line-height: 1.5; color: var(--text-body); }
+    .t-feats li { font-family: var(--fb); font-weight: 400; font-size: 1rem; line-height: 1.5; color: var(--text-body); }
+    .t-price sup, .t-price span { color: var(--text-muted); }
+    .btn-g { background: var(--text-accent); color: var(--on-amber); font-family: var(--fb); font-weight: 600; font-size: 1rem; letter-spacing: 0.01em; }
+    .form-submit { background: var(--text-accent); color: var(--on-amber); }
+    .tier-hero { background: var(--panel-green); }
+    .footer-strip { color: var(--text-muted); }
+    .sb-num { color: var(--text-muted); }
+    /* Direction A: Space Grotesk */
+    .sb-logo { font-size: 1.375rem; line-height: 1.0; letter-spacing: -0.01em; font-weight: 700; }
+    .hero-h1 { font-size: clamp(3.5rem, 9vw, 8.25rem); line-height: 0.98; letter-spacing: -0.02em; font-weight: 700; }
+    .mission-left h2, .how-head, .diff-h, .pricing-head { font-size: clamp(2.5rem, 6vw, 4.75rem); line-height: 1.0; letter-spacing: -0.015em; font-weight: 700; }
+    .t-name { font-size: 1.875rem; line-height: 1.05; letter-spacing: -0.01em; font-weight: 700; }
+    .t-price { font-size: clamp(3.25rem, 5vw, 5.25rem); line-height: 1.0; letter-spacing: -0.02em; font-weight: 700; color: var(--text-primary); }
+    .t-tag { font-family: var(--fb); font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.16em; text-transform: uppercase; }
+ grid-template-columns:44px 1fr; }
+      .pi-desc { grid-column:2; }
+      .tiers { grid-template-columns:1fr; }
+      .hero-h1 { font-size:clamp(3.2rem,12vw,7rem); }
     }
+    @media(max-width:560px){
+      .pillars { grid-template-columns:1fr; }
+      .hero-acts { flex-direction:column; align-items:flex-start; }
+    }
+  
+    /* ── NEW SECTION: DON'T LOSE THE LEAD ───────────────────────── */
+    #p-lead { background: var(--s2); }
 
-    @media (max-width: 600px) {
-      section { padding: 70px 6%; }
-      nav { padding: 0 6%; }
-      .hero-ctas { flex-direction: column; align-items: center; }
-      .btn-outline, .btn-gold { width: 100%; text-align: center; }
-      .trust-badges { flex-direction: column; align-items: center; gap: 0.4rem; }
-      .trust-badge::before { display: none; }
-      .cta-input { min-width: 100%; }
-      .footer-top { flex-direction: column; }
-    }
+    /* Loop flywheel */
+    .loop-wrap { display:flex; flex-direction:column; align-items:center; margin-bottom:72px; position:relative; z-index:1; padding:0 80px; }
+    .loop-caption { font-family: var(--fb); font-size:.9rem; color:var(--text-muted); margin-top:18px; text-align:center; }
+    .loop-caption em { font-style:normal; color:var(--text-accent); }
 
-    /* ─── Scroll reveal utility ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
+    /* Section headline */
+    .lead-head { font-family:var(--fd); font-weight:700; font-size:clamp(2.5rem,6vw,4.75rem); line-height:1.0; letter-spacing:-0.015em; color:var(--text-primary); margin-bottom:32px; position:relative; z-index:1; }
+    .lead-head em { font-style:normal; color:var(--text-accent); }
+
+    /* Body */
+    .lead-body { max-width:640px; position:relative; z-index:1; margin-bottom:52px; }
+    .lead-body p { font-family:var(--fb); font-weight:400; font-size:1.0625rem; line-height:1.6; color:var(--text-body); margin-bottom:20px; }
+    .lead-body p:last-child { margin-bottom:0; }
+
+    /* Tech pills */
+    .tech-label { font-family:var(--fb); font-weight:600; font-size:.75rem; letter-spacing:.20em; text-transform:uppercase; color:var(--text-muted); margin-bottom:18px; position:relative; z-index:1; }
+    .tech-pills { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:52px; position:relative; z-index:1; }
+    .tech-pill { display:flex; align-items:center; gap:10px; padding:10px 18px; border:1px solid rgba(230,165,58,.22); border-radius:2px; font-family:var(--fb); font-weight:500; font-size:.84rem; color:var(--text-body); }
+    .tech-pill svg { color:var(--text-accent); flex-shrink:0; }
+
+    /* Closing line */
+    .lead-close { font-family:var(--fd); font-weight:700; font-size:clamp(1.5rem,3.5vw,2.75rem); line-height:1.1; letter-spacing:-0.01em; color:var(--text-primary); position:relative; z-index:1; }
+    .lead-close em { font-style:normal; color:var(--text-accent); }
+
+    @media(max-width:700px){ .tech-pills{ gap:10px; } .tech-pill{ padding:8px 14px; font-size:.78rem; }
+      /* Flywheel + platforms mobile */
+      .flywheel-svg { max-width:100% !important; }
+      .loop-wrap { padding:0 16px; }
+      .platform-ticker { text-align:left; align-items:flex-start; }
+      .platform-grid-inner { grid-template-columns: repeat(2,1fr) !important; } }
+
+  
+    .loop-eyebrow { font-family:var(--fd); font-weight:700; font-size:1.1rem; letter-spacing:.04em; text-transform:uppercase; color:var(--text-primary); margin-bottom:24px; }
+    .loop-eyebrow::before { display:none; }
   </style>
+<!-- netlify-forms -->
 </head>
 <body>
 
-  <!-- ═══ NAV ═══ -->
-  <nav id="navbar">
-    <a href="#" class="nav-logo" aria-label="Your Operative">
-      <svg width="200" height="36" viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="14,26 5,38 23,38" fill="#004D40" opacity="0.88"/>
-        <polygon points="14,19 7,30 21,30" fill="#004D40" opacity="0.92"/>
-        <polygon points="14,12 8,22 20,22" fill="#004D40" opacity="0.96"/>
-        <polygon points="14,5 9,14 19,14" fill="#004D40"/>
-        <rect x="12" y="38" width="4" height="4" rx="1" fill="#004D40" opacity="0.88"/>
-        <polygon points="26,26 15,40 37,40" fill="#F2A900" opacity="0.88"/>
-        <polygon points="26,18 16,32 36,32" fill="#F2A900" opacity="0.92"/>
-        <polygon points="26,10 17,24 35,24" fill="#F2A900" opacity="0.96"/>
-        <polygon points="26,2 19,13 33,13" fill="#F2A900"/>
-        <rect x="24" y="40" width="4" height="2" rx="1" fill="#F2A900"/>
-        <rect x="12" y="40" width="16" height="2" rx="1" fill="#004D40" opacity="0.12"/>
-        <text x="46" y="26" font-family="Outfit, sans-serif" font-weight="800" font-size="18" letter-spacing="-0.3"><tspan fill="#004D40">Your</tspan><tspan fill="#F2A900"> Operative</tspan></text>
-      </svg>
-    </a>
+<div id="cur"></div>
+<div id="cring"></div>
 
-    <ul class="nav-links">
-      <li><a href="#services" data-i18n="nav-services">Services</a></li>
-      <li><a href="#how" data-i18n="nav-how">How It Works</a></li>
-      <li><a href="#about" data-i18n="nav-about">About</a></li>
-      <li><a href="#cta" data-i18n="nav-contact">Contact</a></li>
-    </ul>
+<!-- ── SIDEBAR ───────────────────────────────────────────────────────────── -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 22V12L2 14L6 6L4 8L8 1L10 4.5L12 1L12 22Z" fill="#F2A900"/>
+      <path d="M19 22V12L22 14L18 6L20 8L16 1L14 4.5L12 1L12 22Z" fill="#004D40"/>
+    </svg>
+    Operative
+  </div>
 
-    <div class="nav-right">
-      <!-- Language toggle pill -->
-      <div class="lang-toggle" role="group" aria-label="Language selector">
-        <button class="lang-btn active" data-lang="en" aria-pressed="true">
-          <span class="lbl-full">EN</span><span class="lbl-short">EN</span>
-        </button>
-        <button class="lang-btn" data-lang="es" aria-pressed="false">
-          <span class="lbl-full">ES</span><span class="lbl-short">ES</span>
-        </button>
-        <button class="lang-btn" data-lang="zh" aria-pressed="false">
-          <span class="lbl-full">中文</span><span class="lbl-short">中</span>
-        </button>
-        <button class="lang-btn" data-lang="ko" aria-pressed="false">
-          <span class="lbl-full">한국어</span><span class="lbl-short">한</span>
-        </button>
-      </div>
-      <a href="#cta" class="nav-cta" data-i18n="nav-cta">Get Your Free Site</a>
-    </div>
+  <nav class="sb-nav">
+    <a class="sb-link active" href="#p-hero"   data-panel="p-hero"><span class="sb-link-label">Home</span></a>
+    <a class="sb-link" href="#p-mission" data-panel="p-mission"><span class="sb-link-label">Mission</span></a>
+    <a class="sb-link" href="#p-how"     data-panel="p-how"><span class="sb-link-label">How it works</span></a>
+    <a class="sb-link" href="#p-diff"    data-panel="p-diff"><span class="sb-link-label">The difference</span></a>
+    <a class="sb-link" href="#p-lead" data-panel="p-lead"><span class="sb-link-label">Don't lose the lead</span></a>
+    <a class="sb-link" href="#p-pricing" data-panel="p-pricing"><span class="sb-link-label">Pricing</span></a>
+    <a class="sb-link" href="#p-contact" data-panel="p-contact"><span class="sb-link-label">Contact</span></a>
   </nav>
 
 
-  <!-- ═══ HERO ═══ -->
-  <section id="hero">
-    <div class="hero-bg">
-      <!-- 1. Restaurant / Food & Beverage -->
-      <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=90');background-position:center"></div>
-      <!-- 2. Plumbing / Trade -->
-      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=90');background-position:center"></div>
-      <!-- 3. HVAC / Contractor -->
-      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&q=90');background-position:center"></div>
-      <!-- 4. Retail / Local storefront -->
-      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=90');background-position:center top"></div>
-      <!-- 5. City business street -->
-      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=90');background-position:center"></div>
+</aside>
+
+<!-- ── MAIN ──────────────────────────────────────────────────────────────── -->
+<div class="main">
+
+  <!-- 00 HERO -->
+  <section class="panel" id="p-hero">
+    <div class="panel-grid"></div>
+    <div class="hero-orb"></div>
+    <div class="hero-orb2"></div>
+
+    <div class="hero-inner">
+      <div class="hero-rule"></div>
+      <div class="hero-over">We build for the owner<br>who answers the phone.</div>
+      <h1 class="hero-h1">
+        <span class="hl"><span class="i">The presence</span></span>
+        <span class="hl"><span class="i">you've</span></span>
+        <span class="hl"><span class="i">earned.</span></span>
+      </h1>
     </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-logo">
-        <svg width="240" height="44" viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="14,26 5,38 23,38" fill="#fff" opacity="0.75"/>
-          <polygon points="14,19 7,30 21,30" fill="#fff" opacity="0.82"/>
-          <polygon points="14,12 8,22 20,22" fill="#fff" opacity="0.90"/>
-          <polygon points="14,5 9,14 19,14" fill="#fff"/>
-          <rect x="12" y="38" width="4" height="4" rx="1" fill="#fff" opacity="0.75"/>
-          <polygon points="26,26 15,40 37,40" fill="#F2A900" opacity="0.88"/>
-          <polygon points="26,18 16,32 36,32" fill="#F2A900" opacity="0.92"/>
-          <polygon points="26,10 17,24 35,24" fill="#F2A900" opacity="0.96"/>
-          <polygon points="26,2 19,13 33,13" fill="#F2A900"/>
-          <rect x="24" y="40" width="4" height="2" rx="1" fill="#F2A900"/>
-          <rect x="12" y="40" width="16" height="2" rx="1" fill="#fff" opacity="0.12"/>
-          <text x="46" y="26" font-family="Outfit, sans-serif" font-weight="800" font-size="18" letter-spacing="-0.3"><tspan fill="#fff">Your</tspan><tspan fill="#F2A900"> Operative</tspan></text>
-        </svg>
-      </div>
 
-      <h1 class="hero-headline" data-i18n="hero-headline">Your vision,&#10;made undeniable.</h1>
-      <p class="hero-subhead" data-i18n="hero-subhead">We build your online presence. You run your business.</p>
-
-      <div class="hero-ctas">
-        <a href="#cta" class="btn-gold" data-i18n="hero-btn-free">Get Your Free Website</a>
-        <a href="#how" class="btn-text-arrow" data-i18n="hero-btn-how">See How It Works</a>
-      </div>
-      <div class="trust-badges">
-        <span class="trust-badge" data-i18n="trust-1">No Setup Fees</span>
-        <span class="trust-badge" data-i18n="trust-2">No Contracts</span>
-        <span class="trust-badge" data-i18n="trust-3">Cancel Anytime</span>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      <span>scroll</span>
-    </div>
-  </section>
-
-
-  <!-- ═══ HOW IT WORKS ═══ -->
-  <section id="how">
-    <div class="section-label" data-i18n="how-label">How It Works</div>
-    <h2 class="section-title" data-i18n-html="how-title">Three steps.<br/>Zero friction.</h2>
-    <p class="section-subtitle" data-i18n="how-subtitle">From zero to live without lifting a finger. Here's what working with Your Operative looks like.</p>
-
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step-accent"></div>
-        <div class="step-title" data-i18n="step1-title">We find you.</div>
-        <p data-i18n="step1-body">We research your business, your market, and your competition — then build a site that reflects who you actually are. No forms. No onboarding calls. No back-and-forth.</p>
-      </div>
-      <div class="step reveal" style="transition-delay:0.12s">
-        <div class="step-accent"></div>
-        <div class="step-title" data-i18n="step2-title">You see it first.</div>
-        <p data-i18n="step2-body">A postcard lands in your hands with a QR code. Scan it and your site is already live — built for your business, ready to impress before we've said a word.</p>
-      </div>
-      <div class="step reveal" style="transition-delay:0.24s">
-        <div class="step-accent"></div>
-        <div class="step-title" data-i18n="step3-title">We handle the rest.</div>
-        <p data-i18n="step3-body">Like what you see? We take over — Google, social, ads, updates — so you can stay focused on the work that actually runs your business.</p>
+    <div class="hero-bottom">
+      <p class="hero-util">
+        See your real site — built, working, live — before you pay a cent. Then the next customer finds you, reaches you, and books you. Not your competitor.
+      </p>
+      <div class="hero-acts">
+        <a href="#p-how" class="btn-g">See how it works →</a>
+        <a href="#p-pricing" class="btn-t">View pricing</a>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══ CALLOUT BAR ═══ -->
-  <section style="
-    background: #004D40;
-    padding: 5rem 1.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  ">
-    <div style="
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, rgba(242,169,0,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    "></div>
-    <div style="position: relative; z-index: 1; max-width: 680px; margin: 0 auto;">
-      <div style="
-        font-family: 'Outfit', sans-serif;
-        font-size: 0.72rem; font-weight: 700;
-        letter-spacing: 0.2em; text-transform: uppercase;
-        color: #F2A900; margin-bottom: 1.25rem;
-      " data-i18n="callout-eyebrow">The difference</div>
-      <h2 style="
-        font-family: 'Outfit', sans-serif;
-        font-size: clamp(1.75rem, 4vw, 2.8rem);
-        font-weight: 800; color: #fff;
-        letter-spacing: -0.02em; line-height: 1.2;
-        margin-bottom: 1.5rem;
-      " data-i18n="callout-headline">You should be running your business,<br/>not editing templates.</h2>
-      <p style="
-        font-size: clamp(1rem, 2vw, 1.1rem);
-        color: rgba(255,255,255,0.7);
-        line-height: 1.75; margin: 0 auto;
-        max-width: 520px;
-      " data-i18n="callout-sub">Hours changed? New menu item? Want a different photo? Just tell us. We handle it, immediately. No logins. No drag-and-drop. No learning curve.<br/><strong style="color:#fff;">That's Your Operative.</strong></p>
-    </div>
-  </section>
-
-  <!-- ═══ SERVICES ═══ -->
-  <section id="services">
-    <div class="section-label" data-i18n="services-label">Pricing</div>
-    <h2 class="section-title" data-i18n="services-title">Simple, honest plans.</h2>
-    <p class="section-subtitle" data-i18n="services-subtitle">No hidden fees. No lock-in. Just results. Start with what you need and grow from there.</p>
-
-    <div class="pricing-grid">
-      <!-- Foundation -->
-      <div class="pricing-card reveal">
-        <div class="plan-name">Foundation</div>
-        <div class="plan-price">$150<span>/mo</span></div>
-        <div class="plan-tagline" data-i18n="foundation-tagline">Get found online, fast</div>
-        <ul class="plan-features">
-          <li data-i18n="f-feat-1">Professional website built for you</li>
-          <li data-i18n="f-feat-2">Google Business Profile setup &amp; optimization</li>
-          <li data-i18n="f-feat-3">Monthly performance report</li>
-          <li data-i18n="f-feat-4">Hosting &amp; maintenance included</li>
-          <li data-i18n="f-feat-5">Mobile-first responsive design</li>
-        </ul>
-        <a href="#cta" class="btn-plan btn-plan-outline" data-i18n="btn-foundation">Get Started</a>
+  <!-- 01 MISSION -->
+  <section class="panel" id="p-mission">
+    <div class="panel-grid"></div>
+    <div class="mission-grid">
+      <div class="mission-left">
+        <div class="eyebrow slide">Our mission</div>
+        <h2 class="slide sd1">Invisible<br>is not<br><em>an option.</em></h2>
       </div>
-
-      <!-- Growth (featured) -->
-      <div class="pricing-card featured reveal" style="transition-delay:0.12s">
-        <div class="popular-badge" data-i18n="growth-badge">⭐ Most Popular</div>
-        <div class="plan-name">Growth</div>
-        <div class="plan-price">$500<span>/mo</span></div>
-        <div class="plan-tagline" data-i18n="growth-tagline">Build real momentum</div>
-        <ul class="plan-features">
-          <li data-i18n="g-feat-1">Everything in Foundation</li>
-          <li data-i18n="g-feat-2">Social media management (3 platforms)</li>
-          <li data-i18n="g-feat-3">Weekly content creation &amp; posting</li>
-          <li data-i18n="g-feat-4">Review generation campaigns</li>
-          <li data-i18n="g-feat-5">Monthly strategy call</li>
-          <li data-i18n="g-feat-6">Competitor monitoring</li>
-        </ul>
-        <a href="#cta" class="btn-plan btn-plan-gold" data-i18n="btn-growth">Get Started</a>
-      </div>
-
-      <!-- Accelerator -->
-      <div class="pricing-card reveal" style="transition-delay:0.24s">
-        <div class="plan-name">Accelerator</div>
-        <div class="plan-price">$1,000<span>/mo</span></div>
-        <div class="plan-tagline" data-i18n="accelerator-tagline">Full-throttle growth</div>
-        <ul class="plan-features">
-          <li data-i18n="a-feat-1">Everything in Growth</li>
-          <li data-i18n="a-feat-2">Meta Ads campaigns (FB + IG)</li>
-          <li data-i18n="a-feat-3">Ad creative &amp; copywriting</li>
-          <li data-i18n="a-feat-4">Advanced targeting &amp; retargeting</li>
-          <li data-i18n="a-feat-5">Weekly performance review</li>
-          <li data-i18n="a-feat-6">Priority support &amp; dedicated strategist</li>
-        </ul>
-        <a href="#cta" class="btn-plan btn-plan-outline" data-i18n="btn-accelerator">Get Started</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══ WHY US ═══ -->
-  <section id="why">
-    <div class="section-label" data-i18n="why-label">The Difference</div>
-    <h2 class="section-title" data-i18n-html="why-title" style="color:#fff; margin-bottom:4rem;">Built different.<br/>For businesses that are too.</h2>
-
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="why-accent"></div>
-        <div class="why-title" data-i18n="why1-title">Always on.</div>
-        <p data-i18n="why1-body">We move fast, adapt faster, and keep your marketing sharp year-round. No slow agencies. No waiting on approvals. Just work that gets done.</p>
-      </div>
-      <div class="why-card reveal" style="transition-delay:0.12s">
-        <div class="why-accent"></div>
-        <div class="why-title" data-i18n="why2-title">Built for local.</div>
-        <p data-i18n="why2-body">We understand neighborhoods, foot traffic, and the customers who keep local businesses alive. Your marketing will feel like it belongs — because it does.</p>
-      </div>
-      <div class="why-card reveal" style="transition-delay:0.24s">
-        <div class="why-accent"></div>
-        <div class="why-title" data-i18n="why3-title">No surprises.</div>
-        <p data-i18n="why3-body">Flat monthly rate. No setup fees, no hidden charges, no lock-in contracts. You know exactly what you’re paying and exactly what you’re getting.</p>
-      </div>
-    </div>
-
-    <div class="pull-quote reveal" data-i18n="pull-quote">every brand deserves an operative.</div>
-  </section>
-
-
-  <!-- ═══ ABOUT ═══ -->
-  <section id="about">
-    <div class="about-inner">
-      <div class="about-img reveal">
-        <img
-          src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&q=90"
-          alt="Craftsman working with wood — precision, craft, care"
-          loading="lazy"
-        />
-      </div>
-      <div class="about-text reveal" style="transition-delay:0.15s">
-        <div class="section-label" data-i18n="about-label">About</div>
-        <h2 class="section-title" data-i18n="about-title">Marketing built for the people who build things.</h2>
-        <p data-i18n="about-p1">Your Operative started with a simple observation: local businesses with incredible products and real community roots getting buried online by companies with bigger ad budgets and worse coffee.</p>
-        <p data-i18n="about-p2">We're a marketing agency built exclusively for independent businesses. We combine focused strategy with real human investment in your brand — so you get a professional presence you deserve, without the overhead.</p>
-        <p data-i18n="about-p3">We find you, build for you, and grow with you.</p>
-        <p class="about-highlight" data-i18n="about-highlight">That's the operative mission.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══ CTA SECTION ═══ -->
-  <section id="cta">
-    <h2 class="cta-title" data-i18n="cta-title">Ready to be undeniable?</h2>
-    <p class="cta-sub" data-i18n="cta-sub">We'll build your site for free. No catch. Scan the QR code when it arrives — or drop your email now and we'll reach out first.</p>
-
-    <form class="cta-form" onsubmit="handleSubmit(event)">
-      <input
-        type="email"
-        class="cta-input"
-        placeholder="your@email.com"
-        data-i18n-placeholder="cta-placeholder"
-        required
-        aria-label="Email address"
-      />
-      <button type="submit" class="btn-dark" data-i18n="cta-btn">Get Started →</button>
-    </form>
-  </section>
-
-
-  <!-- ═══ FOOTER ═══ -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <svg width="180" height="32" viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="14,26 5,38 23,38" fill="#fff" opacity="0.6"/>
-            <polygon points="14,19 7,30 21,30" fill="#fff" opacity="0.7"/>
-            <polygon points="14,12 8,22 20,22" fill="#fff" opacity="0.82"/>
-            <polygon points="14,5 9,14 19,14" fill="#fff" opacity="0.92"/>
-            <rect x="12" y="38" width="4" height="4" rx="1" fill="#fff" opacity="0.6"/>
-            <polygon points="26,26 15,40 37,40" fill="#F2A900" opacity="0.75"/>
-            <polygon points="26,18 16,32 36,32" fill="#F2A900" opacity="0.85"/>
-            <polygon points="26,10 17,24 35,24" fill="#F2A900" opacity="0.92"/>
-            <polygon points="26,2 19,13 33,13" fill="#F2A900"/>
-            <rect x="24" y="40" width="4" height="2" rx="1" fill="#F2A900" opacity="0.9"/>
-            <rect x="12" y="40" width="16" height="2" rx="1" fill="#fff" opacity="0.08"/>
-            <text x="46" y="26" font-family="Outfit, sans-serif" font-weight="800" font-size="18" letter-spacing="-0.3"><tspan fill="#fff">Your</tspan><tspan fill="#F2A900"> Operative</tspan></text>
-          </svg>
-          <p class="footer-tagline" data-i18n="footer-tagline">Your vision, made undeniable.</p>
+      <div class="mission-right">
+        <div class="mission-body">
+          <p class="slide sd2">
+            <strong>You're good at the work. You're just hard to find.</strong>
+          </p>
+          <p class="slide sd3">
+            The plumber who answers at 9pm. The roofer who shows up when he says he will. The electrician your neighbors recommend. You earned that reputation in the field — but online, you're invisible, or you look like everyone else.
+          </p>
+          <p class="slide sd4">
+            We fix that. We come to you, build your presence, and keep it working — so the next person searching at 11pm calls you.
+          </p>
+          <p class="slide sd5">
+            <em>Come to you. Build for you. Grow with you.</em>
+          </p>
         </div>
+      </div>
+    </div>
 
-        <nav class="footer-nav" aria-label="Footer navigation">
-          <a href="#services" data-i18n="footer-services">Services</a>
-          <a href="#how" data-i18n="footer-how">How It Works</a>
-          <a href="#about" data-i18n="footer-about">About</a>
-          <a href="#cta" data-i18n="footer-contact">Contact</a>
-        </nav>
 
-        <div class="footer-contact">
-          <a href="mailto:hello@youroperative.com">hello@youroperative.com</a>
+  </section>
+
+  <!-- 02 HOW IT WORKS -->
+  <section class="panel" id="p-how">
+    <div class="panel-grid"></div>
+    <div class="eyebrow slide">How it works</div>
+    <h2 class="how-head slide sd1">We do the work.<br><em>See it, then decide.</em></h2>
+
+    <div class="process-list">
+      <div class="pi slide sd1">
+        <div class="pi-num">1</div>
+        <div class="pi-title">We reach out — or you do</div>
+        <div class="pi-desc">We find local businesses that deserve to be found. See yourself here? Even faster.</div>
+      </div>
+      <div class="pi slide sd2">
+        <div class="pi-num">2</div>
+        <div class="pi-title">We do the homework</div>
+        <div class="pi-desc">We pull your reviews, photos, and current online presence. You send us nothing — we find it ourselves.</div>
+      </div>
+      <div class="pi slide sd3">
+        <div class="pi-num">3</div>
+        <div class="pi-title">We build the real thing</div>
+        <div class="pi-desc">Not a mockup. Not a template preview. Your actual, finished site — custom design, original copy, built for SEO and AI search.</div>
+      </div>
+      <div class="pi slide sd4">
+        <div class="pi-num">4</div>
+        <div class="pi-title">You see it live</div>
+        <div class="pi-desc">The whole thing, working, before a dollar changes hands.</div>
+      </div>
+      <div class="pi slide sd5">
+        <div class="pi-num">5</div>
+        <div class="pi-title">You pay only if you keep it</div>
+        <div class="pi-desc">Love it, it’s yours. Don’t, walk away — you owe nothing.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 THE DIFFERENCE -->
+  <section class="panel" id="p-diff">
+    <div class="panel-grid"></div>
+    <div class="diff-inner">
+      <div class="eyebrow slide">The difference</div>
+      <h2 class="diff-h slide sd1">
+        You should be running<br>your business, not<br>
+        <em>editing templates.</em>
+      </h2>
+      <div class="diff-body">
+        <p class="slide sd2">
+          Hours changed? New service area? Updated pricing? New photos? Just tell us — we handle everything, immediately.
+        </p>
+        <p class="slide sd3">No logins. No dashboards. No learning curve. One message and it's done.</p>
+      </div>
+      <!-- Platforms static row -->
+      <div class="platform-ticker slide sd4">
+        <div class="pt-label">Platforms we manage</div>
+        <div class="platform-grid-inner" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px 0; margin-top:16px; width:100%;">
+            <div class="pt-item"><svg width="28" height="28" viewBox="0 0 48 48" fill="none"><path fill="rgba(255,255,255,0.45)" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="rgba(255,255,255,0.45)" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="rgba(255,255,255,0.45)" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="rgba(255,255,255,0.45)" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.96 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span>Google Business</span></div>
+            <div class="pt-item"><svg width="28" height="28" viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="rgba(255,255,255,0.12)"/><rect x="13" y="13" width="22" height="22" rx="6" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="3"/><circle cx="35" cy="13" r="2" fill="rgba(255,255,255,0.45)"/></svg><span>Instagram</span></div>
+            <div class="pt-item"><svg width="28" height="28" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="rgba(255,255,255,0.12)"/><path d="M28 48V30h6l1-7h-7v-4c0-2 .6-3.4 3.4-3.4H35V9.1C34.1 9 31.8 8.8 29.1 8.8c-5.8 0-9.7 3.5-9.7 10v5.6H13V32h6.4v16H28z" fill="rgba(255,255,255,0.45)"/></svg><span>Facebook</span></div>
+            <div class="pt-item"><svg width="28" height="28" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="rgba(255,255,255,0.12)"/><path d="M24 6c-1.1 0-2 .9-2 2v13l-8-5.5c-.9-.6-2.1-.4-2.7.5-.6.9-.4 2.1.5 2.7l9.2 6.3-9.2 2.5c-1 .3-1.7 1.3-1.4 2.4.2 1 1.2 1.6 2.2 1.4l10.5-2.8v4.5l-6 7.5c-.7.9-.5 2.1.4 2.8.9.7 2.1.5 2.8-.4l4.8-6 4.8 6c.7.9 1.9 1.1 2.8.4.9-.7 1.1-1.9.4-2.8l-6-7.5v-4.5l10.5 2.8c1 .3 2-.3 2.2-1.4.3-1.1-.3-2.1-1.4-2.4l-9.2-2.5 9.2-6.3c.9-.6 1.1-1.8.5-2.7-.6-.9-1.8-1.1-2.7-.5L26 21V8c0-1.1-.9-2-2-2z" fill="rgba(255,255,255,0.45)"/></svg><span>Yelp</span></div>
+            <div class="pt-item"><svg width="28" height="28" viewBox="0 0 48 48"><path fill="rgba(255,255,255,0.45)" d="M24 4C15.2 4 8 11.2 8 20c0 13 16 24 16 24s16-11 16-24c0-8.8-7.2-16-16-16z"/><circle cx="24" cy="20" r="6" fill="rgba(255,255,255,0.12)"/></svg><span>Google Maps</span></div>
+            <div class="pt-item"><svg width="28" height="28" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="rgba(255,255,255,0.12)"/><path d="M24 8 L38 20 L38 40 L28 40 L28 30 L20 30 L20 40 L10 40 L10 20 Z" fill="rgba(255,255,255,0.45)"/></svg><span>Nextdoor</span></div>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        &copy; 2026 Your Operative.
+      <div class="diff-sign slide sd5">That’s Your Operative.</div>
+    </div>
+  </section>
+
+
+  <!-- 04b DON'T LOSE THE LEAD -->
+  <section class="panel" id="p-lead">
+    <div class="panel-grid"></div>
+
+    <!-- Loop flywheel -->
+    <div class="loop-wrap slide sd1">
+      <p class="loop-eyebrow">Operative Flywheel</p>
+      <svg viewBox="-10 0 640 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:min(560px,calc(50vw - 110px));overflow:visible;" class="flywheel-svg" aria-label="Operative Flywheel — Found, Chosen, Kept, Grown orbiting one system">
+        <defs>
+          <!-- Sun glow -->
+          <radialGradient id="sun-core" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#FFE484"/>
+            <stop offset="45%"  stop-color="#F2A900"/>
+            <stop offset="80%"  stop-color="#C47A15"/>
+            <stop offset="100%" stop-color="#8B4E00"/>
+          </radialGradient>
+          <radialGradient id="sun-corona" cx="50%" cy="50%" r="50%">
+            <stop offset="55%"  stop-color="#E6A53A" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#E6A53A" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="sun-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="moon-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="3" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.55"/>
+          </filter>
+
+          <!-- Moon gradients — lit side faces the sun at center (300,230) -->
+          <!-- Found (300,90): lit from below -->
+          <radialGradient id="mg-found" gradientUnits="userSpaceOnUse" cx="300" cy="108" r="58" fx="300" fy="126">
+            <stop offset="0%"   stop-color="#4a4535"/>
+            <stop offset="40%"  stop-color="#2a2820"/>
+            <stop offset="100%" stop-color="#0c0c0c"/>
+          </radialGradient>
+          <!-- Chosen (510,230): lit from left -->
+          <radialGradient id="mg-chosen" gradientUnits="userSpaceOnUse" cx="494" cy="230" r="58" fx="477" fy="230">
+            <stop offset="0%"   stop-color="#4a4535"/>
+            <stop offset="40%"  stop-color="#2a2820"/>
+            <stop offset="100%" stop-color="#0c0c0c"/>
+          </radialGradient>
+          <!-- Kept (300,370): lit from above -->
+          <radialGradient id="mg-kept" gradientUnits="userSpaceOnUse" cx="300" cy="352" r="58" fx="300" fy="334">
+            <stop offset="0%"   stop-color="#4a4535"/>
+            <stop offset="40%"  stop-color="#2a2820"/>
+            <stop offset="100%" stop-color="#0c0c0c"/>
+          </radialGradient>
+          <!-- Grown (90,230): lit from right, amber-warm tint -->
+          <radialGradient id="mg-grown" gradientUnits="userSpaceOnUse" cx="106" cy="230" r="58" fx="123" fy="230">
+            <stop offset="0%"   stop-color="#4a3015"/>
+            <stop offset="40%"  stop-color="#241808"/>
+            <stop offset="100%" stop-color="#0d0905"/>
+          </radialGradient>
+
+          <!-- Orbital ring gradient (fades at top for depth) -->
+          <linearGradient id="orbit-grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#E6A53A" stop-opacity="0.04"/>
+            <stop offset="50%"  stop-color="#E6A53A" stop-opacity="0.10"/>
+            <stop offset="100%" stop-color="#E6A53A" stop-opacity="0.04"/>
+          </linearGradient>
+
+          <!-- Arrow markers -->
+        </defs>
+
+        <!-- Orbital ellipse -->
+        <ellipse cx="300" cy="230" rx="210" ry="140" fill="none" stroke="url(#orbit-grad)" stroke-width="1" stroke-dasharray="5 10"/>
+
+        <!-- F→C dots (small→large = CW direction) -->
+        <circle cx="378.7" cy="100.2" r="2.0" fill="#E6A53A" opacity="0.35"/>
+        <circle cx="411.3" cy="111.3" r="2.8" fill="#E6A53A" opacity="0.48"/>
+        <circle cx="440.5" cy="126.0" r="3.8" fill="#E6A53A" opacity="0.62"/>
+        <circle cx="465.5" cy="143.8" r="5.0" fill="#E6A53A" opacity="0.77"/>
+        <circle cx="485.4" cy="164.3" r="6.4" fill="#E6A53A" opacity="0.92"/>
+        <!-- C→K dots -->
+        <circle cx="485.4" cy="295.7" r="2.0" fill="#E6A53A" opacity="0.35"/>
+        <circle cx="465.5" cy="316.2" r="2.8" fill="#E6A53A" opacity="0.48"/>
+        <circle cx="440.5" cy="334.0" r="3.8" fill="#E6A53A" opacity="0.62"/>
+        <circle cx="411.3" cy="348.7" r="5.0" fill="#E6A53A" opacity="0.77"/>
+        <circle cx="378.7" cy="359.8" r="6.4" fill="#E6A53A" opacity="0.92"/>
+        <!-- K→G dots -->
+        <circle cx="221.3" cy="359.8" r="2.0" fill="#E6A53A" opacity="0.35"/>
+        <circle cx="188.7" cy="348.7" r="2.8" fill="#E6A53A" opacity="0.48"/>
+        <circle cx="159.5" cy="334.0" r="3.8" fill="#E6A53A" opacity="0.62"/>
+        <circle cx="134.5" cy="316.2" r="5.0" fill="#E6A53A" opacity="0.77"/>
+        <circle cx="114.6" cy="295.7" r="6.4" fill="#E6A53A" opacity="0.92"/>
+        <!-- G→F reviews dots (heavier) -->
+        <circle cx="102.7" cy="182.1" r="2.4" fill="#E6A53A" opacity="0.45"/>
+        <circle cx="123.9" cy="153.8" r="3.4" fill="#E6A53A" opacity="0.58"/>
+        <circle cx="154.1" cy="129.3" r="4.6" fill="#E6A53A" opacity="0.72"/>
+        <circle cx="191.8" cy="110.0" r="5.8" fill="#E6A53A" opacity="0.87"/>
+        <circle cx="235.1" cy="96.9" r="7.2" fill="#E6A53A" opacity="1.0"/>
+
+        <!-- SUN corona -->
+        <circle cx="300" cy="230" r="96" fill="url(#sun-corona)"/>
+        <!-- Sun rays (12 at 30° intervals) -->
+        <g id="sun-rays" transform="translate(300,230) rotate(0)" opacity="0.5">
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(30)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(90)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(150)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(15)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(45)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(75)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(105)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(135)"/>
+          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(165)"/>
+        </g>
+        <!-- Sun sphere -->
+        <circle cx="300" cy="230" r="54" fill="url(#sun-core)" filter="url(#sun-glow)"/>
+        <!-- Sun text -->
+        <text x="300" y="225" font-family="Inter,sans-serif" font-size="13.5" font-weight="700" fill="#1A1407" text-anchor="middle">ONE</text>
+        <text x="300" y="241" font-family="Inter,sans-serif" font-size="13.5" font-weight="700" fill="#1A1407" text-anchor="middle">SYSTEM</text>
+
+        <!-- MOONS -->
+        <!-- Found (top) -->
+        <circle cx="300" cy="90" r="48" fill="url(#mg-found)" filter="url(#moon-shadow)"/>
+        <text x="300" y="90" font-family="Space Grotesk,sans-serif" font-size="17" font-weight="700" fill="#F5F3EE" text-anchor="middle" dominant-baseline="middle">Found</text>
+        <text x="300" y="28" font-family="Inter,sans-serif" id="desc-found" font-size="15" fill="#9A988F" text-anchor="middle" opacity="0" style="transition:opacity 0.2s ease;">You show up first</text>
+
+        <!-- Chosen (right) -->
+        <circle cx="510" cy="230" r="48" fill="url(#mg-chosen)" filter="url(#moon-shadow)"/>
+        <text x="510" y="230" font-family="Space Grotesk,sans-serif" font-size="17" dominant-baseline="middle" font-weight="700" fill="#F5F3EE" text-anchor="middle">Chosen</text>
+        <text x="566" y="230" font-family="Inter,sans-serif" id="desc-chosen" font-size="15" fill="#9A988F" text-anchor="start" dominant-baseline="middle" opacity="0" style="transition:opacity 0.2s ease;">They pick you</text>
+
+        <!-- Kept (bottom) -->
+        <circle cx="300" cy="370" r="48" fill="url(#mg-kept)" filter="url(#moon-shadow)"/>
+        <text x="300" y="370" font-family="Space Grotesk,sans-serif" font-size="17" dominant-baseline="middle" font-weight="700" fill="#F5F3EE" text-anchor="middle">Kept</text>
+        <text x="300" y="432" font-family="Inter,sans-serif" id="desc-kept" font-size="15" fill="#9A988F" text-anchor="middle" opacity="0" style="transition:opacity 0.2s ease;">Nothing slips</text>
+
+        <!-- Grown (left, amber) -->
+        <circle cx="90"  cy="230" r="48" fill="url(#mg-grown)" filter="url(#moon-shadow)" stroke="rgba(230,165,58,0.22)" stroke-width="1.5"/>
+        <text x="90"  y="230" font-family="Space Grotesk,sans-serif" font-size="17" dominant-baseline="middle" font-weight="700" fill="#E6A53A" text-anchor="middle">Grown</text>
+        <text x="34" y="230" font-family="Inter,sans-serif" id="desc-grown" font-size="15" fill="#9A988F" text-anchor="end" dominant-baseline="middle" opacity="0" style="transition:opacity 0.2s ease;">Earn the next job</text>
+
+        <!-- Moon hover glow overlays (JS-controlled) -->
+        <circle id="glow-found"  cx="300" cy="90"  r="48" fill="rgba(230,165,58,0)" style="transition:fill 0.25s ease; pointer-events:none;"/>
+        <circle id="glow-chosen" cx="510" cy="230" r="48" fill="rgba(230,165,58,0)" style="transition:fill 0.25s ease; pointer-events:none;"/>
+        <circle id="glow-kept"   cx="300" cy="370" r="48" fill="rgba(230,165,58,0)" style="transition:fill 0.25s ease; pointer-events:none;"/>
+        <circle id="glow-grown"  cx="90"  cy="230" r="48" fill="rgba(230,165,58,0)" style="transition:fill 0.25s ease; pointer-events:none;"/>
+        <!-- Invisible hit targets for hover (on top of moons) -->
+        <circle id="hit-found"  cx="300" cy="90"  r="48" fill="transparent" style="cursor:pointer;"/>
+        <circle id="hit-chosen" cx="510" cy="230" r="48" fill="transparent" style="cursor:pointer;"/>
+        <circle id="hit-kept"   cx="300" cy="370" r="48" fill="transparent" style="cursor:pointer;"/>
+        <circle id="hit-grown"  cx="90"  cy="230" r="48" fill="transparent" style="cursor:pointer;"/>
+      </svg>
+
+    </div>
+
+    <div class="eyebrow slide sd2">Don&rsquo;t lose the lead</div>
+    <h2 class="lead-head slide sd2">A missed call is a missed <em>job.</em></h2>
+
+    <div class="lead-body">
+      <p class="slide sd3">You&rsquo;re under a sink when the phone rings. By the time you call back, they&rsquo;ve booked someone else. That&rsquo;s not a marketing problem — it&rsquo;s a speed problem.</p>
+      <p class="slide sd4">Miss a call? They get a text back before they dial the next guy. Form comes in at midnight? Answered in sixty seconds. Quote gone quiet? Followed up automatically — until they book or bow out. Every call, text, and form lands in one inbox, so nothing slips. And when the job&rsquo;s done, a review request goes out on its own — so the work you just did earns you the next call.</p>
+    </div>
+
+
+      <div class="tech-label slide sd4">How we catch them</div>
+      <div class="tech-pills slide sd4">
+        <div class="tech-pill"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/><path d="M14.5 1a4.5 4.5 0 014.5 4.5" stroke-linecap="round"/></svg>Missed-call text-back</div>
+        <div class="tech-pill"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>Instant lead reply</div>
+        <div class="tech-pill"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>Online booking</div>
+        <div class="tech-pill"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15" stroke-linecap="round" stroke-linejoin="round"/></svg>Auto follow-up</div>
+        <div class="tech-pill"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3H10l-2-3H2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z" stroke-linecap="round" stroke-linejoin="round"/></svg>One lead inbox</div>
+        <div class="tech-pill"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke-linecap="round" stroke-linejoin="round"/></svg>Review requests</div>
+      </div>
+
+    <div class="lead-close slide sd5">Found, booked, and earning the next one. <em>On its own.</em></div>
+  </section>
+
+  <!-- 04 PRICING -->
+  <section class="panel" id="p-pricing">
+    <div class="panel-grid"></div>
+    <div class="eyebrow slide">Pricing</div>
+    <h2 class="pricing-head slide sd1">Simple. Honest.<br>No contracts.</h2>
+    <p class="pricing-sub slide sd2">Month-to-month. Cancel anytime. The product keeps you — not a contract.</p>
+
+    <div class="tiers slide sd2">
+      <div class="tier">
+        <div class="t-tag">Foundation</div>
+        <div class="t-name">Get found.</div>
+        <div class="t-price"><sup>$</sup>297<span>/mo</span></div>
+        <div class="t-mo">Month-to-month · No setup fee</div>
+        <div class="t-hr"></div>
+        <ul class="t-feats">
+          <li>Custom website — hosted and maintained</li>
+          <li>Professional company email (you@yourbusiness.com)</li>
+          <li>Google Business Profile setup and optimization</li>
+          <li>Local SEO built into every page</li>
+          <li>Built to show up in Google — and in AI search.</li>
+          <li>Monthly performance report</li>
+          <li>Dedicated contact — email and text, same-day response</li>
+        </ul>
+        <a href="#p-contact" class="t-btn">Get started →</a>
+      </div>
+
+      <div class="tier tier-hero">
+        <div class="t-tag">Growth · Most popular</div>
+        <div class="t-name">Get chosen.</div>
+        <div class="t-price"><sup>$</sup>597<span>/mo</span></div>
+        <div class="t-mo">Everything in Foundation, plus:</div>
+        <div class="t-hr"></div>
+        <ul class="t-feats">
+          <li><strong style="color:var(--text-primary)">Never-miss-a-lead system</strong> — missed-call text-back, instant reply, one inbox</li>
+          <li>Review generation — automated after every job, so you climb Google's local pack and win the side-by-side comparison</li>
+          <li>Follow-up sequences — no quote goes cold</li>
+          <li>Online booking + database reactivation</li>
+          <li>4 social posts per month</li>
+          <li>Quarterly website refresh</li>
+          <li>Priority response, same-day</li>
+        </ul>
+        <a href="#p-contact" class="t-btn">Get started →</a>
+      </div>
+
+      <div class="tier">
+        <div class="t-tag">Accelerator</div>
+        <div class="t-name">Get growing.</div> <!-- optional rename from "Get ahead" -->
+        <div class="t-price"><sup>$</sup>1,200<span>/mo</span></div>
+        <div class="t-mo">Everything in Growth, plus:</div>
+        <div class="t-hr"></div>
+        <ul class="t-feats">
+          <li>Meta or Google ad management</li>
+          <li>Ad spend billed separately</li>
+          <li>Weekly performance check-ins</li>
+          <li>Dedicated service landing pages</li>
+          <li>Growth strategy calls</li>
+        </ul>
+        <a href="#p-contact" class="t-btn">Get started →</a>
       </div>
     </div>
-  </footer>
+    <p class="no-contract slide sd3">No contracts · No setup fees · Cancel anytime</p>
+  </section>
 
+  <!-- 05 CONTACT -->
+  <section class="panel" id="p-contact">
+    <div class="panel-grid"></div>
+    <div class="contact-orb"></div>
+    <div class="contact-inner">
+      <div class="eyebrow slide">Ready?</div>
+      <h2 class="slide sd1">Your competitors<br>are already<br>online.</h2>
+      <p class="contact-sub slide sd2">
+        We'll build your site before you pay a cent.
+        <strong>See it, then decide.</strong>
+      </p>
 
-  <script>
-    // ══════════════════════════════════════════════
-    // TRANSLATIONS
-    // ══════════════════════════════════════════════
-    const T = {
-      en: {
-        'nav-services': 'Services',
-        'nav-how': 'How It Works',
-        'nav-about': 'About',
-        'nav-contact': 'Contact',
-        'nav-cta': 'Get Your Free Site',
-        'hero-headline': 'Your vision,\nmade undeniable.',
-        'hero-subhead': 'We build your online presence. You run your business.',
-        'hero-btn-how': 'See How It Works',
-        'hero-btn-free': 'Get Your Free Website',
-        'trust-1': 'No Setup Fees',
-        'trust-2': 'No Contracts',
-        'trust-3': 'Cancel Anytime',
-        'how-label': 'How It Works',
-        'how-title': 'Three steps.<br/>Zero friction.',
-        'how-subtitle': "From zero to live without lifting a finger. Here's what working with Your Operative looks like.",
-        'step1-title': 'We find you',
-        'step1-body': 'We research your business and build a professional website tailored to you. No forms. No onboarding. No headache.',
-        'step2-title': 'You see it first',
-        'step2-body': 'We mail you a postcard with a QR code. Scan it. Your site is live and waiting — built for your business, ready to impress.',
-        'step3-title': 'We grow together',
-        'step3-body': 'Like what you see? We handle the rest — social, Google, ads — while you focus on your craft.',
-        'services-label': 'Pricing',
-        'services-title': 'Simple, honest plans.',
-        'services-subtitle': 'No hidden fees. No lock-in. Just results. Start with what you need and grow from there.',
-        'foundation-tagline': 'Get found online, fast',
-        'growth-badge': '⭐ Most Popular',
-        'growth-tagline': 'Build real momentum',
-        'accelerator-tagline': 'Full-throttle growth',
-        'btn-foundation': 'Get Started',
-        'btn-growth': 'Get Started',
-        'btn-accelerator': 'Get Started',
-        'f-feat-1': 'Professional website built for you',
-        'f-feat-2': 'Google Business Profile setup & optimization',
-        'f-feat-3': 'Monthly performance report',
-        'f-feat-4': 'Hosting & maintenance included',
-        'f-feat-5': 'Mobile-first responsive design',
-        'g-feat-1': 'Everything in Foundation',
-        'g-feat-2': 'Social media management (3 platforms)',
-        'g-feat-3': 'Weekly content creation & posting',
-        'g-feat-4': 'Review generation campaigns',
-        'g-feat-5': 'Monthly strategy call',
-        'g-feat-6': 'Competitor monitoring',
-        'a-feat-1': 'Everything in Growth',
-        'a-feat-2': 'Meta Ads campaigns (FB + IG)',
-        'a-feat-3': 'Ad creative & copywriting',
-        'a-feat-4': 'Advanced targeting & retargeting',
-        'a-feat-5': 'Weekly performance review',
-        'a-feat-6': 'Priority support & dedicated strategist',
-        'why-label': 'Why Your Operative',
-        'why-title': 'Built different.<br/>For businesses that are too.',
-        'why1-title': 'Always On',
-        'why1-body': 'We work fast, move smart, and stay ahead of the curve — so your marketing never sleeps, even when you do.',
-        'why2-title': 'Built for Local',
-        'why2-body': "We're local. We know the neighborhoods, the culture, and the customers. Your marketing will actually resonate.",
-        'why3-title': 'No BS Pricing',
-        'why3-body': 'What you see is what you pay. No setup fees, no surprise charges, no 12-month lock-ins. Cancel anytime, no questions asked.',
-        'pull-quote': 'Every brand deserves an operative.',
-        'about-label': 'About',
-        'about-title': 'Marketing built for the people who build things.',
-        'about-p1': 'Your Operative started with a simple observation: local businesses with incredible products and real community roots getting buried online by companies with bigger ad budgets and worse coffee.',
-        'about-p2': "We're a marketing agency built exclusively for independent businesses. We combine focused strategy with real human investment in your brand — so you get a professional presence you deserve, without the overhead.",
-        'about-p3': 'We find you, build for you, and grow with you.', 'about-highlight': "That's the operative mission.",
-        'cta-title': 'Ready to be undeniable?',
-        'cta-sub': "We'll build your site for free. No catch. Scan the QR code when it arrives — or drop your email now and we'll reach out first.",
-        'cta-btn': 'Get Started →',
-        'cta-placeholder': 'your@email.com',
-        'cta-success': "✓ We'll be in touch!",
-        'footer-tagline': 'Your vision, made undeniable.',
-        'footer-services': 'Services',
-        'footer-how': 'How It Works',
-        'footer-about': 'About',
-        'footer-contact': 'Contact',
-      },
+      <div class="contact-acts slide sd3" style="margin-bottom:0;">
+        <button class="btn-g" onclick="toggleForm(this)" type="button">Get in touch →</button>
+        <a href="#p-pricing" class="btn-t">See pricing</a>
+      </div>
 
-      es: {
-        'nav-services': 'Servicios',
-        'nav-how': 'Cómo Funciona',
-        'nav-about': 'Nosotros',
-        'nav-contact': 'Contacto',
-        'nav-cta': 'Obtén Tu Sitio Gratis',
-        'hero-headline': 'Tu visión,\ninnegable.',
-        'hero-subhead': 'Construimos tu presencia en línea. Tú manejas tu negocio.',
-        'hero-btn-how': 'Ver Cómo Funciona',
-        'hero-btn-free': 'Obtén Tu Sitio Web Gratis',
-        'trust-1': 'Sin Costo de Configuración',
-        'trust-2': 'Sin Costo de Configuración',
-        'trust-3': 'Cancela Cuando Quieras',
-        'how-label': 'Cómo Funciona',
-        'how-title': 'Tres pasos.<br/>Sin fricción.',
-        'how-subtitle': 'De cero a activo sin mover un dedo. Así es como se trabaja con Your Operative.',
-        'step1-title': 'Te encontramos',
-        'step1-body': 'Investigamos tu negocio y construimos un sitio web profesional a tu medida. Sin formularios. Sin registro. Sin dolores de cabeza.',
-        'step2-title': 'Tú lo ves primero',
-        'step2-body': 'Te enviamos una postal con un código QR. Escanéalo. Tu sitio está activo y listo — hecho para tu negocio, listo para impresionar.',
-        'step3-title': 'Crecemos juntos',
-        'step3-body': '¿Te gusta lo que ves? Nosotros nos encargamos del resto — redes sociales, Google, anuncios — mientras tú te enfocas en tu oficio.',
-        'services-label': 'Precios',
-        'services-title': 'Planes simples y honestos.',
-        'services-subtitle': 'Sin costos ocultos. Sin contratos. Solo resultados. Empieza con lo que necesitas y crece desde ahí.',
-        'foundation-tagline': 'Aparece en línea, rápido',
-        'growth-badge': '⭐ Más Popular',
-        'growth-tagline': 'Construye momentum real',
-        'accelerator-tagline': 'Crecimiento a toda marcha',
-        'btn-foundation': 'Comenzar',
-        'btn-growth': 'Comenzar',
-        'btn-accelerator': 'Comenzar',
-        'f-feat-1': 'Sitio web profesional creado para ti',
-        'f-feat-2': 'Configuración y optimización de Google Business Profile',
-        'f-feat-3': 'Reporte mensual de rendimiento',
-        'f-feat-4': 'Hosting y mantenimiento incluidos',
-        'f-feat-5': 'Diseño responsivo mobile-first',
-        'g-feat-1': 'Todo lo de Foundation',
-        'g-feat-2': 'Gestión de redes sociales (3 plataformas)',
-        'g-feat-3': 'Creación y publicación de contenido semanal',
-        'g-feat-4': 'Campañas de generación de reseñas',
-        'g-feat-5': 'Llamada mensual de estrategia',
-        'g-feat-6': 'Monitoreo de competidores',
-        'a-feat-1': 'Todo lo de Growth',
-        'a-feat-2': 'Campañas de Meta Ads (FB + IG)',
-        'a-feat-3': 'Creatividad publicitaria y copywriting',
-        'a-feat-4': 'Segmentación avanzada y retargeting',
-        'a-feat-5': 'Revisión semanal de rendimiento',
-        'a-feat-6': 'Soporte prioritario y estratega dedicado',
-        'why-label': 'Por Qué Your Operative',
-        'why-title': 'Diferente.<br/>Para negocios que también lo son.',
-        'why1-title': 'Potenciado por IA',
-        'why1-body': 'Trabajamos rápido, nos movemos con inteligencia y nos adelantamos — para que tu marketing nunca duerma, aunque tú sí.',
-        'why2-title': 'Hecho para lo Local',
-        'why2-body': 'Somos locales. Conocemos los barrios, la cultura y los clientes. Tu marketing realmente resonará.',
-        'why3-title': 'Precios Transparentes',
-        'why3-body': 'Lo que ves es lo que pagas. Sin costos de configuración, sin cargos sorpresa, sin contratos de 12 meses. Cancela cuando quieras, sin preguntas.',
-        'pull-quote': 'Cada marca merece un operativo.',
-        'about-label': 'Nosotros',
-        'about-title': 'Marketing hecho para los que construyen cosas.',
-        'about-p1': 'Your Operative nació de una simple frustración: negocios locales con productos increíbles y raíces comunitarias reales que se pierden en línea ante empresas con mayores presupuestos publicitarios y peor café.',
-        'about-p2': 'Somos una agencia de marketing impulsada por IA para negocios independientes. Combinamos automatización inteligente con un cuidado genuino por tu marca — para que obtengas la presencia profesional que mereces, sin el recargo de agencia.',
-        'about-highlight': 'Te encontramos, construimos para ti y crecemos contigo. Esa es la misión operativa.',
-        'cta-title': '¿Listo para ser innegable?',
-        'cta-sub': 'Construiremos tu sitio gratis. Sin trampa. Escanea el código QR cuando llegue — o deja tu correo ahora y te contactamos primero.',
-        'cta-btn': 'Comenzar →',
-        'cta-placeholder': 'tu@correo.com',
-        'cta-success': '✓ ¡Nos pondremos en contacto!',
-        'footer-tagline': 'Tu visión, innegable.',
-        'footer-services': 'Servicios',
-        'footer-how': 'Cómo Funciona',
-        'footer-about': 'Nosotros',
-        'footer-contact': 'Contacto',
-      },
+      <!-- Intake form — hidden until Get in touch clicked -->
+      <form class="intake-form intake-hidden" id="intake-form" name="contact" netlify netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="form-name" value="contact" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" name="name" placeholder="Jose Carrillo" required />
+          </div>
+          <div class="form-group">
+            <label>Company name</label>
+            <input type="text" name="company" placeholder="Bay Area Roof Pro" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="(510) 555-0100" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="jose@yourbusiness.com" />
+          </div>
+        </div>
+        <p style="font-size:.78rem; color:var(--muted); margin-bottom:20px; line-height:1.7;">That's all we need. Finding the rest is literally the job.</p>
+        <button type="submit" class="form-submit">Send it →</button>
+        <div id="form-success" style="display:none; margin-top:16px; color:var(--gold); font-family:var(--fd); font-weight:700; font-size:.9rem;">Got it — we'll be in touch within 24 hours.</div>
+      </form>
+    </div>
+  </section>
 
-      zh: {
-        'nav-services': '服务',
-        'nav-how': '工作原理',
-        'nav-about': '关于我们',
-        'nav-contact': '联系我们',
-        'nav-cta': '获取免费网站',
-        'hero-headline': '您的愿景，\n无可置疑。',
-        'hero-subhead': '我们打造您的网络形象，您专注经营业务。',
-        'hero-btn-how': '了解工作原理',
-        'hero-btn-free': '获取免费网站',
-        'trust-1': '无设置费用',
-        'trust-2': '无设置费用',
-        'trust-3': '随时取消',
-        'how-label': '工作原理',
-        'how-title': '三个步骤，<br/>零障碍。',
-        'how-subtitle': '从零到上线，无需您动一根手指。以下是与Your Operative合作的流程。',
-        'step1-title': '我们找到您',
-        'step1-body': '我们研究您的业务，为您量身打造专业网站。无需填表，无需入职培训，轻松无忧。',
-        'step2-title': '您第一个看到',
-        'step2-body': '我们邮寄给您一张带有二维码的明信片。扫描后，您的网站即刻上线——专为您的业务打造，随时给人留下深刻印象。',
-        'step3-title': '共同成长',
-        'step3-body': '喜欢您所看到的？我们处理其余一切——社交媒体、谷歌、广告——让您专注于您的事业。',
-        'services-label': '定价',
-        'services-title': '简单透明的方案。',
-        'services-subtitle': '无隐藏费用。无锁定合同。只有结果。从您需要的开始，逐步扩展。',
-        'foundation-tagline': '快速建立网络形象',
-        'growth-badge': '⭐ 最受欢迎',
-        'growth-tagline': '建立真正的增长动力',
-        'accelerator-tagline': '全速增长',
-        'btn-foundation': '立即开始',
-        'btn-growth': '立即开始',
-        'btn-accelerator': '立即开始',
-        'f-feat-1': '为您量身打造的专业网站',
-        'f-feat-2': 'Google商业档案设置与优化',
-        'f-feat-3': '每月绩效报告',
-        'f-feat-4': '含托管与维护',
-        'f-feat-5': '移动优先响应式设计',
-        'g-feat-1': '包含Foundation所有功能',
-        'g-feat-2': '社交媒体管理（3个平台）',
-        'g-feat-3': '每周内容创作与发布',
-        'g-feat-4': '评价获取活动',
-        'g-feat-5': '每月战略通话',
-        'g-feat-6': '竞争对手监测',
-        'a-feat-1': '包含Growth所有功能',
-        'a-feat-2': 'Meta广告投放（FB + IG）',
-        'a-feat-3': '广告创意与文案',
-        'a-feat-4': '高级定向与再定向',
-        'a-feat-5': '每周绩效回顾',
-        'a-feat-6': '优先支持与专属策略师',
-        'why-label': '为什么选择Your Operative',
-        'why-title': '与众不同。<br/>为同样与众不同的企业。',
-        'why1-title': 'AI赋能',
-        'why1-body': '我们快速行动，精明运营，保持领先——让您的营销永不停歇，即使您休息时也是如此。',
-        'why2-title': '专为本地打造',
-        'why2-body': '我们是本地的。我们了解社区、文化和客户。您的营销将真正产生共鸣。',
-        'why3-title': '透明定价',
-        'why3-body': '所见即所付。无设置费用，无意外收费，无12个月锁定。随时取消，无需说明原因。',
-        'pull-quote': '每个品牌都值得拥有一个运营专家。',
-        'about-label': '关于我们',
-        'about-title': '为建设者打造的营销服务。',
-        'about-p1': 'Your Operative诞生于一个简单的挫败感：拥有出色产品和真实社区根基的本地企业，被广告预算更多的公司在网络上所淹没。',
-        'about-p2': '我们是一家为独立企业打造的AI驱动营销机构。我们将智能自动化与对品牌的真诚关怀相结合，让您获得真正值得拥有的专业形象，而无需支付代理机构溢价。',
-        'about-highlight': '我们找到您、为您打造、与您共同成长。这就是我们的运营使命。',
-        'cta-title': '准备好让您的品牌无可置疑了吗？',
-        'cta-sub': '我们将免费为您建立网站。没有任何陷阱。收到后扫描二维码——或者现在留下您的邮箱，我们会第一时间联系您。',
-        'cta-btn': '立即开始 →',
-        'cta-placeholder': '您的邮箱地址',
-        'cta-success': '✓ 我们会尽快联系您！',
-        'footer-tagline': '您的愿景，无可置疑。',
-        'footer-services': '服务',
-        'footer-how': '工作原理',
-        'footer-about': '关于我们',
-        'footer-contact': '联系我们',
-      },
+</div><!-- /main -->
 
-      ko: {
-        'nav-services': '서비스',
-        'nav-how': '작동 방식',
-        'nav-about': '소개',
-        'nav-contact': '문의',
-        'nav-cta': '무료 사이트 받기',
-        'hero-headline': '당신의 비전,\n부정할 수 없게.',
-        'hero-subhead': '우리가 온라인 존재감을 만듭니다. 당신은 사업에 집중하세요.',
-        'hero-btn-how': '작동 방식 보기',
-        'hero-btn-free': '무료 웹사이트 받기',
-        'trust-1': '설정 비용 없음',
-        'trust-2': '설정 비용 없음',
-        'trust-3': '언제든지 취소',
-        'how-label': '작동 방식',
-        'how-title': '세 단계.<br/>마찰 없이.',
-        'how-subtitle': '손가락 하나 까딱하지 않고 제로에서 라이브까지. Your Operative와 함께하는 방식입니다.',
-        'step1-title': '우리가 찾아갑니다',
-        'step1-body': '귀하의 비즈니스를 연구하고 맞춤형 전문 웹사이트를 구축합니다. 양식 없음. 온보딩 없음. 번거로움 없음.',
-        'step2-title': '먼저 확인하세요',
-        'step2-body': 'QR 코드가 담긴 엽서를 우편으로 보내드립니다. 스캔하세요. 귀하의 사이트가 준비되어 있습니다 — 비즈니스를 위해 구축되었으며, 감동을 줄 준비가 되어 있습니다.',
-        'step3-title': '함께 성장합니다',
-        'step3-body': '마음에 드셨나요? 나머지는 저희가 처리합니다 — 소셜, 구글, 광고 — 귀하는 본업에 집중하세요.',
-        'services-label': '가격',
-        'services-title': '단순하고 솔직한 요금제.',
-        'services-subtitle': '숨겨진 요금 없음. 묶음 계약 없음. 오직 결과만. 필요한 것부터 시작하여 성장하세요.',
-        'foundation-tagline': '빠르게 온라인에서 발견되세요',
-        'growth-badge': '⭐ 가장 인기',
-        'growth-tagline': '진정한 모멘텀 구축',
-        'accelerator-tagline': '전속력 성장',
-        'btn-foundation': '시작하기',
-        'btn-growth': '시작하기',
-        'btn-accelerator': '시작하기',
-        'f-feat-1': '맞춤형 전문 웹사이트 구축',
-        'f-feat-2': 'Google 비즈니스 프로필 설정 및 최적화',
-        'f-feat-3': '월간 성과 보고서',
-        'f-feat-4': '호스팅 및 유지보수 포함',
-        'f-feat-5': '모바일 우선 반응형 디자인',
-        'g-feat-1': 'Foundation의 모든 기능 포함',
-        'g-feat-2': '소셜 미디어 관리 (3개 플랫폼)',
-        'g-feat-3': '주간 콘텐츠 제작 및 게시',
-        'g-feat-4': '리뷰 생성 캠페인',
-        'g-feat-5': '월간 전략 통화',
-        'g-feat-6': '경쟁사 모니터링',
-        'a-feat-1': 'Growth의 모든 기능 포함',
-        'a-feat-2': 'Meta 광고 캠페인 (FB + IG)',
-        'a-feat-3': '광고 크리에이티브 및 카피라이팅',
-        'a-feat-4': '고급 타겟팅 및 리타겟팅',
-        'a-feat-5': '주간 성과 검토',
-        'a-feat-6': '우선 지원 및 전담 전략가',
-        'why-label': 'Why Your Operative',
-        'why-title': '다릅니다.<br/>당신의 비즈니스처럼.',
-        'why1-title': 'AI 기반',
-        'why1-body': '빠르게 움직이고, 스마트하게 운영하며, 앞서 나갑니다 — 당신이 쉬는 동안에도 마케팅은 멈추지 않습니다.',
-        'why2-title': '로컬을 위해 구축',
-        'why2-body': '저희는 로컬입니다. 동네, 문화, 고객을 잘 알고 있습니다. 귀하의 마케팅이 실제로 공감을 얻을 것입니다.',
-        'why3-title': '투명한 가격',
-        'why3-body': '보이는 것이 지불하는 금액입니다. 설정 비용 없음, 예상치 못한 요금 없음, 12개월 묶음 계약 없음. 언제든지 취소 가능, 이유 묻지 않음.',
-        'pull-quote': '모든 브랜드는 전담 운영자를 받을 자격이 있습니다.',
-        'about-label': '소개',
-        'about-title': '무언가를 만드는 사람들을 위한 마케팅.',
-        'about-p1': 'Your Operative는 단순한 좌절에서 탄생했습니다: 훌륭한 제품과 진정한 커뮤니티 뿌리를 가진 지역 비즈니스들이 더 큰 광고 예산을 가진 회사들에 의해 온라인에서 묻히고 있었습니다.',
-        'about-p2': '저희는 독립 비즈니스를 위해 구축된 AI 기반 마케팅 대행사입니다. 스마트 자동화와 브랜드에 대한 진정한 관심을 결합하여, 대행사 마진 없이 실제로 받을 자격이 있는 전문적인 존재감을 제공합니다.',
-        'about-highlight': '우리가 찾아가고, 구축하고, 함께 성장합니다. 그것이 우리의 운영 미션입니다.',
-        'cta-title': '부정할 수 없는 존재가 될 준비가 되셨나요?',
-        'cta-sub': '귀하의 사이트를 무료로 구축해 드립니다. 함정 없음. 도착하면 QR 코드를 스캔하거나, 지금 이메일을 남겨주시면 먼저 연락드리겠습니다.',
-        'cta-btn': '시작하기 →',
-        'cta-placeholder': '이메일@example.com',
-        'cta-success': '✓ 곧 연락드리겠습니다!',
-        'footer-tagline': '당신의 비전, 부정할 수 없게.',
-        'footer-services': '서비스',
-        'footer-how': '작동 방식',
-        'footer-about': '소개',
-        'footer-contact': '문의',
-      }
-    };
+<!-- ── FOOTER STRIP ──────────────────────────────────────────────────────── -->
+<div class="footer-strip">
+  <span>© 2026 Operative</span>
+  <span>No contracts. Cancel anytime. <a href="mailto:operations@youroperative.com">operations@youroperative.com</a></span>
+</div>
 
-    // ── Lang codes → <html lang> values ──
-    const LANG_CODES = { en: 'en', es: 'es', zh: 'zh-Hans', ko: 'ko' };
+<script>
+/* FILE UPLOAD */
+let selectedFiles = [];
+function renderFiles(){
+  const list = document.getElementById('file-list');
+  list.innerHTML = selectedFiles.map((f,i)=>
+    `<div class="file-chip">${f.name} <button type="button" onclick="removeFile(${i})">×</button></div>`
+  ).join('');
+}
+function fileSelected(input){
+  Array.from(input.files).forEach(f=>{ if(!selectedFiles.find(x=>x.name===f.name)) selectedFiles.push(f); });
+  renderFiles(); input.value='';
+}
+function removeFile(i){ selectedFiles.splice(i,1); renderFiles(); }
+function fileDragOver(e){ e.preventDefault(); document.getElementById('file-drop').classList.add('drag-over'); }
+function fileDragLeave(e){ document.getElementById('file-drop').classList.remove('drag-over'); }
+function fileDrop(e){
+  e.preventDefault();
+  document.getElementById('file-drop').classList.remove('drag-over');
+  Array.from(e.dataTransfer.files).forEach(f=>{ if(!selectedFiles.find(x=>x.name===f.name)) selectedFiles.push(f); });
+  renderFiles();
+}
 
-    // ── Current language ──
-    let currentLang = 'en';
+/* FORM TOGGLE */
+function toggleForm(btn){
+  const form = document.getElementById('intake-form');
+  form.classList.remove('intake-hidden');
+  btn.style.display = 'none';
+  form.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
 
-    // ── Apply translations to the DOM ──
-    function applyLang(lang) {
-      const dict = T[lang];
-      if (!dict) return;
-      currentLang = lang;
-
-      // Update html[lang]
-      document.documentElement.lang = LANG_CODES[lang] || lang;
-
-      // textContent nodes
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        if (dict[key] !== undefined) el.textContent = dict[key];
-      });
-
-      // innerHTML nodes (elements with <br/> etc.)
-      document.querySelectorAll('[data-i18n-html]').forEach(el => {
-        const key = el.dataset.i18nHtml;
-        if (dict[key] !== undefined) el.innerHTML = dict[key];
-      });
-
-      // Placeholder attributes
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.dataset.i18nPlaceholder;
-        if (dict[key] !== undefined) el.placeholder = dict[key];
-      });
-
-      // Update toggle button states
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        const active = btn.dataset.lang === lang;
-        btn.classList.toggle('active', active);
-        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      });
-
-      // Persist preference
-      try { localStorage.setItem('yo-lang', lang); } catch(e) {}
-    }
-
-    // ── Lang toggle click handler ──
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+/* FORM SUBMIT */
+function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(data).toString() })
+    .then(() => {
+      form.querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=true);
+      document.getElementById('form-success').style.display='block';
+    })
+    .catch(() => {
+      form.querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=true);
+      document.getElementById('form-success').style.display='block';
     });
+}
 
-    // ── Restore saved language ──
-    try {
-      const saved = localStorage.getItem('yo-lang');
-      if (saved && T[saved]) applyLang(saved);
-    } catch(e) {}
+/* CURSOR */
+const cur=document.getElementById('cur'), cring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function t(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cring.style.left=rx+'px';cring.style.top=ry+'px';requestAnimationFrame(t);})();
+document.querySelectorAll('a,button,.tier,.pi,.pillar').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='12px';cur.style.height='12px';cring.style.width='48px';cring.style.height='48px';cring.style.borderColor='rgba(242,169,0,.65)';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='7px';cur.style.height='7px';cring.style.width='32px';cring.style.height='32px';cring.style.borderColor='rgba(242,169,0,.38)';});
+});
 
+/* SCROLL REVEAL — slide in from right */
+const slideObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); slideObs.unobserve(e.target); } });
+},{threshold:0.12});
+document.querySelectorAll('.slide').forEach(el=>slideObs.observe(el));
 
-    // ── i18n ──
-    const translations = {
-      en: {
-        nav_services:'Services', nav_how:'How It Works', nav_about:'About',
-        nav_contact:'Contact', nav_cta:'Get Your Free Site',
-        hero_headline:'Your vision,\nmade undeniable.',
-        hero_sub:'We build your online presence. You run your business.',
-        hero_cta1:'See How It Works', hero_cta2:'Get Your Free Website',
-        badge1:'No Setup Fees', badge2:'No Contracts', badge3:'Cancel Anytime',
-        how_label:'How It Works', how_title:'Three steps.<br/>Zero friction.',
-        how_sub:"From zero to live without lifting a finger. Here's what working with Your Operative looks like.",
-        step1_title:'We find you', step1_body:'We research your business and build a professional website tailored to you. No forms. No onboarding. No headache.',
-        step2_title:'You see it first', step2_body:'We mail you a postcard with a QR code. Scan it. Your site is live and waiting — built for your business, ready to impress.',
-        step3_title:'We grow together', step3_body:'Like what you see? We handle the rest — social, Google, ads — while you focus on your craft.',
-        svc_label:'Pricing', svc_title:'Simple, honest plans.',
-        svc_sub:'No hidden fees. No lock-in. Just results. Start with what you need and grow from there.',
-        popular:'⭐ Most Popular',
-        why_label:'Why Your Operative', why_title:'Built different.<br/>For businesses that are too.',
-        why1_title:'Always On', why2_title:'Built for Local', why3_title:'No BS Pricing',
-        pull_quote:'Every brand deserves an operative.',
-        about_label:'About', about_title:'Marketing built for the people who build things.',
-        cta_title:'Ready to be undeniable?',
-        cta_sub:"We'll build your site for free. No catch. Scan the QR code when it arrives — or drop your email now and we'll reach out first.",
-        footer_tagline:'Your vision, made undeniable.',
-        'callout-eyebrow': 'The difference',
-        'callout-headline': 'You should be running your business,<br/>not editing templates.',
-        'callout-sub': "Hours changed? New menu item? Want a different photo? Just tell us. We handle it, immediately. No logins. No drag-and-drop. No learning curve.<br/><strong>That's Your Operative.</strong>",
-      },
-      es: {
-        nav_services:'Servicios', nav_how:'Cómo Funciona', nav_about:'Nosotros',
-        nav_contact:'Contacto', nav_cta:'Obtén Tu Sitio Gratis',
-        hero_headline:'Tu visión,\nhecha innegable.',
-        hero_sub:'Construimos tu presencia en línea. Tú manejas tu negocio.',
-        hero_cta1:'Ver Cómo Funciona', hero_cta2:'Obtén Tu Sitio Web Gratis',
-        badge1:'Sin Costos de Configuración', badge2:'Sin Contratos', badge3:'Cancela Cuando Quieras',
-        how_label:'Cómo Funciona', how_title:'Tres pasos.<br/>Sin complicaciones.',
-        how_sub:'De cero a en línea sin mover un dedo. Así es trabajar con Your Operative.',
-        step1_title:'Te encontramos', step1_body:'Investigamos tu negocio y construimos un sitio web profesional hecho para ti. Sin formularios. Sin incorporación. Sin dolores de cabeza.',
-        step2_title:'Tú lo ves primero', step2_body:'Te enviamos una postal con un código QR. Escanéalo. Tu sitio está listo — construido para tu negocio, listo para impresionar.',
-        step3_title:'Crecemos juntos', step3_body:'¿Te gusta lo que ves? Nosotros nos encargamos del resto — redes sociales, Google, anuncios — mientras tú te enfocas en tu trabajo.',
-        svc_label:'Precios', svc_title:'Planes simples y honestos.',
-        svc_sub:'Sin cargos ocultos. Sin contratos forzosos. Solo resultados. Comienza con lo que necesitas y crece desde ahí.',
-        popular:'⭐ Más Popular',
-        why_label:'Por Qué Your Operative', why_title:'Construido diferente.<br/>Para negocios que también lo son.',
-        why1_title:'Siempre Activo', why2_title:'Hecho para lo Local', why3_title:'Precios Sin Engaños',
-        pull_quote:'Cada marca merece un operativo.',
-        about_label:'Nosotros', about_title:'Marketing construido para quienes construyen cosas.',
-        cta_title:'¿Listo para ser innegable?',
-        cta_sub:'Construiremos tu sitio gratis. Sin truco. Escanea el código QR cuando llegue — o déjanos tu email ahora y te contactamos primero.',
-        footer_tagline:'Tu visión, hecha innegable.',
-        'callout-eyebrow': 'La diferencia',
-        'callout-headline': "No deberías editar plantillas.<br/>Deberías estar manejando tu negocio.",
-        'callout-sub': '¿Cambiaron los horarios? ¿Nuevo artículo en el menú? ¿Quieres una foto diferente? <strong>Solo dínos.</strong> Hacemos el cambio y confirmamos que está listo. Sin inicios de sesión. Sin arrastrar y soltar. Eso es lo que significa tener un operativo.',
-      },
-      zh: {
-        nav_services:'服务', nav_how:'工作原理', nav_about:'关于我们',
-        nav_contact:'联系我们', nav_cta:'获取免费网站',
-        hero_headline:'您的愿景，\n无可置疑。',
-        hero_sub:'我们打造您的网络形象，您专注经营业务。',
-        hero_cta1:'了解工作原理', hero_cta2:'获取免费网站',
-        badge1:'无设置费用', badge2:'无合同限制', badge3:'随时取消',
-        how_label:'工作原理', how_title:'三个步骤。<br/>零障碍。',
-        how_sub:'无需任何操作，从零到上线。这就是与 Your Operative 合作的方式。',
-        step1_title:'我们找到您', step1_body:'我们研究您的业务，为您量身打造专业网站。无需填写表格，无需入职培训，无烦恼。',
-        step2_title:'您第一个看到', step2_body:'我们邮寄带有二维码的明信片。扫描即可。您的网站已上线——专为您的业务打造，随时可以展示。',
-        step3_title:'共同成长', step3_body:'喜欢您看到的？我们负责其余的一切——社交媒体、谷歌、广告——让您专注于自己的事业。',
-        svc_label:'价格方案', svc_title:'简单透明的方案。',
-        svc_sub:'无隐藏费用。无合同限制。只有成果。从您需要的开始，逐步成长。',
-        popular:'⭐ 最受欢迎',
-        why_label:'为什么选择 Your Operative', why_title:'与众不同。<br/>专为如此的企业打造。',
-        why1_title:'全时运转', why2_title:'专为本地打造', why3_title:'透明定价',
-        pull_quote:'每个品牌都值得拥有一个运营专家。',
-        about_label:'关于我们', about_title:'为建设者打造的营销。',
-        cta_title:'准备好让您的品牌无可置疑了吗？',
-        cta_sub:'我们将免费为您建站。没有陷阱。收到二维码明信片后扫描即可——或者现在留下您的邮箱，我们会主动联系您。',
-        footer_tagline:'您的愿景，无可置疑。',
-        'callout-eyebrow': '我们的不同之处',
-        'callout-headline': "您不应该编辑模板。<br/>您应该专注于经营业务。",
-        'callout-sub': '营业时间变了？新菜单项目？想换张照片？<strong>告诉我们就好。</strong>我们负责更新并确认完成。无需登录，无需拖拽，没有学习曲线。这就是拥有一个运营专家的意义。',
-      },
-      ko: {
-        nav_services:'서비스', nav_how:'작동 방식', nav_about:'소개',
-        nav_contact:'문의', nav_cta:'무료 사이트 받기',
-        hero_headline:'당신의 비전,\n부정할 수 없게.',
-        hero_sub:'우리가 온라인 존재감을 만듭니다. 당신은 사업에 집중하세요.',
-        hero_cta1:'작동 방식 보기', hero_cta2:'무료 웹사이트 받기',
-        badge1:'설정 비용 없음', badge2:'계약 없음', badge3:'언제든지 취소',
-        how_label:'작동 방식', how_title:'세 단계.<br/>마찰 없이.',
-        how_sub:'아무것도 하지 않고 제로에서 라이브까지. Your Operative와 함께하는 방식입니다.',
-        step1_title:'우리가 찾아갑니다', step1_body:'귀하의 비즈니스를 조사하고 맞춤형 전문 웹사이트를 구축합니다. 양식 없음. 온보딩 없음. 번거로움 없음.',
-        step2_title:'먼저 확인하세요', step2_body:'QR 코드가 있는 엽서를 우편으로 보냅니다. 스캔하세요. 귀하의 사이트가 라이브 상태입니다 — 비즈니스에 맞게 구축되어 감동을 줄 준비가 되어 있습니다.',
-        step3_title:'함께 성장합니다', step3_body:'보이는 것이 마음에 드시나요? 나머지는 저희가 처리합니다 — 소셜, 구글, 광고 — 당신은 일에 집중하세요.',
-        svc_label:'요금제', svc_title:'단순하고 솔직한 요금제.',
-        svc_sub:'숨겨진 수수료 없음. 구속 없음. 결과만 있습니다. 필요한 것부터 시작하여 성장하세요.',
-        popular:'⭐ 가장 인기',
-        why_label:'왜 Your Operative인가', why_title:'다르게 만들어졌습니다.<br/>그런 비즈니스를 위해.',
-        why1_title:'항상 활성', why2_title:'로컬을 위해 구축', why3_title:'투명한 가격',
-        pull_quote:'모든 브랜드는 전담 운영자를 받을 자격이 있습니다.',
-        about_label:'소개', about_title:'무언가를 만드는 사람들을 위한 마케팅.',
-        cta_title:'부정할 수 없는 존재가 될 준비가 되셨나요?',
-        cta_sub:'무료로 사이트를 구축해 드립니다. 속임수 없음. QR 코드가 도착하면 스캔하세요 — 또는 지금 이메일을 남기시면 먼저 연락드리겠습니다.',
-        footer_tagline:'당신의 비전, 부정할 수 없게.',
-        'callout-eyebrow': '우리의 차이점',
-        'callout-headline': "템플릿을 편집할 필요가 없습니다.<br/>당신은 사업에 집중해야 합니다.",
-        'callout-sub': '영업시간이 바뀌었나요? 새 메뉴 항목? 다른 사진을 원하시나요? <strong>그냥 말씀해 주세요.</strong> 우리가 업데이트하고 완료를 확인합니다. 로그인 없음, 드래그앤드롭 없음. 이것이 전담 운영자를 두는 의미입니다.',
-      }
-    };
+/* SIDEBAR ACTIVE STATE — track current panel */
+const panels   = document.querySelectorAll('.panel');
+const sbLinks  = document.querySelectorAll('.sb-link');
 
-    function setLang(lang) {
-      // Update buttons
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('onclick').includes("'" + lang + "'"));
+const panelObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting && e.intersectionRatio >= 0.4){
+      const id = e.target.id;
+      sbLinks.forEach(l=>{
+        l.classList.toggle('active', l.dataset.panel === id);
       });
-      // Update text
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-          if (el.tagName === 'INPUT') {
-            el.placeholder = translations[lang][key];
-          } else if (el.innerHTML.includes('<br')) {
-            el.innerHTML = translations[lang][key];
-          } else {
-            el.textContent = translations[lang][key];
-          }
-        }
-      });
-      // Update placeholder
-      const emailInput = document.querySelector('.cta-input');
-      if (emailInput) {
-        const placeholders = {en:'your@email.com', es:'tu@email.com', zh:'您的邮箱@example.com', ko:'이메일@example.com'};
-        emailInput.placeholder = placeholders[lang] || 'your@email.com';
-      }
-      localStorage.setItem('yo_lang', lang);
-      document.documentElement.lang = lang;
     }
+  });
+},{threshold:0.4});
+panels.forEach(p=>panelObs.observe(p));
 
-    // Restore saved language
-    const savedLang = localStorage.getItem('yo_lang');
-    if (savedLang && savedLang !== 'en') setLang(savedLang);
+/* SMOOTH SCROLL for sidebar links */
+sbLinks.forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    const target = document.getElementById(link.dataset.panel);
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+<!-- Netlify form detection ghost (required for JS-shown forms) -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input name="name" />
+  <input name="company" />
+  <input name="phone" />
+  <input name="email" />
+</form>
 
-    // ── Nav shadow on scroll ──
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
+<script>
+(function() {
+  const svg = document.querySelector('#p-lead svg');
+  if (!svg) return;
 
-    // ── Scroll reveal ──
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
+  const rays = document.getElementById('sun-rays');
+  // Sun center in SVG viewBox coords
+  const SUN_X = 300, SUN_Y = 230;
 
-    // ── CTA form handler ──
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      const input = e.target.querySelector('input');
-      const dict = T[currentLang] || T.en;
-      btn.textContent = dict['cta-success'] || "✓ We'll be in touch!";
-      btn.style.background = '#003530';
-      input.value = '';
-      input.disabled = true;
-      btn.disabled = true;
-    }
-  </script>
+  // Rays follow mouse
+  svg.addEventListener('mousemove', function(e) {
+    const rect = svg.getBoundingClientRect();
+    const scaleX = 600 / rect.width;
+    const scaleY = 460 / rect.height;
+    const mx = (e.clientX - rect.left) * scaleX;
+    const my = (e.clientY - rect.top)  * scaleY;
+    const angle = Math.atan2(my - SUN_Y, mx - SUN_X) * 180 / Math.PI + 90;
+    rays.setAttribute('transform', 'translate(300,230) rotate(' + angle + ')');
+  });
 
-  <script>
-    // ── Hero Slideshow ──
-    (function () {
-      var slides = document.querySelectorAll('.hero-slide');
-      if (!slides.length) return;
-      var current = 0;
-      setInterval(function () {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-      }, 5500);
-    })();
-  </script>
+  // Reset rays when mouse leaves SVG
+  svg.addEventListener('mouseleave', function() {
+    rays.setAttribute('transform', 'translate(300,230) rotate(0)');
+  });
 
+  // Moon hover reflection glow
+  const moons = [
+    { hit: 'hit-found',  glow: 'glow-found'  },
+    { hit: 'hit-chosen', glow: 'glow-chosen' },
+    { hit: 'hit-kept',   glow: 'glow-kept'   },
+    { hit: 'hit-grown',  glow: 'glow-grown'  },
+  ];
+
+  moons.forEach(function(m) {
+    const hit  = document.getElementById(m.hit);
+    const glow = document.getElementById(m.glow);
+    if (!hit || !glow) return;
+    const desc = document.getElementById('desc-' + m.hit.replace('hit-',''));
+    hit.addEventListener('mouseenter', function() {
+      glow.style.fill = 'rgba(230,165,58,0.22)';
+      if (desc) desc.style.opacity = '1';
+    });
+    hit.addEventListener('mouseleave', function() {
+      glow.style.fill = 'rgba(230,165,58,0)';
+      if (desc) desc.style.opacity = '0';
+    });
+  });
+})();
+</script>
 </body>
 </html>
