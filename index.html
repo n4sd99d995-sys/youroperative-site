@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[Direction A — Space Grotesk + Inter] Operative — The presence you've earned.</title>
+  <title>Operative — The presence you've earned.</title>
   <meta name="description" content="We build your whole website before you pay a cent. See it live, then decide. Built for local trades — plumbers, roofers, electricians." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -678,6 +678,20 @@
   
     .loop-eyebrow { font-family:var(--fd); font-weight:700; font-size:1.1rem; letter-spacing:.04em; text-transform:uppercase; color:var(--text-primary); margin-bottom:24px; }
     .loop-eyebrow::before { display:none; }
+
+  /* ── ANIMATED FLYWHEEL ─────────────────────────────────────── */
+  .opfw-wrap { width:100%; margin-bottom:56px; position:relative; z-index:1; }
+  .opfw-svg  { display:block; width:100%; height:auto; }
+
+  /* ── FLYWHEEL REDESIGN ───────────────────────────────────────── */
+  .fw-layout { display:flex; align-items:center; gap:64px; margin-bottom:72px; position:relative; z-index:1; }
+  .fw-left { flex:0 0 auto; max-width:256px; }
+  .fw-labels { margin:20px 0 16px; }
+  .fw-label { font-family:var(--fd); font-weight:700; font-size:clamp(1.875rem,3.8vw,3rem); line-height:1.1; letter-spacing:-0.015em; color:var(--text-primary); }
+  .fw-label--accent { color:var(--text-accent); }
+  .fw-caption-new { font-family:var(--fb); font-size:0.875rem; color:var(--text-muted); line-height:1.65; max-width:240px; }
+  .fw-right { flex:0 0 360px; }
+  @media(max-width:900px){ .fw-layout{ flex-direction:column; gap:32px; } .fw-right{ flex:1 1 auto; max-width:300px; width:100%; } .fw-left{ max-width:100%; } .fw-caption-new{ max-width:100%; } }
   </style>
 <!-- netlify-forms -->
 </head>
@@ -840,150 +854,119 @@
   <section class="panel" id="p-lead">
     <div class="panel-grid"></div>
 
-    <!-- Loop flywheel -->
-    <div class="loop-wrap slide sd1">
-      <p class="loop-eyebrow">Operative Flywheel</p>
-      <svg viewBox="-10 0 640 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:min(560px,calc(50vw - 110px));overflow:visible;" class="flywheel-svg" aria-label="Operative Flywheel — Found, Chosen, Kept, Grown orbiting one system">
-        <defs>
-          <!-- Sun glow -->
-          <radialGradient id="sun-core" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stop-color="#FFE484"/>
-            <stop offset="45%"  stop-color="#F2A900"/>
-            <stop offset="80%"  stop-color="#C47A15"/>
-            <stop offset="100%" stop-color="#8B4E00"/>
-          </radialGradient>
-          <radialGradient id="sun-corona" cx="50%" cy="50%" r="50%">
-            <stop offset="55%"  stop-color="#E6A53A" stop-opacity="0.18"/>
-            <stop offset="100%" stop-color="#E6A53A" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="sun-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="6" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="moon-shadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="3" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.55"/>
-          </filter>
-
-          <!-- Moon gradients — lit side faces the sun at center (300,230) -->
-          <!-- Found (300,90): lit from below -->
-          <radialGradient id="mg-found" gradientUnits="userSpaceOnUse" cx="300" cy="108" r="58" fx="300" fy="126">
-            <stop offset="0%"   stop-color="#4a4535"/>
-            <stop offset="40%"  stop-color="#2a2820"/>
-            <stop offset="100%" stop-color="#0c0c0c"/>
-          </radialGradient>
-          <!-- Chosen (510,230): lit from left -->
-          <radialGradient id="mg-chosen" gradientUnits="userSpaceOnUse" cx="494" cy="230" r="58" fx="477" fy="230">
-            <stop offset="0%"   stop-color="#4a4535"/>
-            <stop offset="40%"  stop-color="#2a2820"/>
-            <stop offset="100%" stop-color="#0c0c0c"/>
-          </radialGradient>
-          <!-- Kept (300,370): lit from above -->
-          <radialGradient id="mg-kept" gradientUnits="userSpaceOnUse" cx="300" cy="352" r="58" fx="300" fy="334">
-            <stop offset="0%"   stop-color="#4a4535"/>
-            <stop offset="40%"  stop-color="#2a2820"/>
-            <stop offset="100%" stop-color="#0c0c0c"/>
-          </radialGradient>
-          <!-- Grown (90,230): lit from right, amber-warm tint -->
-          <radialGradient id="mg-grown" gradientUnits="userSpaceOnUse" cx="106" cy="230" r="58" fx="123" fy="230">
-            <stop offset="0%"   stop-color="#4a3015"/>
-            <stop offset="40%"  stop-color="#241808"/>
-            <stop offset="100%" stop-color="#0d0905"/>
-          </radialGradient>
-
-          <!-- Orbital ring gradient (fades at top for depth) -->
-          <linearGradient id="orbit-grad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#E6A53A" stop-opacity="0.04"/>
-            <stop offset="50%"  stop-color="#E6A53A" stop-opacity="0.10"/>
-            <stop offset="100%" stop-color="#E6A53A" stop-opacity="0.04"/>
-          </linearGradient>
-
-          <!-- Arrow markers -->
-        </defs>
-
-        <!-- Orbital ellipse -->
-        <ellipse cx="300" cy="230" rx="210" ry="140" fill="none" stroke="url(#orbit-grad)" stroke-width="1" stroke-dasharray="5 10"/>
-
-        <!-- F→C dots (small→large = CW direction) -->
-        <circle cx="378.7" cy="100.2" r="2.0" fill="#E6A53A" opacity="0.35"/>
-        <circle cx="411.3" cy="111.3" r="2.8" fill="#E6A53A" opacity="0.48"/>
-        <circle cx="440.5" cy="126.0" r="3.8" fill="#E6A53A" opacity="0.62"/>
-        <circle cx="465.5" cy="143.8" r="5.0" fill="#E6A53A" opacity="0.77"/>
-        <circle cx="485.4" cy="164.3" r="6.4" fill="#E6A53A" opacity="0.92"/>
-        <!-- C→K dots -->
-        <circle cx="485.4" cy="295.7" r="2.0" fill="#E6A53A" opacity="0.35"/>
-        <circle cx="465.5" cy="316.2" r="2.8" fill="#E6A53A" opacity="0.48"/>
-        <circle cx="440.5" cy="334.0" r="3.8" fill="#E6A53A" opacity="0.62"/>
-        <circle cx="411.3" cy="348.7" r="5.0" fill="#E6A53A" opacity="0.77"/>
-        <circle cx="378.7" cy="359.8" r="6.4" fill="#E6A53A" opacity="0.92"/>
-        <!-- K→G dots -->
-        <circle cx="221.3" cy="359.8" r="2.0" fill="#E6A53A" opacity="0.35"/>
-        <circle cx="188.7" cy="348.7" r="2.8" fill="#E6A53A" opacity="0.48"/>
-        <circle cx="159.5" cy="334.0" r="3.8" fill="#E6A53A" opacity="0.62"/>
-        <circle cx="134.5" cy="316.2" r="5.0" fill="#E6A53A" opacity="0.77"/>
-        <circle cx="114.6" cy="295.7" r="6.4" fill="#E6A53A" opacity="0.92"/>
-        <!-- G→F reviews dots (heavier) -->
-        <circle cx="102.7" cy="182.1" r="2.4" fill="#E6A53A" opacity="0.45"/>
-        <circle cx="123.9" cy="153.8" r="3.4" fill="#E6A53A" opacity="0.58"/>
-        <circle cx="154.1" cy="129.3" r="4.6" fill="#E6A53A" opacity="0.72"/>
-        <circle cx="191.8" cy="110.0" r="5.8" fill="#E6A53A" opacity="0.87"/>
-        <circle cx="235.1" cy="96.9" r="7.2" fill="#E6A53A" opacity="1.0"/>
-
-        <!-- SUN corona -->
-        <circle cx="300" cy="230" r="96" fill="url(#sun-corona)"/>
-        <!-- Sun rays (12 at 30° intervals) -->
-        <g id="sun-rays" transform="translate(300,230) rotate(0)" opacity="0.5">
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(30)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(90)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.8" stroke-linecap="round" transform="rotate(150)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(15)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(45)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(75)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(105)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(135)"/>
-          <line x1="0" y1="-58" x2="0"   y2="-86" stroke="#FFE484" stroke-width="1.2" stroke-linecap="round" transform="rotate(165)"/>
-        </g>
-        <!-- Sun sphere -->
-        <circle cx="300" cy="230" r="54" fill="url(#sun-core)" filter="url(#sun-glow)"/>
-        <!-- Sun text -->
-        <text x="300" y="225" font-family="Inter,sans-serif" font-size="13.5" font-weight="700" fill="#1A1407" text-anchor="middle">ONE</text>
-        <text x="300" y="241" font-family="Inter,sans-serif" font-size="13.5" font-weight="700" fill="#1A1407" text-anchor="middle">SYSTEM</text>
-
-        <!-- MOONS -->
-        <!-- Found (top) -->
-        <circle cx="300" cy="90" r="48" fill="url(#mg-found)" filter="url(#moon-shadow)"/>
-        <text x="300" y="90" font-family="Space Grotesk,sans-serif" font-size="17" font-weight="700" fill="#F5F3EE" text-anchor="middle" dominant-baseline="middle">Found</text>
-        <text x="300" y="28" font-family="Inter,sans-serif" id="desc-found" font-size="15" fill="#9A988F" text-anchor="middle" opacity="0" style="transition:opacity 0.2s ease;">You show up first</text>
-
-        <!-- Chosen (right) -->
-        <circle cx="510" cy="230" r="48" fill="url(#mg-chosen)" filter="url(#moon-shadow)"/>
-        <text x="510" y="230" font-family="Space Grotesk,sans-serif" font-size="17" dominant-baseline="middle" font-weight="700" fill="#F5F3EE" text-anchor="middle">Chosen</text>
-        <text x="566" y="230" font-family="Inter,sans-serif" id="desc-chosen" font-size="15" fill="#9A988F" text-anchor="start" dominant-baseline="middle" opacity="0" style="transition:opacity 0.2s ease;">They pick you</text>
-
-        <!-- Kept (bottom) -->
-        <circle cx="300" cy="370" r="48" fill="url(#mg-kept)" filter="url(#moon-shadow)"/>
-        <text x="300" y="370" font-family="Space Grotesk,sans-serif" font-size="17" dominant-baseline="middle" font-weight="700" fill="#F5F3EE" text-anchor="middle">Kept</text>
-        <text x="300" y="432" font-family="Inter,sans-serif" id="desc-kept" font-size="15" fill="#9A988F" text-anchor="middle" opacity="0" style="transition:opacity 0.2s ease;">Nothing slips</text>
-
-        <!-- Grown (left, amber) -->
-        <circle cx="90"  cy="230" r="48" fill="url(#mg-grown)" filter="url(#moon-shadow)" stroke="rgba(230,165,58,0.22)" stroke-width="1.5"/>
-        <text x="90"  y="230" font-family="Space Grotesk,sans-serif" font-size="17" dominant-baseline="middle" font-weight="700" fill="#E6A53A" text-anchor="middle">Grown</text>
-        <text x="34" y="230" font-family="Inter,sans-serif" id="desc-grown" font-size="15" fill="#9A988F" text-anchor="end" dominant-baseline="middle" opacity="0" style="transition:opacity 0.2s ease;">Earn the next job</text>
-
-        <!-- Moon hover glow overlays (JS-controlled) -->
-        <circle id="glow-found"  cx="300" cy="90"  r="48" fill="rgba(230,165,58,0)" style="transition:fill 0.25s ease; pointer-events:none;"/>
-        <circle id="glow-chosen" cx="510" cy="230" r="48" fill="rgba(230,165,58,0)" style="transition:fill 0.25s ease; pointer-events:none;"/>
-        <circle id="glow-kept"   cx="300" cy="370" r="48" fill="rgba(230,165,58,0)" style="transition:fill 0.25s ease; pointer-events:none;"/>
-        <circle id="glow-grown"  cx="90"  cy="230" r="48" fill="rgba(230,165,58,0)" style="transition:fill 0.25s ease; pointer-events:none;"/>
-        <!-- Invisible hit targets for hover (on top of moons) -->
-        <circle id="hit-found"  cx="300" cy="90"  r="48" fill="transparent" style="cursor:pointer;"/>
-        <circle id="hit-chosen" cx="510" cy="230" r="48" fill="transparent" style="cursor:pointer;"/>
-        <circle id="hit-kept"   cx="300" cy="370" r="48" fill="transparent" style="cursor:pointer;"/>
-        <circle id="hit-grown"  cx="90"  cy="230" r="48" fill="transparent" style="cursor:pointer;"/>
-      </svg>
-
+    <!-- Operative Flywheel — animated -->
+    <div class="opfw-wrap slide sd1">
+      <svg
+          class="opfw-svg"
+          viewBox="0 0 880 480"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-labelledby="opfw-title opfw-desc"
+        >
+          <title id="opfw-title">Operative flywheel</title>
+          <desc id="opfw-desc">
+            A four-stage growth loop for local service businesses. Stage 1: Found — your business appears at the top of local search. Stage 2: Chosen — the prospect calls you, not a competitor. Stage 3: Kept — nothing slips; follow-up, reviews, and re-booking run automatically. Stage 4: Grown — satisfied clients generate the next lead, feeding back into Found and closing the loop.
+          </desc>
+      
+          <defs>
+            <!-- Subtle background grid: gold at 0.045 opacity on 80px pitch -->
+            <pattern id="opfw-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(212,165,72,0.045)" stroke-width="1"/>
+            </pattern>
+          </defs>
+      
+          <!-- ── CANVAS ─────────────────────────────────────── -->
+          <rect x="0" y="0" width="880" height="480" rx="10" fill="#0f0e0c"/>
+          <rect x="0" y="0" width="880" height="480" rx="10" fill="url(#opfw-grid)"/>
+      
+      
+          <!-- ── LEFT COLUMN: TEXT SPINE ───────────────────── -->
+      
+          <!-- Eyebrow rule + label -->
+          <line x1="40" y1="110" x2="74" y2="110" stroke="#d4a548" stroke-width="2"/>
+          <text
+            x="84" y="115"
+            font-family="'Space Grotesk', Arial, sans-serif"
+            font-size="13" font-weight="700" fill="#d4a548"
+            text-anchor="start" dominant-baseline="middle"
+            style="letter-spacing:.24em; text-transform:uppercase;"
+          >OPERATIVE FLYWHEEL</text>
+      
+          <!-- Headline: one word per line, baselines at 186 / 236 / 286 / 336 -->
+          <text x="40" y="186" font-family="'Space Grotesk', Arial, sans-serif" font-size="48" font-weight="700" fill="#f5f0e6" style="letter-spacing:-.015em;">Found.</text>
+          <text x="40" y="236" font-family="'Space Grotesk', Arial, sans-serif" font-size="48" font-weight="700" fill="#f5f0e6" style="letter-spacing:-.015em;">Chosen.</text>
+          <text x="40" y="286" font-family="'Space Grotesk', Arial, sans-serif" font-size="48" font-weight="700" fill="#f5f0e6" style="letter-spacing:-.015em;">Kept.</text>
+          <!-- Last word: gold -->
+          <text x="40" y="336" font-family="'Space Grotesk', Arial, sans-serif" font-size="48" font-weight="700" fill="#d4a548" style="letter-spacing:-.015em;">Grown.</text>
+      
+          <!-- Caption: three lines, 24px leading, baseline at 388 -->
+          <text x="40" y="388" font-family="'Space Grotesk', Arial, sans-serif" font-size="16" font-weight="400" fill="#8b867c">One system, always on. The work you win</text>
+          <text x="40" y="412" font-family="'Space Grotesk', Arial, sans-serif" font-size="16" font-weight="400" fill="#8b867c">feeds the next lead — so the wheel keeps</text>
+          <text x="40" y="436" font-family="'Space Grotesk', Arial, sans-serif" font-size="16" font-weight="400" fill="#8b867c">turning, on the roof or under the sink.</text>
+      
+      
+          <!-- ── RIGHT COLUMN: FLYWHEEL RING ───────────────── -->
+          <!-- Ring center: (635, 230). Radius: 140. -->
+          <!-- Node angles (y-down screen space): Found=-90°, Chosen=0°, Kept=90°, Grown=180° -->
+      
+          <!-- Rim (faint) -->
+          <circle cx="635" cy="230" r="140" fill="none" stroke="#d4a548" stroke-opacity="0.28" stroke-width="1.5"/>
+      
+          <!-- Node halos: opacity animated by JS (baseline 0.18, peak 0.62) -->
+          <!-- data-node-angle: angle in degrees, y-down screen space -->
+          <circle class="opfw-halo" data-node-angle="-90"  cx="635" cy="90"  r="11" fill="#e6bd66" opacity="0.18"/>
+          <circle class="opfw-halo" data-node-angle="0"    cx="775" cy="230" r="11" fill="#e6bd66" opacity="0.18"/>
+          <circle class="opfw-halo" data-node-angle="90"   cx="635" cy="370" r="11" fill="#e6bd66" opacity="0.18"/>
+          <circle class="opfw-halo" data-node-angle="180"  cx="495" cy="230" r="11" fill="#e6bd66" opacity="0.18"/>
+      
+          <!-- Node dots: scale animated 1→1.08 by JS -->
+          <circle class="opfw-dot" data-node-angle="-90"  data-cx="635" data-cy="90"  cx="635" cy="90"  r="5" fill="#d4a548"/>
+          <circle class="opfw-dot" data-node-angle="0"    data-cx="775" data-cy="230" cx="775" cy="230" r="5" fill="#d4a548"/>
+          <circle class="opfw-dot" data-node-angle="90"   data-cx="635" data-cy="370" cx="635" cy="370" r="5" fill="#d4a548"/>
+          <circle class="opfw-dot" data-node-angle="180"  data-cx="495" data-cy="230" cx="495" cy="230" r="5" fill="#d4a548"/>
+      
+          <!-- Node labels (selectable text, just outside each dot) -->
+          <!-- Found: above, text-anchor middle -->
+          <text x="635" y="66" font-family="'Space Grotesk', Arial, sans-serif" font-size="19" font-weight="700" fill="#f5f0e6" text-anchor="middle">Found</text>
+          <!-- Chosen: right, text-anchor start -->
+          <text x="793" y="230" font-family="'Space Grotesk', Arial, sans-serif" font-size="19" font-weight="700" fill="#f5f0e6" text-anchor="start" dominant-baseline="middle">Chosen</text>
+          <!-- Kept: below, text-anchor middle -->
+          <text x="635" y="398" font-family="'Space Grotesk', Arial, sans-serif" font-size="19" font-weight="700" fill="#f5f0e6" text-anchor="middle">Kept</text>
+          <!-- Grown: left, text-anchor end -->
+          <text x="477" y="230" font-family="'Space Grotesk', Arial, sans-serif" font-size="19" font-weight="700" fill="#f5f0e6" text-anchor="end" dominant-baseline="middle">Grown</text>
+      
+          <!-- Core: hairline circle + label (breathing opacity via JS) -->
+          <g id="opfw-core" style="opacity:0.70;">
+            <circle cx="635" cy="230" r="33" fill="none" stroke="#d4a548" stroke-width="1"/>
+            <text x="635" y="224" font-family="'Space Grotesk', Arial, sans-serif" font-size="14" font-weight="700" fill="#d4a548" text-anchor="middle" style="letter-spacing:.2em;">ONE</text>
+            <text x="635" y="241" font-family="'Space Grotesk', Arial, sans-serif" font-size="14" font-weight="700" fill="#d4a548" text-anchor="middle" style="letter-spacing:.2em;">SYSTEM</text>
+          </g>
+      
+          <!--
+            COMET (decorative — aria-hidden)
+            Base position (before rotation): head at Found (635,90), tail at Grown (495,230).
+            Arc spans Grown(180°) → Found(270°/−90°) — 90° CW arc.
+            Split into dim tail (180°→225°) and bright head (225°→270°).
+            Midpoint at 225°: (635+140·cos225°, 230+140·sin225°) = (536, 131).
+      
+            Rotation: rotate(headAngleDeg + 90, 635, 230)
+              - head (initially at 270°) → 270° + (headAngleDeg+90°) = headAngleDeg   ✓
+              - tail (initially at 180°) → 180° + (headAngleDeg+90°) = headAngleDeg−90° ✓
+          -->
+          <g id="opfw-comet" aria-hidden="true">
+            <!-- Tail arc: Grown(495,230) → midpoint(536,131) — 45°, faint -->
+            <path d="M 495,230 A 140,140 0 0,1 536,131"
+              fill="none" stroke="#d4a548" stroke-width="2" stroke-opacity="0.32" stroke-linecap="round"/>
+            <!-- Head arc: midpoint(536,131) → Found(635,90) — 45°, bright -->
+            <path d="M 536,131 A 140,140 0 0,1 635,90"
+              fill="none" stroke="#f0cf86" stroke-width="2.6" stroke-opacity="0.95" stroke-linecap="round"/>
+            <!-- Glint dot at head (635,90) -->
+            <circle cx="635" cy="90" r="4.5" fill="#f5e2a8"/>
+            <!-- Soft halo ring around glint -->
+            <circle cx="635" cy="90" r="9" fill="#f5e2a8" opacity="0.18"/>
+          </g>
+      
+        </svg><!-- /opfw-svg -->
     </div>
 
     <div class="eyebrow slide sd2">Don&rsquo;t lose the lead</div>
@@ -1213,6 +1196,78 @@ sbLinks.forEach(link=>{
     if(target) target.scrollIntoView({behavior:'smooth'});
   });
 });
+
+<script>
+(function () {
+  'use strict';
+
+  var DURATION = 14000; // 14s per revolution
+  var CX = 635, CY = 230;
+
+  var comet = document.getElementById('opfw-comet');
+  var core  = document.getElementById('opfw-core');
+
+  var halos = Array.from(document.querySelectorAll('.opfw-halo'));
+  var dots  = Array.from(document.querySelectorAll('.opfw-dot'));
+
+  var nodes = halos.map(function (halo, i) {
+    return {
+      halo:  halo,
+      dot:   dots[i],
+      angle: parseFloat(halo.dataset.nodeAngle),
+      dcx:   parseFloat(dots[i].dataset.cx),
+      dcy:   parseFloat(dots[i].dataset.cy)
+    };
+  });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var startTime = null;
+
+  function smoothstep(edge0, edge1, x) {
+    var t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+    return t * t * (3 - 2 * t);
+  }
+
+  function tick(now) {
+    if (!startTime) startTime = now;
+    var elapsed = now - startTime;
+
+    /* ─── MASTER CLOCK ─────────────────────────────────────────── */
+    var t = (elapsed % DURATION) / DURATION;
+
+    /* ─── COMET ────────────────────────────────────────────────── */
+    var headAngleDeg = -90 + 360 * t;
+    // SVG rotate(angle cx cy) handles center-of-rotation natively
+    comet.setAttribute('transform',
+      'rotate(' + (headAngleDeg + 90).toFixed(2) + ' ' + CX + ' ' + CY + ')');
+
+    /* ─── NODE LIGHTING ────────────────────────────────────────── */
+    for (var i = 0; i < nodes.length; i++) {
+      var n    = nodes[i];
+      var diff = ((headAngleDeg - n.angle) % 360 + 360) % 360;
+      var dist = diff > 180 ? 360 - diff : diff;
+      var bri  = smoothstep(50, 0, dist);
+
+      n.halo.setAttribute('opacity', (0.18 + bri * 0.44).toFixed(3));
+      n.dot.setAttribute('transform',
+        'translate(' + n.dcx + ' ' + n.dcy + ')' +
+        ' scale(' + (1 + bri * 0.08).toFixed(4) + ')' +
+        ' translate(' + (-n.dcx) + ' ' + (-n.dcy) + ')');
+    }
+
+    /* ─── CORE BREATHE ─────────────────────────────────────────── */
+    var bp = (elapsed % 7000) / 7000;
+    core.style.opacity = (0.65 + 0.27 * (0.5 + 0.5 * Math.sin(bp * 2 * Math.PI))).toFixed(3);
+
+    requestAnimationFrame(tick);
+  }
+
+  // Start immediately — no IntersectionObserver complexity
+  requestAnimationFrame(tick);
+
+}());
+</script>
 </script>
 <!-- Netlify form detection ghost (required for JS-shown forms) -->
 <form name="contact" netlify netlify-honeypot="bot-field" hidden>
@@ -1224,44 +1279,21 @@ sbLinks.forEach(link=>{
 
 <script>
 (function() {
-  const svg = document.querySelector('#p-lead svg');
-  if (!svg) return;
-
-  const rays = document.getElementById('sun-rays');
-  // Sun center in SVG viewBox coords
-  const SUN_X = 300, SUN_Y = 230;
-
-  // Rays follow mouse
-  svg.addEventListener('mousemove', function(e) {
-    const rect = svg.getBoundingClientRect();
-    const scaleX = 600 / rect.width;
-    const scaleY = 460 / rect.height;
-    const mx = (e.clientX - rect.left) * scaleX;
-    const my = (e.clientY - rect.top)  * scaleY;
-    const angle = Math.atan2(my - SUN_Y, mx - SUN_X) * 180 / Math.PI + 90;
-    rays.setAttribute('transform', 'translate(300,230) rotate(' + angle + ')');
-  });
-
-  // Reset rays when mouse leaves SVG
-  svg.addEventListener('mouseleave', function() {
-    rays.setAttribute('transform', 'translate(300,230) rotate(0)');
-  });
-
-  // Moon hover reflection glow
-  const moons = [
+  // Flywheel node hover interactions
+  const nodes = [
     { hit: 'hit-found',  glow: 'glow-found'  },
     { hit: 'hit-chosen', glow: 'glow-chosen' },
     { hit: 'hit-kept',   glow: 'glow-kept'   },
     { hit: 'hit-grown',  glow: 'glow-grown'  },
   ];
 
-  moons.forEach(function(m) {
+  nodes.forEach(function(m) {
     const hit  = document.getElementById(m.hit);
     const glow = document.getElementById(m.glow);
     if (!hit || !glow) return;
-    const desc = document.getElementById('desc-' + m.hit.replace('hit-',''));
+    const desc = document.getElementById('desc-' + m.hit.replace('hit-', ''));
     hit.addEventListener('mouseenter', function() {
-      glow.style.fill = 'rgba(230,165,58,0.22)';
+      glow.style.fill = 'rgba(230,165,58,0.18)';
       if (desc) desc.style.opacity = '1';
     });
     hit.addEventListener('mouseleave', function() {
