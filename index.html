@@ -1073,6 +1073,8 @@
 
       <!-- Intake form — hidden until Get in touch clicked -->
       <form class="intake-form intake-hidden" id="intake-form" method="POST" action="/.netlify/functions/contact">
+        <!-- Honeypot: hidden from humans, bots fill it, we reject it -->
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
         <div class="form-row">
           <div class="form-group">
             <label>Your name</label>

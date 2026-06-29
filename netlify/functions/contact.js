@@ -78,7 +78,13 @@ exports.handler = async (event) => {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  const params  = new URLSearchParams(event.body);
+  const params   = new URLSearchParams(event.body);
+
+  // Honeypot — bots fill this, humans don't. Silently discard.
+  if (params.get('website') || params.get('bot_field')) {
+    return { statusCode: 302, headers: { Location: '/success.html' }, body: '' };
+  }
+
   const name    = params.get('name')    || '(no name)';
   const company = params.get('company') || '';
   const phone   = params.get('phone')   || '';
