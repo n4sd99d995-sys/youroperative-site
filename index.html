@@ -1072,8 +1072,7 @@
       </div>
 
       <!-- Intake form — hidden until Get in touch clicked -->
-      <form class="intake-form intake-hidden" id="intake-form" name="contact" netlify netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
-        <input type="hidden" name="form-name" value="contact" />
+      <form class="intake-form intake-hidden" id="intake-form" method="POST" action="/.netlify/functions/contact">
         <div class="form-row">
           <div class="form-group">
             <label>Your name</label>
@@ -1141,20 +1140,7 @@ function toggleForm(btn){
 }
 
 /* FORM SUBMIT */
-function handleSubmit(e){
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
-  fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(data).toString() })
-    .then(() => {
-      form.querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=true);
-      document.getElementById('form-success').style.display='block';
-    })
-    .catch(() => {
-      form.querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=true);
-      document.getElementById('form-success').style.display='block';
-    });
-}
+/* FORM SUBMIT — handled natively by Netlify POST → /success.html */
 
 /* CURSOR */
 const cur=document.getElementById('cur'), cring=document.getElementById('cring');
@@ -1269,13 +1255,7 @@ sbLinks.forEach(link=>{
 
 }());
 </script>
-<!-- Netlify form detection ghost (required for JS-shown forms) -->
-<form name="contact" netlify netlify-honeypot="bot-field" hidden>
-  <input name="name" />
-  <input name="company" />
-  <input name="phone" />
-  <input name="email" />
-</form>
+
 
 <script>
 (function() {
