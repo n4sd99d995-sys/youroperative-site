@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operative for Landscapers & Lawn Care — Build it first. Pay only if you keep it.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0d0d; --bg2: #111110; --line: #232220; --line2: #1e1c1a;
+    --gold: #d4a548; --ink: #f5f5f0; --ink2: #ece9e2;
+    --muted: #888880; --muted2: #9a978e; --faint: #7a786f; --faintest: #56554e;
+    --card: #161513; --cardline: #262420; --proof: #141311; --proofline: #242220;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4, h5, h6, .lead { font-family: 'Space Grotesk', system-ui, sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .inter { font-family: 'Inter', system-ui, sans-serif; }
+  .gold { color: var(--gold); }
+  a { color: inherit; text-decoration: none; }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 15px 28px; border-bottom: 1px solid var(--line); background: var(--bg2); position: sticky; top: 0; z-index: 10; }
+  nav .logo { font-size: 17px; font-weight: 700; letter-spacing: .02em; }
+  nav .links { display: flex; align-items: center; gap: 18px; }
+  nav .links a { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); }
+  nav .links a.back { color: var(--faint); }
+  nav .cta { background: var(--gold); color: #0e0e0d; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; padding: 8px 15px; border-radius: 7px; }
+
+  section { padding: 30px 28px; border-bottom: 1px solid var(--line); }
+  .alt { background: var(--bg2); }
+  .eyebrow { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); margin-bottom: 13px; }
+
+  .hero { padding: 44px 28px 38px; }
+  .hero h1 { font-size: clamp(26px, 6vw, 34px); line-height: 1.14; font-weight: 700; letter-spacing: -.01em; max-width: 600px; }
+  .hero p { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 520px; margin: 18px 0 24px; }
+  .hero em { font-style: italic; color: #cfccc3; }
+  .btns { display: flex; gap: 11px; flex-wrap: wrap; }
+  .btn-gold { background: var(--gold); color: #0e0e0d; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; padding: 11px 20px; border-radius: 7px; }
+  .btn-ghost { border: 1px solid #3a3833; color: #cfccc3; font-family: 'Inter', sans-serif; font-size: 13px; padding: 11px 20px; border-radius: 7px; }
+
+  .lead { font-size: clamp(18px, 4.5vw, 21px); font-weight: 700; max-width: 560px; line-height: 1.25; }
+  .body { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 560px; margin-top: 14px; }
+
+  .stage { padding: 16px 0; border-bottom: 1px solid var(--line2); }
+  .stage:last-child { border-bottom: none; }
+  .stage .label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+  .stage .headline { font-size: 17px; font-weight: 700; color: var(--ink2); margin-bottom: 6px; }
+  .stage .body { margin-top: 0; }
+  .caps { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 14px; margin-top: 11px; }
+  .cap { display: flex; align-items: flex-start; gap: 8px; }
+  .cap i { font-size: 14px; color: var(--gold); margin-top: 1px; flex-shrink: 0; }
+  .cap span { font-family: 'Inter', sans-serif; font-size: 11.5px; color: var(--muted2); line-height: 1.35; }
+
+  .proof { background: var(--proof); border: 1px solid var(--proofline); border-radius: 10px; padding: 16px; }
+  .proof .tag { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; }
+  .proof .big { font-size: 28px; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+  .proof .q { font-family: 'Inter', sans-serif; font-size: 13px; color: #cbc8bf; line-height: 1.5; max-width: 480px; }
+  .proof .ph { margin-top: 12px; font-family: 'Inter', sans-serif; font-size: 10.5px; color: var(--faintest); font-style: italic; }
+
+  .form { display: flex; gap: 9px; flex-wrap: wrap; max-width: 470px; }
+  .form .fld { flex: 1; min-width: 110px; background: var(--card); border: 1px solid #2a2824; border-radius: 7px; padding: 10px 13px; font-family: 'Inter', sans-serif; font-size: 12px; color: #6c6a62; }
+  .sign { font-family: 'Inter', sans-serif; font-size: 13px; color: #6c6a62; margin-top: 17px; font-style: italic; }
+  footer { padding: 24px 28px; border-top: 1px solid var(--line); font-family: 'Inter', sans-serif; font-size: 11px; color: var(--faintest); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a href="/" class="logo">Operative</a>
+  <div class="links">
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="/" class="back">&larr; All trades</a>
+    <a href="/#cta" class="cta">See your landscaping site</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Operative for landscapers &amp; lawn care pros</div>
+  <h1>Spring hits and everyone wants a quote at once. You're on the mower all day, the voicemail's full by noon,<br><span class='gold'>and half those callers signed with whoever called them back first.</span></h1>
+  <p>You build the routes, you know which yards need aeration and which need a full renovation, you can tell a fungus problem from drought stress at a glance. But spring is a land-grab &mdash; whoever locks in the recurring accounts in March keeps them all season. Every quote you can't get to is a weekly account, gone for the year. We build your whole system before you pay a dime.</p>
+  <div class="btns">
+    <a href="/#cta" class="btn-gold">See your landscaping site &rarr;</a>
+    <a href="#pricing" class="btn-ghost">View pricing</a>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="eyebrow">The spring-rush &amp; recurring-revenue problem</div>
+  <div class="lead">A weekly mowing account isn't one sale &mdash; it's a whole season of revenue. <span class='gold'>Lose the quote in March, lose the money till November.</span></div>
+  <p class="body">Landscaping lives and dies on recurring accounts and seasonal upsells &mdash; mowing, fertilization programs, spring and fall cleanups, mulch, irrigation, snow in the off-season. The customer you land in spring is worth thousands across the year and beyond. Operative catches every spring inquiry the moment it comes in, locks in the recurring account, and then keeps selling that customer the next service all season long.</p>
+</section>
+
+<section id="how">
+  <div class="eyebrow">Four things running, <em class="gold" style="font-style:italic">always.</em></div>
+  <div class="lead">The system runs every month.<br><span class="gold">Each piece feeds the next.</span></div>
+  <div style="margin-top:18px;"><div class="stage">
+  <div class="label">Found.</div>
+  <div class="headline">When they search for lawn care in spring, you&#x27;re right there.</div>
+  <div class="body">Your site ranks for "lawn care near me," "landscaping," "lawn mowing service," "fall cleanup," "mulch installation" across your routes. Google Business optimized with before/after photos of real yards. So when the whole neighborhood decides in April that this is the year they hire it out, you're the local name they find &mdash; and the recurring accounts come to you instead of the franchise.</div>
+  <div class="caps"><div class="cap"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Google Business with yard photos</span></div><div class="cap"><i class="ti ti-search" aria-hidden="true"></i><span>Ranks for every service you offer</span></div><div class="cap"><i class="ti ti-photo" aria-hidden="true"></i><span>Before/after galleries by service</span></div><div class="cap"><i class="ti ti-world" aria-hidden="true"></i><span>Built to rank in Google &amp; AI search</span></div></div>
+</div><div class="stage">
+  <div class="label">Picked.</div>
+  <div class="headline">The spring quote gets answered while you&#x27;re still on the mower.</div>
+  <div class="body">April, you're cutting all day, the calls pile up. The AI agent answers every one by text instantly &mdash; gets the address, the property size, which service they want, whether it's a one-time or weekly &mdash; and offers to book the estimate. The caller's handled in minutes instead of waiting two days for a callback that loses them to the next company. Your reviews show you're the reliable crew that actually shows up every week.</div>
+  <div class="caps"><div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI agent answers &amp; qualifies 24/7</span></div><div class="cap"><i class="ti ti-bolt" aria-hidden="true"></i><span>Missed-call text-back</span></div><div class="cap"><i class="ti ti-star" aria-hidden="true"></i><span>Reviews stacked in the local pack</span></div><div class="cap"><i class="ti ti-repeat" aria-hidden="true"></i><span>One-time vs. recurring captured up front</span></div></div>
+</div><div class="stage">
+  <div class="label">Booked.</div>
+  <div class="headline">Every quote becomes a locked-in account, not a maybe.</div>
+  <div class="body">Every lead in one inbox. The system follows up on every estimate until they sign &mdash; and pushes for the recurring program, not just the one-off cut. Online booking for estimates, automated reminders so you don't eat no-shows, and recurring billing set up so the weekly accounts pay on time without you chasing checks. Lock the season's revenue in spring, then let it run.</div>
+  <div class="caps"><div class="cap"><i class="ti ti-inbox" aria-hidden="true"></i><span>One inbox for every lead</span></div><div class="cap"><i class="ti ti-refresh" aria-hidden="true"></i><span>Follow-up that lands recurring accounts</span></div><div class="cap"><i class="ti ti-calendar" aria-hidden="true"></i><span>Online booking + reminders</span></div><div class="cap"><i class="ti ti-credit-card" aria-hidden="true"></i><span>Recurring billing on autopilot</span></div></div>
+</div><div class="stage">
+  <div class="label">Reviewed.</div>
+  <div class="headline">Happy customers refer the neighbors — and buy the next service.</div>
+  <div class="body">After the first great cut or a cleanup that transformed the yard, the review request goes out automatically. Those reviews win you the next street, because lawn care spreads by what the neighbors see and say. Then the system upsells your own list all season: aeration in fall, mulch in spring, leaf cleanup in October, snow removal in winter. One customer, sold the right service at the right time, all year &mdash; automatically.</div>
+  <div class="caps"><div class="cap"><i class="ti ti-message-star" aria-hidden="true"></i><span>Auto review request after the job</span></div><div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI drafts replies to every review</span></div><div class="cap"><i class="ti ti-calendar-event" aria-hidden="true"></i><span>Seasonal upsell campaigns to your list</span></div><div class="cap"><i class="ti ti-arrow-back-up" aria-hidden="true"></i><span>Lifts you back into Found</span></div></div>
+</div></div>
+</section>
+
+<section class="alt">
+  <div class="eyebrow"><span class="gold">We handle it &middot;</span> You stay on the route</div>
+  <div class="lead" style="font-size:19px;">Time to push fall cleanups? Booking snow removal for winter?<br><span class='gold'>One text. Live same day.</span></div>
+  <p class="body" style="font-size:12.5px;">No dashboards, no logins. When the season turns and it's time to switch the site from spring cleanups to fall leaf removal to winter snow, you text us and it's done. Your services change with the calendar; your site keeps up automatically. You run the crews and the routes &mdash; we keep the work coming in year-round.</p>
+</section>
+
+<section id="pricing" class="alt">
+  <div class="eyebrow">Simple. Honest. No contracts.</div>
+  <div class="lead" style="font-size:19px;">The product keeps you &mdash; <span class="gold">not a contract.</span></div>
+  <p class="body" style="font-size:12.5px;">Foundation $297/mo &middot; Growth $597/mo &middot; Accelerator $1,200/mo. Month-to-month, no setup fees, cancel anytime. Most landscapers start on Growth — that&#x27;s the full flywheel.</p>
+</section>
+
+<section id="cta">
+  <div class="lead" style="font-size:22px;">Win the spring rush. Keep them all year.</div>
+  <p class="body" style="margin-bottom:17px;">We build your landscaping site before you pay a cent. <span class="gold">See it, then decide.</span></p>
+  <div class="form">
+    <span class="fld">Name</span><span class="fld">Company</span><span class="fld">Phone</span>
+    <a href="#" class="btn-gold">Send it &rarr;</a>
+  </div>
+  <div class="sign">That's Your Operative.</div>
+</section>
+<footer>
+  <span>&copy; 2026 Operative &middot; operations@youroperative.com</span>
+  <span>No contracts &middot; Cancel anytime &middot; That's Your Operative.</span>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operative for Masons & Concrete Contractors — Build it first. Pay only if you keep it.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0d0d; --bg2: #111110; --line: #232220; --line2: #1e1c1a;
+    --gold: #d4a548; --ink: #f5f5f0; --ink2: #ece9e2;
+    --muted: #888880; --muted2: #9a978e; --faint: #7a786f; --faintest: #56554e;
+    --card: #161513; --cardline: #262420; --proof: #141311; --proofline: #242220;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4, h5, h6, .lead { font-family: 'Space Grotesk', system-ui, sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .inter { font-family: 'Inter', system-ui, sans-serif; }
+  .gold { color: var(--gold); }
+  a { color: inherit; text-decoration: none; }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 15px 28px; border-bottom: 1px solid var(--line); background: var(--bg2); position: sticky; top: 0; z-index: 10; }
+  nav .logo { font-size: 17px; font-weight: 700; letter-spacing: .02em; }
+  nav .links { display: flex; align-items: center; gap: 18px; }
+  nav .links a { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); }
+  nav .links a.back { color: var(--faint); }
+  nav .cta { background: var(--gold); color: #0e0e0d; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; padding: 8px 15px; border-radius: 7px; }
+
+  section { padding: 30px 28px; border-bottom: 1px solid var(--line); }
+  .alt { background: var(--bg2); }
+  .eyebrow { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); margin-bottom: 13px; }
+
+  .hero { padding: 44px 28px 38px; }
+  .hero h1 { font-size: clamp(26px, 6vw, 34px); line-height: 1.14; font-weight: 700; letter-spacing: -.01em; max-width: 600px; }
+  .hero p { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 520px; margin: 18px 0 24px; }
+  .hero em { font-style: italic; color: #cfccc3; }
+  .btns { display: flex; gap: 11px; flex-wrap: wrap; }
+  .btn-gold { background: var(--gold); color: #0e0e0d; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; padding: 11px 20px; border-radius: 7px; }
+  .btn-ghost { border: 1px solid #3a3833; color: #cfccc3; font-family: 'Inter', sans-serif; font-size: 13px; padding: 11px 20px; border-radius: 7px; }
+
+  .lead { font-size: clamp(18px, 4.5vw, 21px); font-weight: 700; max-width: 560px; line-height: 1.25; }
+  .body { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 560px; margin-top: 14px; }
+
+  .stage { padding: 16px 0; border-bottom: 1px solid var(--line2); }
+  .stage:last-child { border-bottom: none; }
+  .stage .label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+  .stage .headline { font-size: 17px; font-weight: 700; color: var(--ink2); margin-bottom: 6px; }
+  .stage .body { margin-top: 0; }
+  .caps { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 14px; margin-top: 11px; }
+  .cap { display: flex; align-items: flex-start; gap: 8px; }
+  .cap i { font-size: 14px; color: var(--gold); margin-top: 1px; flex-shrink: 0; }
+  .cap span { font-family: 'Inter', sans-serif; font-size: 11.5px; color: var(--muted2); line-height: 1.35; }
+
+  .proof { background: var(--proof); border: 1px solid var(--proofline); border-radius: 10px; padding: 16px; }
+  .proof .tag { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; }
+  .proof .big { font-size: 28px; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+  .proof .q { font-family: 'Inter', sans-serif; font-size: 13px; color: #cbc8bf; line-height: 1.5; max-width: 480px; }
+  .proof .ph { margin-top: 12px; font-family: 'Inter', sans-serif; font-size: 10.5px; color: var(--faintest); font-style: italic; }
+
+  .form { display: flex; gap: 9px; flex-wrap: wrap; max-width: 470px; }
+  .form .fld { flex: 1; min-width: 110px; background: var(--card); border: 1px solid #2a2824; border-radius: 7px; padding: 10px 13px; font-family: 'Inter', sans-serif; font-size: 12px; color: #6c6a62; }
+  .sign { font-family: 'Inter', sans-serif; font-size: 13px; color: #6c6a62; margin-top: 17px; font-style: italic; }
+  footer { padding: 24px 28px; border-top: 1px solid var(--line); font-family: 'Inter', sans-serif; font-size: 11px; color: var(--faintest); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a href="/" class="logo">Operative</a>
+  <div class="links">
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="/" class="back">&larr; All trades</a>
+    <a href="/#cta" class="cta">See your masonry site</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Operative for masons &amp; concrete contractors</div>
+  <h1>A $40,000 paver patio is a big decision. She's getting three bids &mdash; and she picks the one whose work she can <em>see</em> and whose reputation she can trust.<br><span class='gold'>Right now, can she find yours?</span></h1>
+  <p>Your stonework speaks for itself &mdash; the tight joints, the clean lines, a retaining wall that'll outlive the house. But a homeowner comparison-shopping a big hardscape job can't see any of that if your portfolio lives on your phone and your "website" is a Facebook page from 2019. Your craft is the differentiator. We make sure she sees it before she signs with someone else. Built first, before you pay a dime.</p>
+  <div class="btns">
+    <a href="/#cta" class="btn-gold">See your masonry site &rarr;</a>
+    <a href="#pricing" class="btn-ghost">View pricing</a>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="eyebrow">The comparison-bid problem</div>
+  <div class="lead">High-ticket, high-consideration, and won on first impression. <span class='gold'>Your portfolio is your closer &mdash; if she ever sees it.</span></div>
+  <p class="body">Patios, retaining walls, stone veneer, driveways, chimney repair, repointing &mdash; these are big discretionary spends where the homeowner agonizes and compares. They're choosing on trust and visible craftsmanship. A site that shows your best work in full resolution, stacks your reviews, and responds the moment they inquire is worth more than any yard sign. That's how a comparison shopper becomes your signed contract.</p>
+</section>
+
+<section id="how">
+  <div class="eyebrow">Four things running, <em class="gold" style="font-style:italic">always.</em></div>
+  <div class="lead">The system runs every month.<br><span class="gold">Each piece feeds the next.</span></div>
+  <div style="margin-top:18px;"><div class="stage">
+  <div class="label">Found.</div>
+  <div class="headline">When she searches &quot;paver patio near me,&quot; your work shows up.</div>
+  <div class="body">Your site ranks for the money searches &mdash; paver patios, retaining walls, stone veneer, concrete driveways, repointing, chimney repair &mdash; across your area. And it leads with a real portfolio: high-resolution photos of finished jobs, organized by type, that make your craftsmanship the first thing she sees. Google Business optimized with project photos that pull her in from the map.</div>
+  <div class="caps"><div class="cap"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Google Business with project photos</span></div><div class="cap"><i class="ti ti-search" aria-hidden="true"></i><span>Ranks for every hardscape service</span></div><div class="cap"><i class="ti ti-photo" aria-hidden="true"></i><span>Full portfolio, organized by job type</span></div><div class="cap"><i class="ti ti-world" aria-hidden="true"></i><span>Built to rank in Google &amp; AI search</span></div></div>
+</div><div class="stage">
+  <div class="label">Picked.</div>
+  <div class="headline">Her quote request gets answered before your competitor calls back.</div>
+  <div class="body">She fills out the estimate form on a Sunday night. The AI agent replies in minutes &mdash; thanks her, asks the project type, square footage, timeline, and whether she has photos of the space &mdash; so by the time you follow up Monday, you already know the job and she already feels taken care of. The other two bidders haven't even responded yet. Your reviews seal it: she can see other homeowners loved working with you.</div>
+  <div class="caps"><div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI agent qualifies the project 24/7</span></div><div class="cap"><i class="ti ti-bolt" aria-hidden="true"></i><span>Missed-call text-back</span></div><div class="cap"><i class="ti ti-star" aria-hidden="true"></i><span>Reviews stacked in the local pack</span></div><div class="cap"><i class="ti ti-ruler-2" aria-hidden="true"></i><span>Scope &amp; details captured up front</span></div></div>
+</div><div class="stage">
+  <div class="label">Booked.</div>
+  <div class="headline">No big bid goes cold while you&#x27;re pouring a slab.</div>
+  <div class="body">Hardscape jobs have long decision cycles &mdash; she's thinking it over for weeks. The system follows up so you don't have to: a check-in after the estimate, a nudge with a relevant project photo, an answer to "can we do it this fall?" Every lead in one inbox. Professional proposals that match the quality of your work. The bid stays warm until she's ready to sign, instead of dying because you got busy on another pour.</div>
+  <div class="caps"><div class="cap"><i class="ti ti-inbox" aria-hidden="true"></i><span>One inbox for every lead</span></div><div class="cap"><i class="ti ti-refresh" aria-hidden="true"></i><span>Long-cycle follow-up that closes bids</span></div><div class="cap"><i class="ti ti-file-invoice" aria-hidden="true"></i><span>Proposals that match your craft</span></div><div class="cap"><i class="ti ti-calendar" aria-hidden="true"></i><span>Online consultation booking</span></div></div>
+</div><div class="stage">
+  <div class="label">Reviewed.</div>
+  <div class="headline">Every finished job becomes a photo and a five-star review.</div>
+  <div class="body">The patio's done and she's standing on it grinning &mdash; that's the moment the system asks for the review and the photo. Those go straight into your portfolio and your local-pack ranking, which is exactly what wins the next comparison bid. Then the system works your past customers &mdash; the patio client who might want an outdoor kitchen, the front-walk customer eyeing a retaining wall. Word of mouth, but automated and compounding.</div>
+  <div class="caps"><div class="cap"><i class="ti ti-message-star" aria-hidden="true"></i><span>Auto review &amp; photo request after the job</span></div><div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI drafts replies to every review</span></div><div class="cap"><i class="ti ti-database" aria-hidden="true"></i><span>Past-customer project campaigns</span></div><div class="cap"><i class="ti ti-arrow-back-up" aria-hidden="true"></i><span>Fresh photos lift you back into Found</span></div></div>
+</div></div>
+</section>
+
+<section class="alt">
+  <div class="eyebrow"><span class="gold">We handle it &middot;</span> You stay on the wall</div>
+  <div class="lead" style="font-size:19px;">Just finished a showpiece patio? Running a fall hardscape special?<br><span class='gold'>Text us the photos. Up same day.</span></div>
+  <p class="body" style="font-size:12.5px;">No dashboards, no logins. Snap photos of a job you're proud of and text them over &mdash; they're in your portfolio by end of day, working to win the next bid. Want a spring patio promo or a fall repointing push? Same thing, one text. You lay the stone, we keep the showcase current.</p>
+</section>
+
+<section id="pricing" class="alt">
+  <div class="eyebrow">Simple. Honest. No contracts.</div>
+  <div class="lead" style="font-size:19px;">The product keeps you &mdash; <span class="gold">not a contract.</span></div>
+  <p class="body" style="font-size:12.5px;">Foundation $297/mo &middot; Growth $597/mo &middot; Accelerator $1,200/mo. Month-to-month, no setup fees, cancel anytime. Most masons start on Growth — that&#x27;s the full flywheel.</p>
+</section>
+
+<section id="cta">
+  <div class="lead" style="font-size:22px;">Let your work win the bid — before you ever quote it.</div>
+  <p class="body" style="margin-bottom:17px;">We build your masonry site before you pay a cent. <span class="gold">See it, then decide.</span></p>
+  <div class="form">
+    <span class="fld">Name</span><span class="fld">Company</span><span class="fld">Phone</span>
+    <a href="#" class="btn-gold">Send it &rarr;</a>
+  </div>
+  <div class="sign">That's Your Operative.</div>
+</section>
+<footer>
+  <span>&copy; 2026 Operative &middot; operations@youroperative.com</span>
+  <span>No contracts &middot; Cancel anytime &middot; That's Your Operative.</span>
+</footer>
+</div>
+</body>
+</html>
