@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operative — Built to be found.</title>
+  <meta name="description" content="We build the online presence that local businesses deserve. Websites, Google, AI search — all of it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────────────── */
+    :root {
+      --black:      #080808;
+      --near-black: #0f0f0f;
+      --surface:    #141414;
+      --surface-2:  #1c1c1c;
+      --border:     rgba(255,255,255,0.08);
+      --gold:       #F2A900;
+      --gold-dim:   rgba(242,169,0,0.15);
+      --green:      #004D40;
+      --white:      #ffffff;
+      --off-white:  #e8e8e2;
+      --muted:      rgba(255,255,255,0.38);
+      --font-d:     'Outfit', sans-serif;
+      --font-b:     'Inter', sans-serif;
+    }
+
+    /* ── RESET ──────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-b);
+      background: var(--black);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── CUSTOM CURSOR ──────────────────────────────────────────────── */
+    #cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+      mix-blend-mode: normal;
+    }
+    #cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(242,169,0,0.45);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s ease, width 0.25s ease, height 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
+    }
+    body:hover #cursor { opacity: 1; }
+    a:hover ~ #cursor, button:hover ~ #cursor { width: 14px; height: 14px; }
+
+    /* ── NAV ────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo-mark {
+      width: 28px; height: 28px;
+      position: relative;
+    }
+    .nav-logo svg { width: 28px; height: 28px; }
+    .nav-links {
+      display: flex; gap: 40px;
+      list-style: none;
+      position: absolute; left: 50%; transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      background: var(--gold);
+      padding: 9px 20px;
+      border-radius: 4px;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── HERO ───────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grid lines background texture */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+      z-index: 0;
+    }
+
+    /* Gold glow orb */
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(242,169,0,0.12) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      z-index: 0;
+      animation: orb-pulse 8s ease-in-out infinite;
+    }
+    @keyframes orb-pulse {
+      0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+      50% { transform: scale(1.15) translate(-20px, 20px); opacity: 1; }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 1200px; }
+
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fade-up 0.6s ease forwards 0.3s;
+    }
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-headline {
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: clamp(3.8rem, 9vw, 10rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 48px;
+      overflow: hidden;
+    }
+    /* Each line wraps a .line-inner that slides up */
+    .hero-line { overflow: hidden; display: block; }
+    .hero-line .line-inner {
+      display: block;
+      transform: translateY(110%);
+      animation: slide-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .hero-line:nth-child(1) .line-inner { animation-delay: 0.45s; }
+    .hero-line:nth-child(2) .line-inner { animation-delay: 0.6s; }
+    .hero-line:nth-child(3) .line-inner { animation-delay: 0.75s; }
+    .gold-word { color: var(--gold); }
+
+    @keyframes slide-up {
+      to { transform: translateY(0); }
+    }
+    @keyframes fade-up {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-bottom {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 32px;
+      opacity: 0;
+      animation: fade-up 0.7s ease forwards 1.1s;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.7;
+    }
+    .hero-sub strong { color: var(--off-white); font-weight: 500; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold);
+      color: var(--black);
+      font-family: var(--font-d);
+      font-weight: 800;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      padding: 14px 28px;
+      border-radius: 4px;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--muted);
+      font-family: var(--font-d);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding-bottom: 2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .btn-ghost:hover { color: var(--white); border-color: var(--gold); }
+    .btn-ghost::after { content: '→'; margin-left: 4px; }
+
+    /* ── MARQUEE ────────────────────────────────────────────────────── */
+    .marquee-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      overflow: hidden;
+      padding: 0;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: 24px;
+      padding: 18px 40px;
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .marquee-dot {
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION WRAPPER ────────────────────────────────────────────── */
+    .section { padding: 120px 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    /* Scroll reveal base state */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block; width: 24px; height: 1px;
+      background: var(--gold);
+    }
+    .section-title {
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 72px;
+    }
+
+    /* ── MANIFESTO ──────────────────────────────────────────────────── */
+    .manifesto-bg { background: var(--surface); }
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px; align-items: start;
+    }
+    .manifesto-left { padding-top: 8px; }
+    .manifesto-left h2 {
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+    }
+    .manifesto-left h2 em {
+      font-style: normal;
+      color: var(--gold);
+      display: block;
+    }
+    .manifesto-right {}
+    .manifesto-stat {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .manifesto-stat:first-child { border-top: 1px solid var(--border); }
+    .stat-num {
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: 3.4rem;
+      letter-spacing: -0.04em;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 360px;
+    }
+    .stat-desc strong { color: var(--off-white); }
+
+    /* ── WORK ───────────────────────────────────────────────────────── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .work-card {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--surface);
+      cursor: none;
+    }
+    .work-card-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .work-card:hover .work-card-bg { transform: scale(1.05); }
+    .work-card-overlay {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 28px;
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .work-card:hover .work-card-overlay { opacity: 1; }
+    .work-card-default {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 28px;
+    }
+    .work-card-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .work-card-name {
+      font-family: var(--font-d);
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .work-card-meta {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+    }
+    .work-card-arrow {
+      position: absolute; top: 24px; right: 24px;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      color: var(--white);
+      opacity: 0;
+      transform: rotate(-45deg) scale(0.8);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .work-card:hover .work-card-arrow {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    /* Color-based work card backgrounds (since we don't have screenshots) */
+    .card-plumbing    { background: linear-gradient(135deg, #0f1f3d 0%, #1a3260 50%, #c97a2f22 100%); }
+    .card-plumbing2   { background: linear-gradient(135deg, #0f3d2a 0%, #1a6045 50%, #2a8a6011 100%); }
+    .card-electrical  { background: linear-gradient(135deg, #1a1a0d 0%, #3d3a10 50%, #b8a01022 100%); }
+    .card-hvac        { background: linear-gradient(135deg, #0d1f2d 0%, #1a3a50 50%, #2a7ab822 100%); }
+    .card-plumbing3   { background: linear-gradient(135deg, #200d0d 0%, #3d1a1a 50%, #8a2a2a22 100%); }
+    .card-electrical2 { background: linear-gradient(135deg, #0d1f0d 0%, #1a3d20 50%, #2a7a3022 100%); }
+
+    /* Decorative shapes inside cards */
+    .card-shape {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    /* ── HOW IT WORKS ───────────────────────────────────────────────── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .step {
+      background: var(--surface);
+      padding: 40px 32px;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .step:hover { background: var(--surface-2); }
+    .step-num {
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 32px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .step-num::after { content: ''; flex: 1; height: 1px; background: var(--gold); opacity: 0.3; }
+    .step h3 {
+      font-family: var(--font-d);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .step p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── SERVICES ───────────────────────────────────────────────────── */
+    .services-bg { background: var(--near-black); }
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .tier {
+      background: var(--surface);
+      padding: 48px 36px;
+      position: relative;
+      transition: background 0.25s;
+    }
+    .tier:hover { background: var(--surface-2); }
+    .tier-featured {
+      background: var(--green);
+    }
+    .tier-featured:hover { background: #005a4a; }
+    .tier-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .tier-featured .tier-label { color: rgba(255,255,255,0.6); }
+    .tier-name {
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .tier-price {
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: 3rem;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .tier-price span {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0;
+    }
+    .tier-mo {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    .tier-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 32px;
+    }
+    .tier-featured .tier-divider { background: rgba(255,255,255,0.15); }
+    .tier-features { list-style: none; }
+    .tier-features li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .tier-featured .tier-features li { color: rgba(255,255,255,0.72); }
+    .tier-features li::before {
+      content: '';
+      width: 16px; height: 16px; flex-shrink: 0;
+      margin-top: 1px;
+      background: var(--gold);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 10px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .tier-cta {
+      display: block;
+      text-align: center;
+      margin-top: 36px;
+      padding: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .tier:hover .tier-cta { background: rgba(255,255,255,0.1); color: var(--white); border-color: rgba(255,255,255,0.2); }
+    .tier-featured .tier-cta {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--black);
+    }
+    .tier-featured:hover .tier-cta { background: #ffc107; border-color: #ffc107; color: var(--black); }
+
+    /* ── CTA SECTION ────────────────────────────────────────────────── */
+    .cta-section {
+      padding: 140px 5%;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(242,169,0,0.08) 0%, transparent 65%);
+      bottom: -200px; left: 50%; transform: translateX(-50%);
+    }
+    .cta-inner {
+      position: relative; z-index: 1;
+      max-width: 800px; margin: 0 auto;
+      text-align: center;
+    }
+    .cta-inner h2 {
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .cta-inner h2 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .cta-inner p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 460px;
+      margin: 0 auto 48px;
+    }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ─────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--near-black);
+      padding: 56px 5% 32px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-brand {
+      font-family: var(--font-d);
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+    .footer-tagline {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 6px;
+      max-width: 220px;
+      line-height: 1.5;
+    }
+    .footer-links { display: flex; gap: 48px; flex-wrap: wrap; }
+    .footer-col h4 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.15s;
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-bottom a { color: var(--gold); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .tiers-grid { grid-template-columns: 1fr; }
+      .manifesto-grid { grid-template-columns: 1fr; gap: 48px; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .work-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      #cursor, #cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Custom cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ── NAV ──────────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">
+    <!-- Two redwood trees mark, refined -->
+    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 24 L7 14 L3 16 L7 8 L5 10 L9 2 L11 6 L13 2 L13 24Z" fill="#F2A900" opacity="0.9"/>
+      <path d="M21 24 L21 14 L25 16 L21 8 L23 10 L19 2 L17 6 L15 2 L15 24Z" fill="#004D40" opacity="0.95"/>
+      <rect x="6" y="23" width="16" height="2" rx="1" fill="rgba(255,255,255,0.15)"/>
+    </svg>
+    Operative
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <a href="#contact" class="nav-cta">Get started →</a>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-label">East Bay's digital presence studio</div>
+
+    <h1 class="hero-headline">
+      <span class="hero-line"><span class="line-inner">Your customers</span></span>
+      <span class="hero-line"><span class="line-inner">are searching.</span></span>
+      <span class="hero-line"><span class="line-inner"><span class="gold-word">Are they finding you?</span></span></span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-sub">
+        We build the online presence that local businesses deserve —
+        <strong>custom websites, Google visibility, and AI search optimization</strong>
+        that turns searches into phone calls.
+      </p>
+      <div class="hero-actions">
+        <a href="#work" class="btn-primary">See the work</a>
+        <a href="#services" class="btn-ghost">View pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ────────────────────────────────────────────────────────────── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <!-- Repeated twice for seamless loop -->
+    <div class="marquee-item"><span class="marquee-dot"></span>Plumbing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>HVAC</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Electrical</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Landscaping</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Roofing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cleaning</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>East Bay</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Oakland</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Hayward</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Fremont</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Berkeley</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Richmond</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Plumbing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>HVAC</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Electrical</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Landscaping</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Roofing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cleaning</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>East Bay</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Oakland</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Hayward</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Fremont</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Berkeley</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Richmond</div>
+  </div>
+</div>
+
+<!-- ── MANIFESTO ──────────────────────────────────────────────────────────── -->
+<section class="section manifesto-bg" id="about">
+  <div class="section-inner">
+    <div class="manifesto-grid">
+      <div class="manifesto-left reveal">
+        <div class="eyebrow">Our belief</div>
+        <h2>Built<br>by hand.<br><em>Built to last.</em></h2>
+      </div>
+      <div class="manifesto-right">
+        <div class="manifesto-stat reveal reveal-delay-1">
+          <div class="stat-num">97%</div>
+          <div class="stat-desc">of people research a business online before making contact. <strong>If they can't find you, they call someone else.</strong></div>
+        </div>
+        <div class="manifesto-stat reveal reveal-delay-2">
+          <div class="stat-num">3 sec</div>
+          <div class="stat-desc">is all you get. If your website doesn't convey trust in 3 seconds, <strong>the lead is gone — permanently.</strong></div>
+        </div>
+        <div class="manifesto-stat reveal reveal-delay-3">
+          <div class="stat-num">$0</div>
+          <div class="stat-desc">is what most local business owners have invested in their online presence. <strong>That's our opportunity — and yours.</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORK ───────────────────────────────────────────────────────────────── -->
+<section class="section" id="work" style="padding-bottom: 0;">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Selected work</div>
+    <h2 class="section-title reveal reveal-delay-1">Built for real<br>businesses, by hand.</h2>
+    <p class="section-sub reveal reveal-delay-2">Every site is unique. Color, type, copy, structure — all derived from the business itself. No templates. No shortcuts.</p>
+  </div>
+</section>
+
+<div class="work-grid">
+  <div class="work-card reveal">
+    <div class="work-card-bg card-plumbing">
+      <div class="card-shape">
+        <svg width="180" height="180" viewBox="0 0 100 100" fill="white"><path d="M30 70 L60 20" stroke="white" stroke-width="8" stroke-linecap="round"/><path d="M52 28 C52 18 62 13 72 18 C65 21 63 27 67 33 C71 39 79 41 86 38 C83 50 73 55 63 51 C53 47 50 38 50 28Z" fill="white"/><circle cx="35" cy="65" r="10"/></svg>
+      </div>
+    </div>
+    <div class="work-card-default">
+      <div class="work-card-tag">Plumbing · Hayward</div>
+      <div class="work-card-name">J. Carrillo Plumbing<br>& Drains</div>
+      <div class="work-card-meta">4.9★ · 20 reviews</div>
+    </div>
+    <div class="work-card-overlay">
+      <div class="work-card-tag">Plumbing · Hayward</div>
+      <div class="work-card-name">J. Carrillo Plumbing<br>& Drains</div>
+      <div class="work-card-meta">Navy & copper palette · Custom wrench SVG logo</div>
+    </div>
+    <div class="work-card-arrow">↗</div>
+  </div>
+
+  <div class="work-card reveal reveal-delay-1">
+    <div class="work-card-bg card-plumbing2"></div>
+    <div class="work-card-default">
+      <div class="work-card-tag">Plumbing · Oakland</div>
+      <div class="work-card-name">Ortiz Plumbing</div>
+      <div class="work-card-meta">4.6★ · 38 reviews</div>
+    </div>
+    <div class="work-card-overlay">
+      <div class="work-card-tag">Plumbing · Oakland</div>
+      <div class="work-card-name">Ortiz Plumbing</div>
+      <div class="work-card-meta">Deep teal palette · Libre Baskerville</div>
+    </div>
+    <div class="work-card-arrow">↗</div>
+  </div>
+
+  <div class="work-card reveal reveal-delay-2">
+    <div class="work-card-bg card-electrical"></div>
+    <div class="work-card-default">
+      <div class="work-card-tag">Electrical · East Bay</div>
+      <div class="work-card-name">East Bay Electric</div>
+      <div class="work-card-meta">4.8★ · 52 reviews</div>
+    </div>
+    <div class="work-card-overlay">
+      <div class="work-card-tag">Electrical · East Bay</div>
+      <div class="work-card-name">East Bay Electric</div>
+      <div class="work-card-meta">Charcoal & amber · Industrial feel</div>
+    </div>
+    <div class="work-card-arrow">↗</div>
+  </div>
+
+  <div class="work-card reveal reveal-delay-1">
+    <div class="work-card-bg card-hvac"></div>
+    <div class="work-card-default">
+      <div class="work-card-tag">HVAC · East Bay</div>
+      <div class="work-card-name">East Bay HVAC Pros</div>
+      <div class="work-card-meta">4.7★ · 44 reviews</div>
+    </div>
+    <div class="work-card-overlay">
+      <div class="work-card-tag">HVAC · East Bay</div>
+      <div class="work-card-name">East Bay HVAC Pros</div>
+      <div class="work-card-meta">Slate blue palette · Technical precision</div>
+    </div>
+    <div class="work-card-arrow">↗</div>
+  </div>
+
+  <div class="work-card reveal reveal-delay-2">
+    <div class="work-card-bg card-plumbing3"></div>
+    <div class="work-card-default">
+      <div class="work-card-tag">Plumbing · Oakland</div>
+      <div class="work-card-name">Oakland Pro Plumbing</div>
+      <div class="work-card-meta">4.5★ · 31 reviews</div>
+    </div>
+    <div class="work-card-overlay">
+      <div class="work-card-tag">Plumbing · Oakland</div>
+      <div class="work-card-name">Oakland Pro Plumbing</div>
+      <div class="work-card-meta">Bold red & dark · Urban energy</div>
+    </div>
+    <div class="work-card-arrow">↗</div>
+  </div>
+
+  <div class="work-card reveal reveal-delay-3">
+    <div class="work-card-bg card-electrical2"></div>
+    <div class="work-card-default">
+      <div class="work-card-tag">Electrical · Oakland</div>
+      <div class="work-card-name">EV Electrical</div>
+      <div class="work-card-meta">4.9★ · 18 reviews</div>
+    </div>
+    <div class="work-card-overlay">
+      <div class="work-card-tag">Electrical · Oakland</div>
+      <div class="work-card-name">EV Electrical</div>
+      <div class="work-card-meta">Forest green · EV-forward positioning</div>
+    </div>
+    <div class="work-card-arrow">↗</div>
+  </div>
+</div>
+
+<!-- ── HOW IT WORKS ───────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="section-inner">
+    <div class="eyebrow reveal">The process</div>
+    <h2 class="section-title reveal reveal-delay-1">Simple. Fast.<br>No surprises.</h2>
+    <p class="section-sub reveal reveal-delay-2">We do the work. You run your business. Peter keeps you updated every step of the way.</p>
+
+    <div class="steps-grid reveal reveal-delay-2">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>We research your business</h3>
+        <p>We pull your reviews, photos, and online presence. You don't have to send us anything — we find it ourselves.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>We build your site</h3>
+        <p>Custom design, written copy, local SEO, schema markup, and AI search optimization. Built in days, not months.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>You review and approve</h3>
+        <p>Peter walks you through it. You tell us what to change. We move fast. Most clients approve on the first round.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>We manage it forever</h3>
+        <p>Monthly reports. Review generation. Google Business updates. We own it so you don't have to think about it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ───────────────────────────────────────────────────────────── -->
+<section class="section services-bg" id="services">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Pricing</div>
+    <h2 class="section-title reveal reveal-delay-1">No contracts.<br>Cancel anytime.</h2>
+    <p class="section-sub reveal reveal-delay-2">Month-to-month. The product keeps you — not a contract.</p>
+
+    <div class="tiers-grid reveal reveal-delay-2">
+      <div class="tier">
+        <div class="tier-label">Foundation</div>
+        <div class="tier-name">Get found.</div>
+        <div class="tier-price">$297<span>/mo</span></div>
+        <div class="tier-mo">Month-to-month · No setup fee</div>
+        <div class="tier-divider"></div>
+        <ul class="tier-features">
+          <li>Custom website, hosted & maintained</li>
+          <li>Google Business Profile setup & optimization</li>
+          <li>Local SEO + schema markup built in</li>
+          <li>AI search optimization (ChatGPT, Perplexity)</li>
+          <li>Monthly performance report</li>
+          <li>Peter via email + text, same-day</li>
+        </ul>
+        <a href="#contact" class="tier-cta">Get started →</a>
+      </div>
+
+      <div class="tier tier-featured">
+        <div class="tier-label">Growth · Most popular</div>
+        <div class="tier-name">Get chosen.</div>
+        <div class="tier-price">$597<span>/mo</span></div>
+        <div class="tier-mo">Everything in Foundation, plus:</div>
+        <div class="tier-divider"></div>
+        <ul class="tier-features">
+          <li>Review generation system — automated ask after every job</li>
+          <li>4 social media posts/month</li>
+          <li>Quarterly website refresh</li>
+          <li>Competitor monitoring</li>
+          <li>Priority response from Peter</li>
+        </ul>
+        <a href="#contact" class="tier-cta">Get started →</a>
+      </div>
+
+      <div class="tier">
+        <div class="tier-label">Accelerator</div>
+        <div class="tier-name">Get ahead.</div>
+        <div class="tier-price">$1,200<span>/mo</span></div>
+        <div class="tier-mo">Everything in Growth, plus:</div>
+        <div class="tier-divider"></div>
+        <ul class="tier-features">
+          <li>Meta or Google ad management</li>
+          <li>Ad spend billed separately</li>
+          <li>Weekly performance check-ins</li>
+          <li>Landing pages for specific services</li>
+          <li>Dedicated growth strategy calls</li>
+        </ul>
+        <a href="#contact" class="tier-cta">Get started →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────────────────── -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="eyebrow reveal" style="justify-content: center;">Ready?</div>
+    <h2 class="reveal reveal-delay-1">Your competitors<br>are already <em>online.</em></h2>
+    <p class="reveal reveal-delay-2">We'll build your site before we ask for a cent. Scan the postcard. See what it looks like. Then decide.</p>
+    <div class="cta-actions reveal reveal-delay-3">
+      <a href="mailto:peter@youroperative.com" class="btn-primary">Talk to Peter →</a>
+      <a href="#work" class="btn-ghost">See more work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Operative</div>
+      <div class="footer-tagline">East Bay's digital presence studio. Built for the owner who answers the phone.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Foundation — $297/mo</a></li>
+          <li><a href="#">Growth — $597/mo</a></li>
+          <li><a href="#">Accelerator — $1,200/mo</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>We serve</h4>
+        <ul>
+          <li><a href="#">Plumbing</a></li>
+          <li><a href="#">HVAC</a></li>
+          <li><a href="#">Electrical</a></li>
+          <li><a href="#">Landscaping</a></li>
+          <li><a href="#">Roofing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:peter@youroperative.com">peter@youroperative.com</a></li>
+          <li><a href="#">Oakland, CA</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Operative. Built in Oakland.</span>
+    <span>No contracts. Cancel anytime.</span>
+  </div>
+</footer>
+
+<script>
+  // ── CURSOR ────────────────────────────────────────────────────────────────
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  });
+
+  // Ring follows with smooth lag
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Cursor expand on hoverable elements
+  document.querySelectorAll('a, button, .work-card, .step, .tier').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width  = '14px';
+      cursor.style.height = '14px';
+      ring.style.width    = '56px';
+      ring.style.height   = '56px';
+      ring.style.borderColor = 'rgba(242,169,0,0.7)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width  = '8px';
+      cursor.style.height = '8px';
+      ring.style.width    = '36px';
+      ring.style.height   = '36px';
+      ring.style.borderColor = 'rgba(242,169,0,0.45)';
+    });
+  });
+
+  // ── SCROLL REVEAL ─────────────────────────────────────────────────────────
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── NAV SCROLL SHADOW ─────────────────────────────────────────────────────
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.borderBottomColor = window.scrollY > 40
+      ? 'rgba(255,255,255,0.1)'
+      : 'rgba(255,255,255,0.08)';
+  });
+</script>
+</body>
+</html>

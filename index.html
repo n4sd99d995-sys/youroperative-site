@@ -208,15 +208,29 @@
         }
 
         .trade-card {
+            position: relative;
             background-color: #161616;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 24px;
             transition: all 0.2s;
+            cursor: pointer;
         }
 
         .trade-card:hover {
             border-color: #E6A53A;
+        }
+
+        .trade-card a.card-link {
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            z-index: 10;
+        }
+
+        .trade-card a.card-link:focus {
+            outline: 2px solid #E6A53A;
+            outline-offset: 2px;
         }
 
         .trade-icon {
@@ -864,40 +878,40 @@
             <h2>Your trade. Your page. Your system.</h2>
             <div class="trade-grid">
                 <div class="trade-card">
+                    <a href="/roofing.html" class="card-link" aria-label="Go to Roofing page"></a>
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#E6A53A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M4 10.5V21h16V10.5"/><path d="M13 9l-2.5 4h3.5l-2.5 4"/></svg>
                     <h3>Roofing</h3>
                     <p>Storm hits. They search. You show up first.</p>
-                    <a href='/roofing.html'>Click here</a>
                 </div>
                 <div class="trade-card">
+                    <a href="/plumbing.html" class="card-link" aria-label="Go to Plumbing page"></a>
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#E6A53A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg>
                     <h3>Plumbing</h3>
                     <p>Under a sink? The lead still gets caught.</p>
-                    <a href='/plumbing.html'>Click here</a>
                 </div>
                 <div class="trade-card">
+                    <a href="/hvac.html" class="card-link" aria-label="Go to HVAC page"></a>
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#E6A53A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
                     <h3>HVAC</h3>
                     <p>July outage. First name they find wins the job.</p>
-                    <a href='/hvac.html'>Click here</a>
                 </div>
                 <div class="trade-card">
+                    <a href="/electrical.html" class="card-link" aria-label="Go to Electrical page"></a>
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#E6A53A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     <h3>Electrical</h3>
                     <p>The one your whole neighborhood recommends.</p>
-                    <a href='/electrical.html'>Click here</a>
                 </div>
                 <div class="trade-card">
+                    <a href="/masonry.html" class="card-link" aria-label="Go to Masonry & Concrete page"></a>
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#E6A53A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="9" height="4" rx="0.5"/><rect x="13" y="4" width="9" height="4" rx="0.5"/><rect x="2" y="10" width="4" height="4" rx="0.5"/><rect x="8" y="10" width="8" height="4" rx="0.5"/><rect x="18" y="10" width="4" height="4" rx="0.5"/><rect x="2" y="16" width="9" height="4" rx="0.5"/><rect x="13" y="16" width="9" height="4" rx="0.5"/></svg>
                     <h3>Masonry & Concrete</h3>
                     <p>Big ticket. Won on first impression.</p>
-                    <a href='/masonry.html'>Click here</a>
                 </div>
                 <div class="trade-card">
+                    <a href="/landscaping.html" class="card-link" aria-label="Go to Landscaping page"></a>
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#E6A53A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17 Q7 10 12 3 Q17 10 12 17"/><path d="M12 17 Q4 15 3 21 Q9 23 12 17"/><path d="M12 17 Q20 15 21 21 Q15 23 12 17"/></svg>
                     <h3>Landscaping</h3>
                     <p>Seasonal work. Year-round presence.</p>
-                    <a href='/landscaping.html'>Click here</a>
                 </div>
             </div>
             <p class="trade-notice">Don't see your trade? Tell us below — finding the rest is literally the job.</p>

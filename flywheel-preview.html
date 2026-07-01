@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operative Flywheel — Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080808;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 60px 24px;
+      font-family: 'Space Grotesk', Arial, sans-serif;
+    }
+    .opfw-outer { width: 100%; max-width: 880px; }
+    .opfw-svg   { display: block; width: 100%; height: auto; }
+
+    /* Reduced-motion: base state, no JS motion */
+    @media (prefers-reduced-motion: reduce) {
+      #opfw-comet { transform: rotate(0deg) !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="opfw-outer" id="opfw-section">
+
+  <!--
+    OPERATIVE FLYWHEEL
+    Single SVG, viewBox 0 0 880 480.
+    Left column: text spine (selectable SVG text).
+    Right column: ring + nodes + animated comet.
+    Master clock drives BOTH comet rotation and node lighting — no drift possible.
+  -->
+  <svg
+    class="opfw-svg"
+    viewBox="0 0 880 480"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-labelledby="opfw-title opfw-desc"
+  >
+    <title id="opfw-title">Operative flywheel</title>
+    <desc id="opfw-desc">
+      A four-stage growth loop for local service businesses. Stage 1: Found — your business appears at the top of local search. Stage 2: Picked — the prospect calls you, not a competitor. Stage 3: Booked — follow-up and online booking run automatically. Stage 4: Reviewed — satisfied clients generate the next lead, feeding back into Found and closing the loop.
+    </desc>
+
+    <defs>
+      <!-- Subtle background grid: gold at 0.045 opacity on 80px pitch -->
+      <pattern id="opfw-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+        <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(212,165,72,0.045)" stroke-width="1"/>
+      </pattern>
+    </defs>
+
+    <!-- ── CANVAS ─────────────────────────────────────── -->
+    <rect x="0" y="0" width="880" height="480" rx="10" fill="#0f0e0c"/>
+    <rect x="0" y="0" width="880" height="480" rx="10" fill="url(#opfw-grid)"/>
+
+
+    <!-- ── LEFT COLUMN: TEXT SPINE ───────────────────── -->
+
+    <!-- Eyebrow rule + label -->
+    <line x1="40" y1="110" x2="74" y2="110" stroke="#d4a548" stroke-width="2"/>
+    <text
+      x="84" y="115"
+      font-family="'Space Grotesk', Arial, sans-serif"
+      font-size="13" font-weight="700" fill="#d4a548"
+      text-anchor="start" dominant-baseline="middle"
+      style="letter-spacing:.24em; text-transform:uppercase;"
+    >OPERATIVE FLYWHEEL</text>
+
+    <!-- Headline: one word per line, baselines at 186 / 236 / 286 / 336 -->
+    <text x="40" y="186" font-family="'Space Grotesk', Arial, sans-serif" font-size="48" font-weight="700" fill="#f5f0e6" style="letter-spacing:-.015em;">Found.</text>
+    <text x="40" y="236" font-family="'Space Grotesk', Arial, sans-serif" font-size="48" font-weight="700" fill="#f5f0e6" style="letter-spacing:-.015em;">Picked.</text>
+    <text x="40" y="286" font-family="'Space Grotesk', Arial, sans-serif" font-size="48" font-weight="700" fill="#f5f0e6" style="letter-spacing:-.015em;">Booked.</text>
+    <!-- Last word: gold -->
+    <text x="40" y="336" font-family="'Space Grotesk', Arial, sans-serif" font-size="48" font-weight="700" fill="#d4a548" style="letter-spacing:-.015em;">Reviewed.</text>
+
+    <!-- Caption: three lines, 24px leading, baseline at 388 -->
+    <text x="40" y="388" font-family="'Space Grotesk', Arial, sans-serif" font-size="16" font-weight="400" fill="#8b867c">One system, always on. The work you win</text>
+    <text x="40" y="412" font-family="'Space Grotesk', Arial, sans-serif" font-size="16" font-weight="400" fill="#8b867c">feeds the next lead — so the wheel keeps</text>
+    <text x="40" y="436" font-family="'Space Grotesk', Arial, sans-serif" font-size="16" font-weight="400" fill="#8b867c">turning, on the roof or under the sink.</text>
+
+
+    <!-- ── RIGHT COLUMN: FLYWHEEL RING ───────────────── -->
+    <!-- Ring center: (635, 230). Radius: 140. -->
+    <!-- Node angles (y-down screen space): Found=-90°, Chosen=0°, Kept=90°, Grown=180° -->
+
+    <!-- Rim (faint) -->
+    <circle cx="635" cy="230" r="140" fill="none" stroke="#d4a548" stroke-opacity="0.28" stroke-width="1.5"/>
+
+    <!-- Node halos: opacity animated by JS (baseline 0.18, peak 0.62) -->
+    <!-- data-node-angle: angle in degrees, y-down screen space -->
+    <circle class="opfw-halo" data-node-angle="-90"  cx="635" cy="90"  r="11" fill="#e6bd66" opacity="0.18"/>
+    <circle class="opfw-halo" data-node-angle="0"    cx="775" cy="230" r="11" fill="#e6bd66" opacity="0.18"/>
+    <circle class="opfw-halo" data-node-angle="90"   cx="635" cy="370" r="11" fill="#e6bd66" opacity="0.18"/>
+    <circle class="opfw-halo" data-node-angle="180"  cx="495" cy="230" r="11" fill="#e6bd66" opacity="0.18"/>
+
+    <!-- Node dots: scale animated 1→1.08 by JS -->
+    <circle class="opfw-dot" data-node-angle="-90"  data-cx="635" data-cy="90"  cx="635" cy="90"  r="5" fill="#d4a548"/>
+    <circle class="opfw-dot" data-node-angle="0"    data-cx="775" data-cy="230" cx="775" cy="230" r="5" fill="#d4a548"/>
+    <circle class="opfw-dot" data-node-angle="90"   data-cx="635" data-cy="370" cx="635" cy="370" r="5" fill="#d4a548"/>
+    <circle class="opfw-dot" data-node-angle="180"  data-cx="495" data-cy="230" cx="495" cy="230" r="5" fill="#d4a548"/>
+
+    <!-- Node labels (selectable text, just outside each dot) -->
+    <!-- Found: above, text-anchor middle -->
+    <text x="635" y="66" font-family="'Space Grotesk', Arial, sans-serif" font-size="19" font-weight="700" fill="#f5f0e6" text-anchor="middle">Found</text>
+    <!-- Picked: right, text-anchor start -->
+    <text x="793" y="230" font-family="'Space Grotesk', Arial, sans-serif" font-size="19" font-weight="700" fill="#f5f0e6" text-anchor="start" dominant-baseline="middle">Picked</text>
+    <!-- Booked: below, text-anchor middle -->
+    <text x="635" y="398" font-family="'Space Grotesk', Arial, sans-serif" font-size="19" font-weight="700" fill="#f5f0e6" text-anchor="middle">Booked</text>
+    <!-- Reviewed: left, text-anchor end -->
+    <text x="477" y="230" font-family="'Space Grotesk', Arial, sans-serif" font-size="19" font-weight="700" fill="#f5f0e6" text-anchor="end" dominant-baseline="middle">Reviewed</text>
+
+    <!-- Core: hairline circle + label (breathing opacity via JS) -->
+    <g id="opfw-core" style="opacity:0.70;">
+      <circle cx="635" cy="230" r="33" fill="none" stroke="#d4a548" stroke-width="1"/>
+      <text x="635" y="224" font-family="'Space Grotesk', Arial, sans-serif" font-size="14" font-weight="700" fill="#d4a548" text-anchor="middle" style="letter-spacing:.2em;">ONE</text>
+      <text x="635" y="241" font-family="'Space Grotesk', Arial, sans-serif" font-size="14" font-weight="700" fill="#d4a548" text-anchor="middle" style="letter-spacing:.2em;">SYSTEM</text>
+    </g>
+
+    <!--
+      COMET (decorative — aria-hidden)
+      Base position (before rotation): head at Found (635,90), tail at Grown (495,230).
+      Arc spans Grown(180°) → Found(270°/−90°) — 90° CW arc.
+      Split into dim tail (180°→225°) and bright head (225°→270°).
+      Midpoint at 225°: (635+140·cos225°, 230+140·sin225°) = (536, 131).
+
+      Rotation: rotate(headAngleDeg + 90, 635, 230)
+        - head (initially at 270°) → 270° + (headAngleDeg+90°) = headAngleDeg   ✓
+        - tail (initially at 180°) → 180° + (headAngleDeg+90°) = headAngleDeg−90° ✓
+    -->
+    <g id="opfw-comet" aria-hidden="true">
+      <!-- Tail arc: Grown(495,230) → midpoint(536,131) — 45°, faint -->
+      <path d="M 495,230 A 140,140 0 0,1 536,131"
+        fill="none" stroke="#d4a548" stroke-width="2" stroke-opacity="0.32" stroke-linecap="round"/>
+      <!-- Head arc: midpoint(536,131) → Found(635,90) — 45°, bright -->
+      <path d="M 536,131 A 140,140 0 0,1 635,90"
+        fill="none" stroke="#f0cf86" stroke-width="2.6" stroke-opacity="0.95" stroke-linecap="round"/>
+      <!-- Glint dot at head (635,90) -->
+      <circle cx="635" cy="90" r="4.5" fill="#f5e2a8"/>
+      <!-- Soft halo ring around glint -->
+      <circle cx="635" cy="90" r="9" fill="#f5e2a8" opacity="0.18"/>
+    </g>
+
+  </svg><!-- /opfw-svg -->
+
+</div><!-- /opfw-outer -->
+
+
+<script>
+(function () {
+  'use strict';
+
+  var DURATION = 14000; // 14s per revolution
+  var CX = 635, CY = 230;
+
+  var comet = document.getElementById('opfw-comet');
+  var core  = document.getElementById('opfw-core');
+
+  var halos = Array.from(document.querySelectorAll('.opfw-halo'));
+  var dots  = Array.from(document.querySelectorAll('.opfw-dot'));
+
+  var nodes = halos.map(function (halo, i) {
+    return {
+      halo:  halo,
+      dot:   dots[i],
+      angle: parseFloat(halo.dataset.nodeAngle),
+      dcx:   parseFloat(dots[i].dataset.cx),
+      dcy:   parseFloat(dots[i].dataset.cy)
+    };
+  });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var startTime = null;
+
+  function smoothstep(edge0, edge1, x) {
+    var t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+    return t * t * (3 - 2 * t);
+  }
+
+  function tick(now) {
+    if (!startTime) startTime = now;
+    var elapsed = now - startTime;
+
+    /* ─── MASTER CLOCK ─────────────────────────────────────────── */
+    var t = (elapsed % DURATION) / DURATION;
+
+    /* ─── COMET ────────────────────────────────────────────────── */
+    var headAngleDeg = -90 + 360 * t;
+    // SVG rotate(angle cx cy) handles center-of-rotation natively
+    comet.setAttribute('transform',
+      'rotate(' + (headAngleDeg + 90).toFixed(2) + ' ' + CX + ' ' + CY + ')');
+
+    /* ─── NODE LIGHTING ────────────────────────────────────────── */
+    for (var i = 0; i < nodes.length; i++) {
+      var n    = nodes[i];
+      var diff = ((headAngleDeg - n.angle) % 360 + 360) % 360;
+      var dist = diff > 180 ? 360 - diff : diff;
+      var bri  = smoothstep(50, 0, dist);
+
+      n.halo.setAttribute('opacity', (0.18 + bri * 0.44).toFixed(3));
+      n.dot.setAttribute('transform',
+        'translate(' + n.dcx + ' ' + n.dcy + ')' +
+        ' scale(' + (1 + bri * 0.08).toFixed(4) + ')' +
+        ' translate(' + (-n.dcx) + ' ' + (-n.dcy) + ')');
+    }
+
+    /* ─── CORE BREATHE ─────────────────────────────────────────── */
+    var bp = (elapsed % 7000) / 7000;
+    core.style.opacity = (0.65 + 0.27 * (0.5 + 0.5 * Math.sin(bp * 2 * Math.PI))).toFixed(3);
+
+    requestAnimationFrame(tick);
+  }
+
+  // Start immediately — no IntersectionObserver complexity
+  requestAnimationFrame(tick);
+
+}());
+</script>
+
+</body>
+</html>
