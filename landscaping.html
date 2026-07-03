@@ -95,8 +95,8 @@
         .pricing-section-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dk-muted); font-family: 'Space Grotesk', sans-serif; font-weight: 600; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
         .pricing-section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--amber); flex-shrink: 0; }
         .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 860px; }
-        .pricing-card { background: var(--dk-surface); border: 1px solid var(--dk-border); border-radius: 10px; padding: 32px 28px; position: relative; transition: box-shadow 0.2s; }
-        .pricing-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+        .pricing-card { background: var(--dk-surface); border: 1px solid var(--dk-border); border-radius: 10px; padding: 32px 28px; position: relative; transition: box-shadow 0.2s, border-color 0.2s, background 0.2s, transform 0.15s; cursor: pointer; }
+        .pricing-card:hover { box-shadow: 0 8px 32px rgba(201,139,26,0.15); border-color: var(--amber); background: linear-gradient(160deg, rgba(201,139,26,0.08) 0%, var(--dk-surface) 60%); transform: translateY(-2px); }
         .pricing-card.popular { border: 2px solid var(--amber); background: linear-gradient(160deg, rgba(201,139,26,0.10) 0%, var(--dk-surface) 60%); }
         .popular-badge { position: absolute; top: 16px; right: 16px; background: var(--amber); color: #1A1710; padding: 3px 10px; border-radius: 4px; font-size: 0.63rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
         .pricing-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--dk-text); margin-bottom: 4px; }
