@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operative - Build Your Site First, Pay Only If You Keep It</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
@@ -74,8 +74,7 @@
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            height: calc(64px + env(safe-area-inset-top));
-            padding-top: env(safe-area-inset-top);
+            height: 64px;
             background: rgba(244,239,228,0.88);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
@@ -83,8 +82,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-left: 32px;
-            padding-right: 32px;
+            padding: 0 32px;
             z-index: 1000;
         }
 
@@ -300,16 +298,7 @@
         @media (max-width: 640px) {
             .sticky-cta-bar { display: block; }
             body { padding-bottom: 60px; }
-            .section-label {
-                letter-spacing: 0.08em;
-                flex-wrap: wrap;
-                row-gap: 2px;
-            }
-            .mob-br { display: inline; }
-            .mob-dot { display: none; }
         }
-        .mob-br { display: none; }
-        .mob-dot { display: inline; }
 
         /* ─── TRADE SECTION ──────────────────────────────────── */
         .trades {
@@ -400,11 +389,13 @@
             background: rgba(201,139,26,0.1);
             border: 1px solid rgba(201,139,26,0.2);
             flex-shrink: 0;
-            margin-bottom: 14px;
         }
 
         .trade-card-header {
-            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
         }
 
         .trade-card h3 {
@@ -414,14 +405,13 @@
             font-size: 1.05rem;
             letter-spacing: -0.01em;
             margin-top: 0;
-            margin-bottom: 0;
         }
 
         .trade-card p.tagline {
             color: var(--text-muted);
             font-size: 0.875rem;
             font-weight: 500;
-            margin-top: 0;
+            margin-top: 6px;
             line-height: 1.5;
         }
 
@@ -1291,7 +1281,7 @@
     <section id="trades" class="trades">
         <div class="container">
             <div class="trades-head">
-                <div class="section-label"><span class="hi">Start here</span><span class="mob-dot"> · </span><br class="mob-br">Your trade, your page</div>
+                <div class="section-label"><span class="hi">Start here</span> · Your trade, your page</div>
                 <h2>Your trade. Your page. Your system.</h2>
             </div>
             <div class="trade-grid">
@@ -1461,7 +1451,7 @@
     <!-- The Difference -->
     <section id="diff" class="difference">
         <div class="container">
-            <div class="section-label" style="justify-content:center;"><span class="hi">You run the business</span><span class="mob-dot"> · </span><br class="mob-br">We handle the rest</div>
+            <div class="section-label" style="justify-content:center;"><span class="hi">You run the business</span> · We handle the rest</div>
             <h2>You should be running your business, not editing templates.</h2>
             <p>Hours changed? New service area? Updated pricing? New photos? One message and it's done — same day. No logins. No dashboards. No learning curve.</p>
             <div class="platforms">
@@ -1578,7 +1568,6 @@
                     <input type="text" name="name" placeholder="Name" required>
                     <input type="text" name="company" placeholder="Company">
                     <input type="tel" name="phone" placeholder="Phone" required>
-                    <input type="email" name="email" placeholder="Email">
                     <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
                     <button type="submit">Send it →</button>
                 </form>
@@ -1697,18 +1686,5 @@
         }
     }());
     </script>
-
-<script>
-// Pricing cards → scroll to CTA
-document.querySelectorAll('.pricing-card').forEach(function(card) {
-  card.style.cursor = 'pointer';
-  card.addEventListener('click', function(e) {
-    if (!e.target.closest('a, button')) {
-      var target = document.getElementById('contact');
-      if (target) target.scrollIntoView({behavior: 'smooth'});
-    }
-  });
-});
-</script>
 </body>
 </html>

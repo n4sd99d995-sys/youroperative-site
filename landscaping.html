@@ -312,12 +312,14 @@
     <div class="container">
         <div class="lead">Win the spring rush. Keep them all year.</div>
         <p>We build your landscaping site before you pay a cent. <span class="gold">See it, then decide.</span></p>
-        <div class="contact-form">
-            <input type="text" class="fld" placeholder="Name">
-            <input type="text" class="fld" placeholder="Company">
-            <input type="text" class="fld" placeholder="Phone">
-            <a href="#" class="btn-gold">Send it &rarr;</a>
-        </div>
+        <form class="contact-form" method="POST" action="/.netlify/functions/contact">
+            <input type="text" class="fld" name="name" placeholder="Name" required>
+            <input type="text" class="fld" name="company" placeholder="Company">
+            <input type="tel" class="fld" name="phone" placeholder="Phone" required>
+            <input type="email" class="fld" name="email" placeholder="Email">
+            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+            <button type="submit" class="btn-gold">Send it &rarr;</button>
+        </form>
         <div class="sign">That's Your Operative.</div>
     </div>
 </section>
@@ -329,5 +331,18 @@
     <span class="tagline">THAT'S YOUR OPERATIVE.</span>
 </footer>
 
+
+<script>
+// Pricing cards → scroll to CTA
+document.querySelectorAll('.pricing-card').forEach(function(card) {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', function(e) {
+    if (!e.target.closest('a, button')) {
+      var target = document.getElementById('cta');
+      if (target) target.scrollIntoView({behavior: 'smooth'});
+    }
+  });
+});
+</script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operative - Build Your Site First, Pay Only If You Keep It</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
@@ -74,8 +74,7 @@
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            height: calc(64px + env(safe-area-inset-top));
-            padding-top: env(safe-area-inset-top);
+            height: 64px;
             background: rgba(244,239,228,0.88);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
@@ -83,8 +82,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-left: 32px;
-            padding-right: 32px;
+            padding: 0 32px;
             z-index: 1000;
         }
 
@@ -300,16 +298,7 @@
         @media (max-width: 640px) {
             .sticky-cta-bar { display: block; }
             body { padding-bottom: 60px; }
-            .section-label {
-                letter-spacing: 0.08em;
-                flex-wrap: wrap;
-                row-gap: 2px;
-            }
-            .mob-br { display: inline; }
-            .mob-dot { display: none; }
         }
-        .mob-br { display: none; }
-        .mob-dot { display: inline; }
 
         /* ─── TRADE SECTION ──────────────────────────────────── */
         .trades {
@@ -399,12 +388,6 @@
             border-radius: 8px;
             background: rgba(201,139,26,0.1);
             border: 1px solid rgba(201,139,26,0.2);
-            flex-shrink: 0;
-            margin-bottom: 14px;
-        }
-
-        .trade-card-header {
-            margin-bottom: 4px;
         }
 
         .trade-card h3 {
@@ -413,15 +396,14 @@
             font-weight: 700;
             font-size: 1.05rem;
             letter-spacing: -0.01em;
-            margin-top: 0;
-            margin-bottom: 0;
+            margin-top: 16px;
         }
 
         .trade-card p.tagline {
             color: var(--text-muted);
             font-size: 0.875rem;
             font-weight: 500;
-            margin-top: 0;
+            margin-top: 6px;
             line-height: 1.5;
         }
 
@@ -449,22 +431,6 @@
             padding: 100px 24px;
             background: var(--bg);
             border-top: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .flywheel::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,139,26,0.12) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .flywheel > * {
-            position: relative;
-            z-index: 1;
         }
 
         .flywheel-head {
@@ -1291,73 +1257,61 @@
     <section id="trades" class="trades">
         <div class="container">
             <div class="trades-head">
-                <div class="section-label"><span class="hi">Start here</span><span class="mob-dot"> · </span><br class="mob-br">Your trade, your page</div>
+                <div class="section-label"><span class="hi">Start here</span> · Your trade, your page</div>
                 <h2>Your trade. Your page. Your system.</h2>
             </div>
             <div class="trade-grid">
                 <div class="trade-card">
                     <a href="/roofing.html" class="card-link" aria-label="Go to Roofing page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M4 10.5V21h16V10.5"/><path d="M13 9l-2.5 4h3.5l-2.5 4"/></svg>
-                        </div>
-                        <h3>Roofing</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M4 10.5V21h16V10.5"/><path d="M13 9l-2.5 4h3.5l-2.5 4"/></svg>
                     </div>
+                    <h3>Roofing</h3>
                     <p class="tagline">Storm hits. They search. You show up first.</p>
                     <span class="trade-stat">Avg job: $9,500 · First to respond wins the claim</span>
                 </div>
                 <div class="trade-card">
                     <a href="/plumbing.html" class="card-link" aria-label="Go to Plumbing page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg>
-                        </div>
-                        <h3>Plumbing</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg>
                     </div>
+                    <h3>Plumbing</h3>
                     <p class="tagline">Under a sink? The lead still gets caught.</p>
                     <span class="trade-stat">54% of after-hours calls hit voicemail — never called back</span>
                 </div>
                 <div class="trade-card">
                     <a href="/hvac.html" class="card-link" aria-label="Go to HVAC page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
-                        </div>
-                        <h3>HVAC</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
                     </div>
+                    <h3>HVAC</h3>
                     <p class="tagline">July outage. First name they find wins the job.</p>
                     <span class="trade-stat">Weekend answer rate: 31% · Avg missed call: $1,200</span>
                 </div>
                 <div class="trade-card">
                     <a href="/electrical.html" class="card-link" aria-label="Go to Electrical page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        </div>
-                        <h3>Electrical</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
+                    <h3>Electrical</h3>
                     <p class="tagline">The one your whole neighborhood recommends.</p>
                     <span class="trade-stat">49% of electricians lose jobs to whoever answered first</span>
                 </div>
                 <div class="trade-card">
                     <a href="/masonry.html" class="card-link" aria-label="Go to Masonry & Concrete page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="9" height="4" rx="0.5"/><rect x="13" y="4" width="9" height="4" rx="0.5"/><rect x="2" y="10" width="4" height="4" rx="0.5"/><rect x="8" y="10" width="8" height="4" rx="0.5"/><rect x="18" y="10" width="4" height="4" rx="0.5"/><rect x="2" y="16" width="9" height="4" rx="0.5"/><rect x="13" y="16" width="9" height="4" rx="0.5"/></svg>
-                        </div>
-                        <h3>Masonry & Concrete</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="9" height="4" rx="0.5"/><rect x="13" y="4" width="9" height="4" rx="0.5"/><rect x="2" y="10" width="4" height="4" rx="0.5"/><rect x="8" y="10" width="8" height="4" rx="0.5"/><rect x="18" y="10" width="4" height="4" rx="0.5"/><rect x="2" y="16" width="9" height="4" rx="0.5"/><rect x="13" y="16" width="9" height="4" rx="0.5"/></svg>
                     </div>
+                    <h3>Masonry & Concrete</h3>
                     <p class="tagline">Big ticket. Won on first impression.</p>
                     <span class="trade-stat">67% of callers call a competitor within 5 minutes of voicemail</span>
                 </div>
                 <div class="trade-card">
                     <a href="/landscaping.html" class="card-link" aria-label="Go to Landscaping page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17 Q7 10 12 3 Q17 10 12 17"/><path d="M12 17 Q4 15 3 21 Q9 23 12 17"/><path d="M12 17 Q20 15 21 21 Q15 23 12 17"/></svg>
-                        </div>
-                        <h3>Landscaping</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17 Q7 10 12 3 Q17 10 12 17"/><path d="M12 17 Q4 15 3 21 Q9 23 12 17"/><path d="M12 17 Q20 15 21 21 Q15 23 12 17"/></svg>
                     </div>
+                    <h3>Landscaping</h3>
                     <p class="tagline">Seasonal work. Year-round presence.</p>
                     <span class="trade-stat">85% of unanswered leads never call back</span>
                 </div>
@@ -1461,7 +1415,7 @@
     <!-- The Difference -->
     <section id="diff" class="difference">
         <div class="container">
-            <div class="section-label" style="justify-content:center;"><span class="hi">You run the business</span><span class="mob-dot"> · </span><br class="mob-br">We handle the rest</div>
+            <div class="section-label" style="justify-content:center;"><span class="hi">You run the business</span> · We handle the rest</div>
             <h2>You should be running your business, not editing templates.</h2>
             <p>Hours changed? New service area? Updated pricing? New photos? One message and it's done — same day. No logins. No dashboards. No learning curve.</p>
             <div class="platforms">
@@ -1578,7 +1532,6 @@
                     <input type="text" name="name" placeholder="Name" required>
                     <input type="text" name="company" placeholder="Company">
                     <input type="tel" name="phone" placeholder="Phone" required>
-                    <input type="email" name="email" placeholder="Email">
                     <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
                     <button type="submit">Send it →</button>
                 </form>
@@ -1697,18 +1650,5 @@
         }
     }());
     </script>
-
-<script>
-// Pricing cards → scroll to CTA
-document.querySelectorAll('.pricing-card').forEach(function(card) {
-  card.style.cursor = 'pointer';
-  card.addEventListener('click', function(e) {
-    if (!e.target.closest('a, button')) {
-      var target = document.getElementById('contact');
-      if (target) target.scrollIntoView({behavior: 'smooth'});
-    }
-  });
-});
-</script>
 </body>
 </html>

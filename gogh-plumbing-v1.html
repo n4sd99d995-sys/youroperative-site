@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Operative for HVAC Contractors — Build it first. Pay only if you keep it.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operative for Plumbers — Build it first. Pay only if you keep it.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -71,15 +71,16 @@
             background: var(--amber);
             flex-shrink: 0;
         }
-        .dk .section-label { color: var(--dk-muted); }
+        .dk .section-label {
+            color: var(--dk-muted);
+        }
 
         /* ─── NAV — warm frosted glass ───────────── */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            height: calc(64px + env(safe-area-inset-top));
-    padding-top: env(safe-area-inset-top);
-    background: rgba(244,239,228,0.88);
+            height: 64px;
+            background: rgba(244,239,228,0.88);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(0,0,0,0.07);
@@ -89,6 +90,7 @@
             padding: 0 32px;
             z-index: 1000;
         }
+
         .nav-logo {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.05rem;
@@ -100,11 +102,13 @@
             gap: 9px;
             text-decoration: none;
         }
+
         .nav-links {
             display: flex;
             gap: 28px;
             align-items: center;
         }
+
         .nav-links a {
             color: #6B6050;
             text-decoration: none;
@@ -115,6 +119,7 @@
             transition: color 0.2s;
         }
         .nav-links a:hover { color: #1A1710; }
+
         .nav-btn-primary {
             background: #C98B1A;
             color: #1A1710 !important;
@@ -129,17 +134,12 @@
             transition: background 0.18s, transform 0.1s;
         }
         .nav-btn-primary:hover { background: #E09F25; transform: translateY(-1px); }
+
         @media (max-width: 640px) {
             nav { padding: 0 16px; }
             .nav-links a:not(.nav-btn-primary) { display: none; }
             .nav-links { gap: 12px; }
-            .eyebrow { letter-spacing: 0.08em; white-space: normal; }
-            .section-label { letter-spacing: 0.08em; flex-wrap: wrap; row-gap: 2px; }
-            .mob-br { display: inline; }
-            .mob-dot { display: none; }
         }
-        .mob-br { display: none; }
-        .mob-dot { display: inline; }
 
         /* ─── BUTTONS ────────────────────────────────────────── */
         .btn-gold {
@@ -156,6 +156,7 @@
             letter-spacing: 0.02em;
         }
         .btn-gold:hover { background: var(--amber-bright); transform: translateY(-1px); }
+
         .btn-ghost {
             border: 1.5px solid rgba(201,139,26,0.4);
             color: var(--amber);
@@ -169,9 +170,12 @@
             transition: border-color 0.18s, background 0.18s;
         }
         .btn-ghost:hover { background: var(--amber-glow); border-color: var(--amber); }
+
         .btns { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
-        /* ─── HERO — light ─────────────────────────────── */
+        /* ─── LIGHT SECTIONS ─────────────────────────────────── */
+
+        /* HERO */
         .hero {
             background: var(--bg);
             padding: 72px 28px 64px;
@@ -187,6 +191,7 @@
             pointer-events: none;
         }
         .hero .container { position: relative; z-index: 1; }
+
         .hero .eyebrow {
             font-size: 0.68rem;
             letter-spacing: 0.22em;
@@ -206,6 +211,7 @@
             background: var(--amber);
             flex-shrink: 0;
         }
+
         .hero h1 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(1.8rem, 4.5vw, 2.8rem);
@@ -217,6 +223,7 @@
             margin-bottom: 14px;
         }
         .hero h1 .gold { color: var(--amber); }
+
         .hero-stat {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.78rem;
@@ -236,6 +243,7 @@
             background: var(--amber);
             flex-shrink: 0;
         }
+
         .hero p {
             color: var(--text-sub);
             font-size: 1.0rem;
@@ -246,12 +254,13 @@
         }
         .hero p em { font-style: italic; color: var(--text-muted); }
 
-        /* ─── PROBLEM — light alt ─────────────────── */
+        /* PROBLEM SECTION (light alt) */
         .problem {
             background: var(--bg-alt);
             padding: 64px 28px;
             border-top: 1px solid var(--border);
         }
+
         .problem .lead {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(1.3rem, 3vw, 1.75rem);
@@ -262,6 +271,7 @@
             margin-bottom: 18px;
         }
         .problem .lead .gold { color: var(--amber); }
+
         .problem .body {
             font-size: 0.975rem;
             color: var(--text-sub);
@@ -269,12 +279,13 @@
             max-width: 620px;
         }
 
-        /* ─── WE HANDLE IT — light ────────────────── */
+        /* WE HANDLE IT (light) */
         .handles {
             background: var(--bg);
             padding: 64px 28px;
             border-top: 1px solid var(--border);
         }
+
         .handles .eyebrow-gold {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.68rem;
@@ -294,6 +305,7 @@
             background: var(--amber);
             flex-shrink: 0;
         }
+
         .handles .lead {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(1.2rem, 2.5vw, 1.55rem);
@@ -304,6 +316,7 @@
             margin-bottom: 18px;
         }
         .handles .lead .gold { color: var(--amber); }
+
         .handles .body {
             font-size: 0.9rem;
             color: var(--text-sub);
@@ -318,9 +331,15 @@
             color: var(--dk-text);
         }
 
-        /* STAGES */
-        .stages { padding: 72px 28px; }
-        .stages-head { margin-bottom: 48px; }
+        /* FOUR STAGES — dark flywheel treatment */
+        .stages {
+            padding: 72px 28px;
+        }
+
+        .stages-head {
+            margin-bottom: 48px;
+        }
+
         .stages-head .lead {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(1.6rem, 3.5vw, 2.2rem);
@@ -330,6 +349,7 @@
             color: var(--dk-text);
         }
         .stages-head .lead .accent { color: var(--amber); }
+
         .stages-head p {
             color: var(--dk-muted);
             font-size: 0.975rem;
@@ -337,11 +357,13 @@
             max-width: 540px;
         }
 
+        /* Stage items */
         .stage-item {
             padding: 28px 0;
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         .stage-item:last-child { border-bottom: none; }
+
         .stage-label {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.7rem;
@@ -351,6 +373,7 @@
             font-weight: 600;
             margin-bottom: 8px;
         }
+
         .stage-headline {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.1rem;
@@ -359,6 +382,7 @@
             margin-bottom: 10px;
             letter-spacing: -0.01em;
         }
+
         .stage-body {
             font-size: 0.925rem;
             color: var(--dk-muted);
@@ -366,18 +390,42 @@
             max-width: 620px;
             margin-bottom: 16px;
         }
+
+        /* Caps grid */
         .caps {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 6px 20px;
         }
-        .cap { display: flex; align-items: flex-start; gap: 8px; }
-        .cap i { font-size: 13px; color: var(--amber); margin-top: 2px; flex-shrink: 0; }
-        .cap span { font-family: 'Inter', sans-serif; font-size: 11.5px; color: var(--dk-muted); line-height: 1.4; font-weight: 500; }
+
+        .cap {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .cap i {
+            font-size: 13px;
+            color: var(--amber);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .cap span {
+            font-family: 'Inter', sans-serif;
+            font-size: 11.5px;
+            color: var(--dk-muted);
+            line-height: 1.4;
+            font-weight: 500;
+        }
 
         /* ─── PRICING — dark ─────────────────────────────────── */
-        .pricing { padding: 72px 28px; }
-        .pricing-head { margin-bottom: 44px; }
+        .pricing {
+            padding: 72px 28px;
+        }
+
+        .pricing-head {
+            margin-bottom: 44px;
+        }
+
         .pricing-head .lead {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(1.6rem, 3.5vw, 2.2rem);
@@ -387,6 +435,7 @@
             color: var(--dk-text);
         }
         .pricing-head .lead .accent { color: var(--amber); }
+
         .pricing-head p {
             color: var(--dk-muted);
             font-size: 0.925rem;
@@ -394,6 +443,7 @@
             font-style: italic;
             max-width: 480px;
         }
+
         .pricing-section-label {
             font-size: 0.68rem;
             letter-spacing: 0.22em;
@@ -413,12 +463,14 @@
             background: var(--amber);
             flex-shrink: 0;
         }
+
         .pricing-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 16px;
             max-width: 860px;
         }
+
         .pricing-card {
             background: var(--dk-surface);
             border: 1px solid var(--dk-border);
@@ -427,11 +479,15 @@
             position: relative;
             transition: box-shadow 0.2s;
         }
-        .pricing-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+        .pricing-card:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+
         .pricing-card.popular {
             border: 2px solid var(--amber);
             background: linear-gradient(160deg, rgba(201,139,26,0.10) 0%, var(--dk-surface) 60%);
         }
+
         .popular-badge {
             position: absolute;
             top: 16px; right: 16px;
@@ -445,6 +501,7 @@
             text-transform: uppercase;
             letter-spacing: 0.06em;
         }
+
         .pricing-card h3 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.1rem;
@@ -452,6 +509,7 @@
             color: var(--dk-text);
             margin-bottom: 4px;
         }
+
         .pricing-amount {
             color: var(--amber);
             font-family: 'Space Grotesk', sans-serif;
@@ -461,12 +519,47 @@
             line-height: 1;
             margin: 12px 0 4px;
         }
-        .pricing-amount .period { color: var(--dk-muted); font-size: 0.5em; letter-spacing: 0; font-weight: 500; }
-        .pricing-description { color: var(--dk-muted); font-size: 0.85rem; margin-bottom: 22px; line-height: 1.5; }
-        .pricing-bullets { display: flex; flex-direction: column; gap: 10px; }
-        .pricing-bullet { color: var(--dk-muted); font-size: 0.845rem; display: flex; gap: 9px; align-items: flex-start; }
-        .pricing-bullet .check { color: var(--amber); flex-shrink: 0; font-weight: 700; margin-top: 0.05em; }
-        .pricing-note { color: var(--dk-faint); font-size: 0.8rem; font-style: italic; margin-top: 32px; }
+        .pricing-amount .period {
+            color: var(--dk-muted);
+            font-size: 0.5em;
+            letter-spacing: 0;
+            font-weight: 500;
+        }
+
+        .pricing-description {
+            color: var(--dk-muted);
+            font-size: 0.85rem;
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
+
+        .pricing-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pricing-bullet {
+            color: var(--dk-muted);
+            font-size: 0.845rem;
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+        }
+
+        .pricing-bullet .check {
+            color: var(--amber);
+            flex-shrink: 0;
+            font-weight: 700;
+            margin-top: 0.05em;
+        }
+
+        .pricing-note {
+            color: var(--dk-faint);
+            font-size: 0.8rem;
+            font-style: italic;
+            margin-top: 32px;
+        }
 
         /* ─── CTA — dark ─────────────────────────────────────── */
         .cta-section {
@@ -483,7 +576,9 @@
             background: radial-gradient(ellipse at center bottom, rgba(201,139,26,0.12) 0%, transparent 65%);
             pointer-events: none;
         }
+
         .cta-section .container { position: relative; z-index: 1; }
+
         .cta-section .lead {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(1.6rem, 3.5vw, 2.4rem);
@@ -493,9 +588,21 @@
             color: var(--dk-text);
             margin-bottom: 14px;
         }
-        .cta-section p { color: var(--dk-muted); font-size: 1rem; margin-bottom: 32px; }
+
+        .cta-section p {
+            color: var(--dk-muted);
+            font-size: 1rem;
+            margin-bottom: 32px;
+        }
         .cta-section p .gold { color: var(--amber); }
-        .contact-form { display: flex; gap: 10px; max-width: 560px; flex-wrap: wrap; }
+
+        .contact-form {
+            display: flex;
+            gap: 10px;
+            max-width: 560px;
+            flex-wrap: wrap;
+        }
+
         .contact-form .fld {
             flex: 1;
             min-width: 120px;
@@ -508,8 +615,19 @@
             color: var(--dk-muted);
             transition: border-color 0.18s;
         }
-        .contact-form .fld:focus { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(201,139,26,0.12); }
-        .sign { font-family: 'Space Grotesk', sans-serif; font-size: 0.825rem; color: var(--dk-faint); margin-top: 16px; font-style: italic; }
+        .contact-form .fld:focus {
+            outline: none;
+            border-color: var(--amber);
+            box-shadow: 0 0 0 3px rgba(201,139,26,0.12);
+        }
+
+        .sign {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.825rem;
+            color: var(--dk-faint);
+            margin-top: 16px;
+            font-style: italic;
+        }
 
         /* ─── FOOTER — dark ──────────────────────────────────── */
         footer {
@@ -522,8 +640,17 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-        footer .left { color: var(--dk-faint); font-size: 0.8rem; }
-        footer .right { color: var(--dk-faint); font-size: 0.8rem; }
+
+        footer .left {
+            color: var(--dk-faint);
+            font-size: 0.8rem;
+        }
+
+        footer .right {
+            color: var(--dk-faint);
+            font-size: 0.8rem;
+        }
+
         footer .tagline {
             color: #6B5A30;
             font-family: 'Space Grotesk', sans-serif;
@@ -539,31 +666,13 @@
             .caps { grid-template-columns: 1fr; }
             .pricing-cards { grid-template-columns: 1fr; }
             .contact-form { flex-direction: column; }
-            .contact-form .fld, .contact-form .btn-gold { width: 100%; }
+            .contact-form .fld,
+            .contact-form .btn-gold { width: 100%; }
             footer { flex-direction: column; text-align: center; }
         }
-        @media (max-width: 480px) { .hero h1 { font-size: 1.7rem; } }
 
-        @media (max-width: 640px) {
-            .handles .eyebrow-gold {
-                display: block;
-            }
-            .handles .eyebrow-gold::before {
-                display: inline-block;
-                margin-right: 8px;
-                vertical-align: middle;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero-stat {
-                display: block;
-            }
-            .hero-stat::before {
-                display: inline-block;
-                margin-right: 6px;
-                vertical-align: middle;
-            }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.7rem; }
         }
     </style>
 </head>
@@ -588,12 +697,12 @@
 <!-- ─── HERO — light ─────────────────────────────────────────── -->
 <section class="hero">
     <div class="container">
-        <div class="eyebrow">Operative for HVAC contractors</div>
-        <h1>First 95° day of the year. Her AC quits at dinnertime. She's calling every company on page one of Google.<br><span class="gold">If you're not on it, you're not getting the call.</span></h1>
-        <div class="hero-stat">Weekend answer rate: 31%<span class="mob-dot"> · </span><br class="mob-br">Avg missed call: $1,200</div>
-        <p>You can diagnose a bad cap from the sound of the condenser, tell a low charge from a dirty coil from a seized compressor. But none of that matters at 6pm on the first hot day if she can't find you — or if she gets your voicemail while the next guy picks up. We build your whole system before you pay a dime.</p>
+        <div class="eyebrow">Operative for plumbers</div>
+        <h1>You're under a sink when the phone rings.<br><span class="gold">By the time you surface, they've called the next guy.</span></h1>
+        <div class="hero-stat">54% of after-hours calls hit voicemail — never called back</div>
+        <p>You can clear a main line blind and diagnose a water heater by the sound it makes. But none of that skill matters at the moment a homeowner with a flooding kitchen is dialing down a list of plumbers — whoever answers first wins the job. We make sure that's you. We build your whole site before you pay a dime.</p>
         <div class="btns">
-            <a href="#cta" class="btn-gold">See your HVAC site &rarr;</a>
+            <a href="#cta" class="btn-gold">See your plumbing site &rarr;</a>
             <a href="#pricing" class="btn-ghost">View pricing</a>
         </div>
     </div>
@@ -602,9 +711,9 @@
 <!-- ─── PROBLEM — light alt ───────────────────────────────────── -->
 <section class="problem">
     <div class="container">
-        <div class="section-label">The peak-season problem — and the off-season one</div>
-        <div class="lead">In July you can't answer fast enough. In October the phone goes quiet. <span class="gold">The fix for both is the same system.</span></div>
-        <p class="body">When it's 95° you're slammed and leads slip — every missed call is a $400 service ticket or an $8,000 changeout gone to a competitor. When it's mild, the phone stops and you're chasing maintenance agreements to keep the trucks busy. Operative catches every lead in peak season automatically, then works your customer list in the slow months to fill the calendar with tune-ups and replacements. One system, both problems.</p>
+        <div class="section-label">The speed problem</div>
+        <div class="lead">A burst pipe at 11pm. The homeowner calls three plumbers at once. <span class="gold">First to respond gets the job.</span></div>
+        <p class="body">That's not a marketing problem — it's a speed problem. The other two go to voicemail; the Operative system texts them back the second the call misses. Before you've put your tools down, the lead is already in conversation, already booked. The easy emergency money stops leaking to whoever happened to pick up.</p>
     </div>
 </section>
 
@@ -612,20 +721,20 @@
 <section class="stages dk" id="how">
     <div class="container">
         <div class="stages-head">
-            <div class="section-label">How it runs<span class="mob-dot"> · </span><br class="mob-br">The HVAC flywheel</div>
-            <div class="lead">Four things running every month.<br><span class="accent">Each one feeds the next.</span></div>
+            <div class="section-label">Four things running, <em style="font-style:italic;color:#C98B1A">always.</em></div>
+            <div class="lead">The system runs every month.<br><span class="accent">Each piece feeds the next.</span></div>
             <p>Found leads to Picked. Picked leads to Booked. Booked leads to Reviewed. Reviewed puts you back at the top of Found.</p>
         </div>
 
         <!-- FOUND -->
         <div class="stage-item">
             <div class="stage-label">Found.</div>
-            <div class="stage-headline">When the first heat wave hits, you're on page one.</div>
-            <div class="stage-body">Your site ranks for "AC repair near me," "emergency HVAC," "furnace not working," "AC replacement quote" — for every town you run. Google Business dialed in with hours, service area, and financing messaging. So when half the city searches the same afternoon their systems give out, you're the local name they find, not just the national franchise buying the top ad slot.</div>
+            <div class="stage-headline">When a pipe bursts, you're the first name they find.</div>
+            <div class="stage-body">Your site ranks for the searches that matter in your area — emergency plumber, water heater replacement, drain cleaning, repipe. Your Google Business profile is optimized and current. When someone searches at 11pm with water spreading across the floor, you show up first.</div>
             <div class="caps">
                 <div class="cap"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Google Business, optimized</span></div>
-                <div class="cap"><i class="ti ti-search" aria-hidden="true"></i><span>Ranks for repair &amp; replace searches</span></div>
-                <div class="cap"><i class="ti ti-snowflake" aria-hidden="true"></i><span>Seasonal pages: cooling &amp; heating</span></div>
+                <div class="cap"><i class="ti ti-search" aria-hidden="true"></i><span>Local SEO on every page</span></div>
+                <div class="cap"><i class="ti ti-droplet" aria-hidden="true"></i><span>Ranks for emergency &amp; service work</span></div>
                 <div class="cap"><i class="ti ti-world" aria-hidden="true"></i><span>Built to rank in Google &amp; AI search</span></div>
             </div>
         </div>
@@ -633,38 +742,38 @@
         <!-- PICKED -->
         <div class="stage-item">
             <div class="stage-label">Picked.</div>
-            <div class="stage-headline">Her call gets answered on the hottest day of the year.</div>
-            <div class="stage-body">She calls, you're elbow-deep in an attic air handler. The AI agent picks up the missed call instantly by text — asks if it's no-cooling, gets the address, offers the soonest slot, flags it as emergency if the house is at 88°. She's booked before she dials the next company. Your reviews in the local pack already told her you're the one people trust. No more losing the easy money to whoever happened to answer.</div>
+            <div class="stage-headline">You text back before they've hung up.</div>
+            <div class="stage-body">They call three plumbers. The other two go to voicemail. An AI agent sends an automatic text in under a minute — your name, your availability, a booking link, and a couple quick questions to size up the job. Stacked reviews in the local pack already told them you're the one. That's the job, won before you've resurfaced from under the sink.</div>
             <div class="caps">
-                <div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI agent answers &amp; triages 24/7</span></div>
+                <div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI agent answers &amp; qualifies 24/7</span></div>
                 <div class="cap"><i class="ti ti-bolt" aria-hidden="true"></i><span>Missed-call text-back</span></div>
                 <div class="cap"><i class="ti ti-star" aria-hidden="true"></i><span>Reviews stacked in the local pack</span></div>
-                <div class="cap"><i class="ti ti-urgent" aria-hidden="true"></i><span>Emergency calls flagged &amp; prioritized</span></div>
+                <div class="cap"><i class="ti ti-clock" aria-hidden="true"></i><span>First to reply, every time</span></div>
             </div>
         </div>
 
         <!-- BOOKED -->
         <div class="stage-item">
             <div class="stage-label">Booked.</div>
-            <div class="stage-headline">No quote dies in the truck. No tune-up gets forgotten.</div>
-            <div class="stage-body">Every lead lands in one inbox — call, form, Facebook. The system follows up on every changeout quote until she decides, sends the financing option automatically, and reminds her about the appointment so you're not eating no-shows. Online booking for tune-ups. And your maintenance-agreement customers get their spring and fall reminders without you lifting a finger — recurring revenue that runs itself.</div>
+            <div class="stage-headline">Nothing falls through while you're on the job.</div>
+            <div class="stage-body">Every lead — call, text, form fill — lands in one inbox. If they don't book, a follow-up goes out automatically until they do or bow out. Online booking so they can lock in a slot while you're still elbow-deep. Clean estimates for the bigger jobs — repipes, heater swaps — that go out looking professional.</div>
             <div class="caps">
                 <div class="cap"><i class="ti ti-inbox" aria-hidden="true"></i><span>One inbox for every lead</span></div>
-                <div class="cap"><i class="ti ti-refresh" aria-hidden="true"></i><span>Auto follow-up on every quote</span></div>
-                <div class="cap"><i class="ti ti-calendar" aria-hidden="true"></i><span>Online booking + maintenance reminders</span></div>
-                <div class="cap"><i class="ti ti-cash" aria-hidden="true"></i><span>Financing offer sent automatically</span></div>
+                <div class="cap"><i class="ti ti-refresh" aria-hidden="true"></i><span>Follow-up till they book</span></div>
+                <div class="cap"><i class="ti ti-calendar" aria-hidden="true"></i><span>Online booking</span></div>
+                <div class="cap"><i class="ti ti-file-invoice" aria-hidden="true"></i><span>Clean estimates &amp; proposals</span></div>
             </div>
         </div>
 
         <!-- REVIEWED -->
         <div class="stage-item">
             <div class="stage-label">Reviewed.</div>
-            <div class="stage-headline">The system fills your slow season for you.</div>
-            <div class="stage-body">Job done, the review request fires while the house is finally cool and she loves you. Those reviews keep you on top next summer. Then in the off-season, the system goes to work on your database — every customer overdue for a tune-up, every system you installed that's hitting end-of-life, every membership due for renewal. Quiet months become booked months, automatically. The job you did in July books the changeout in November.</div>
+            <div class="stage-headline">The day the water's back on, the review request goes out.</div>
+            <div class="stage-body">Automatically. No chasing, no awkward ask. That five-star review is what puts you back at the top of Found for the next homeowner with a burst pipe. Then the system works your past customers — the water-heater client due for maintenance, the repipe customer who needs a fixture upgrade. Every job wins you the next one.</div>
             <div class="caps">
                 <div class="cap"><i class="ti ti-message-star" aria-hidden="true"></i><span>Auto review request after the job</span></div>
                 <div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI drafts replies to every review</span></div>
-                <div class="cap"><i class="ti ti-database" aria-hidden="true"></i><span>Off-season reactivation campaigns</span></div>
+                <div class="cap"><i class="ti ti-database" aria-hidden="true"></i><span>Past-customer reactivation</span></div>
                 <div class="cap"><i class="ti ti-arrow-back-up" aria-hidden="true"></i><span>Lifts you back into Found</span></div>
             </div>
         </div>
@@ -674,9 +783,9 @@
 <!-- ─── WE HANDLE IT — light ──────────────────────────────────── -->
 <section class="handles">
     <div class="container">
-        <div class="eyebrow-gold"><span class="gold">We handle it</span><span class="mob-dot"> · </span><br class="mob-br">You stay on the trucks</div>
-        <div class="lead">New financing promo? Running an AC tune-up special?<br><span class="gold">One text. Live same day.</span></div>
-        <p class="body">You don't touch a dashboard. Want a "beat-the-heat" tune-up special up before the weekend, or a furnace-safety promo in the fall? Text us, it's live. No logins, no software to learn. You run the install crews and the service techs — we run everything that gets the phone to ring.</p>
+        <div class="eyebrow-gold"><span class="gold">We handle it ·</span>&nbsp;You stay on the tools</div>
+        <div class="lead">New service area? Running a water-heater special?<br><span class="gold">One text. Live same day.</span></div>
+        <p class="body">You don't touch a dashboard. Want a drain-cleaning promo up before the weekend or a new service area added? Text us, it's live. No logins, no software to learn. You run the truck, we run everything that gets the phone to ring.</p>
     </div>
 </section>
 
@@ -686,14 +795,15 @@
         <div class="pricing-head">
             <div class="pricing-section-label">Simple. Honest. No contracts.</div>
             <div class="lead">The product keeps you — <span class="accent">not a contract.</span></div>
-            <p>Month-to-month, no setup fees, cancel anytime. Most HVAC contractors start on Growth — that's the full flywheel.</p>
+            <p>Month-to-month, no setup fees, cancel anytime. Most plumbers start on Growth — that's the full flywheel.</p>
         </div>
 
         <div class="pricing-cards">
+            <!-- FOUNDATION -->
             <div class="pricing-card">
                 <h3>Foundation</h3>
                 <div class="pricing-amount">$297<span class="period">/mo</span></div>
-                <div class="pricing-description">Your presence, dialed in. The base layer every HVAC contractor needs.</div>
+                <div class="pricing-description">Your presence, dialed in. The base layer every plumber needs.</div>
                 <div class="pricing-bullets">
                     <div class="pricing-bullet"><span class="check">✓</span><span>Website built &amp; live</span></div>
                     <div class="pricing-bullet"><span class="check">✓</span><span>Google Business Profile setup</span></div>
@@ -703,6 +813,7 @@
                 </div>
             </div>
 
+            <!-- GROWTH — most popular, amber border -->
             <div class="pricing-card popular">
                 <div class="popular-badge">Most popular</div>
                 <h3>Growth</h3>
@@ -712,13 +823,14 @@
                     <div class="pricing-bullet"><span class="check">✓</span><span>Everything in Foundation</span></div>
                     <div class="pricing-bullet"><span class="check">✓</span><span>AI agent — qualifies leads 24/7</span></div>
                     <div class="pricing-bullet"><span class="check">✓</span><span>Multi-area SEO coverage</span></div>
-                    <div class="pricing-bullet"><span class="check">✓</span><span>Online booking + maintenance reminders</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Online booking</span></div>
                     <div class="pricing-bullet"><span class="check">✓</span><span>All-in-one lead inbox</span></div>
-                    <div class="pricing-bullet"><span class="check">✓</span><span>Auto follow-up on every quote</span></div>
-                    <div class="pricing-bullet"><span class="check">✓</span><span>Off-season reactivation campaigns</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Auto follow-up till they book</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Past-customer reactivation</span></div>
                 </div>
             </div>
 
+            <!-- ACCELERATOR -->
             <div class="pricing-card">
                 <h3>Accelerator</h3>
                 <div class="pricing-amount">$1,200<span class="period">/mo</span></div>
@@ -740,16 +852,14 @@
 <!-- ─── CTA — dark ────────────────────────────────────────────── -->
 <section class="cta-section dk" id="cta">
     <div class="container">
-        <div class="lead">Catch every call this summer. Fill every slow month.</div>
-        <p>We build your HVAC site before you pay a cent. <span class="gold">See it, then decide.</span></p>
-        <form class="contact-form" method="POST" action="/.netlify/functions/contact">
-            <input type="text" class="fld" name="name" placeholder="Name" required>
-            <input type="text" class="fld" name="company" placeholder="Company">
-            <input type="tel" class="fld" name="phone" placeholder="Phone" required>
-            <input type="email" class="fld" name="email" placeholder="Email">
-            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
-            <button type="submit" class="btn-gold">Send it &rarr;</button>
-        </form>
+        <div class="lead">Be the first call answered, every time.</div>
+        <p>We build your plumbing site before you pay a cent. <span class="gold">See it, then decide.</span></p>
+        <div class="contact-form">
+            <input type="text" class="fld" placeholder="Name">
+            <input type="text" class="fld" placeholder="Company">
+            <input type="text" class="fld" placeholder="Phone">
+            <a href="#" class="btn-gold">Send it &rarr;</a>
+        </div>
         <div class="sign">That's Your Operative.</div>
     </div>
 </section>
@@ -761,18 +871,5 @@
     <span class="tagline">THAT'S YOUR OPERATIVE.</span>
 </footer>
 
-
-<script>
-// Pricing cards → scroll to CTA
-document.querySelectorAll('.pricing-card').forEach(function(card) {
-  card.style.cursor = 'pointer';
-  card.addEventListener('click', function(e) {
-    if (!e.target.closest('a, button')) {
-      var target = document.getElementById('cta');
-      if (target) target.scrollIntoView({behavior: 'smooth'});
-    }
-  });
-});
-</script>
 </body>
 </html>

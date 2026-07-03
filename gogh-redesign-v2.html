@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operative - Build Your Site First, Pay Only If You Keep It</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
-        /* ─── TOKENS — LIGHT MODE ─────────────────────────────── */
+        /* ─── TOKENS ─────────────────────────────────────────── */
         :root {
-            --bg:            #F4EFE4;
-            --bg-alt:        #EDE8DC;
-            --surface:       #EAE4D8;
-            --surface-2:     #E4DDD0;
-            --border:        rgba(0,0,0,0.08);
-            --border-amber:  rgba(201,139,26,0.35);
-            --text:          #1A1710;
-            --text-muted:    #6B6050;
+            --bg:            #0B0A08;
+            --bg-alt:        #0F0E0B;
+            --surface:       #171612;
+            --surface-2:     #1E1C16;
+            --border:        rgba(255,255,255,0.07);
+            --border-amber:  rgba(201,139,26,0.3);
+            --text:          #F5F0E5;
+            --text-muted:    #8A8070;
             --amber:         #C98B1A;
             --amber-bright:  #E09F25;
-            --amber-pale:    #A36A0F;
-            --amber-glow:    rgba(201,139,26,0.08);
-            --amber-glow-hi: rgba(201,139,26,0.14);
+            --amber-pale:    #F5D98A;
+            --amber-glow:    rgba(201,139,26,0.10);
+            --amber-glow-hi: rgba(201,139,26,0.18);
             --green:         #1C3D2F;
             --green-mid:     #2A5A47;
         }
@@ -33,7 +33,6 @@
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Inter', sans-serif;
-            font-weight: 500;
             line-height: 1.6;
             padding-top: 64px;
         }
@@ -48,7 +47,7 @@
             font-size: 0.68rem;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: #3A3020;
+            color: var(--text-muted);
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
             margin-bottom: 22px;
@@ -70,21 +69,19 @@
             border-top: 1px solid var(--border);
         }
 
-        /* ─── NAVIGATION — warm frosted glass ───────────────── */
+        /* ─── NAVIGATION ─────────────────────────────────────── */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            height: calc(64px + env(safe-area-inset-top));
-            padding-top: env(safe-area-inset-top);
-            background: rgba(244,239,228,0.88);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(0,0,0,0.07);
+            height: 64px;
+            background: rgba(11,10,8,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-left: 32px;
-            padding-right: 32px;
+            padding: 0 32px;
             z-index: 1000;
         }
 
@@ -110,7 +107,7 @@
             text-decoration: none;
             font-size: 0.875rem;
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 0.01em;
             transition: color 0.2s;
         }
@@ -118,7 +115,7 @@
 
         .btn-primary {
             background: var(--amber);
-            color: #1A1710;
+            color: var(--bg);
             padding: 0.48rem 1.1rem;
             border-radius: 5px;
             border: none;
@@ -167,21 +164,21 @@
             overflow: hidden;
         }
 
-        /* Softer glow on light bg */
+        /* V2: Animated pulsing glow — uses a dedicated div so we can animate it */
         .hero-glow {
             position: absolute;
             top: 50%; left: 50%;
             width: 700px; height: 500px;
             transform: translate(-50%, -60%);
-            background: radial-gradient(ellipse at center, rgba(201,139,26,0.1) 0%, transparent 65%);
+            background: radial-gradient(ellipse at center, rgba(201,139,26,0.15) 0%, transparent 65%);
             pointer-events: none;
             animation: hero-pulse 5s ease-in-out infinite;
         }
 
         @keyframes hero-pulse {
-            0%   { opacity: 0.6; transform: translate(-50%, -60%) scale(1); }
-            50%  { opacity: 1;   transform: translate(-50%, -60%) scale(1.12); }
-            100% { opacity: 0.6; transform: translate(-50%, -60%) scale(1); }
+            0%   { opacity: 0.65; transform: translate(-50%, -60%) scale(1); }
+            50%  { opacity: 1;    transform: translate(-50%, -60%) scale(1.12); }
+            100% { opacity: 0.65; transform: translate(-50%, -60%) scale(1); }
         }
 
         .hero-inner {
@@ -212,7 +209,6 @@
             line-height: 1.1;
             letter-spacing: -0.02em;
             margin: 0 0 28px;
-            color: var(--text);
         }
 
         .hero h1 .accent {
@@ -223,7 +219,6 @@
         .hero .subhead {
             color: var(--text-muted);
             font-size: 1.05rem;
-            font-weight: 500;
             line-height: 1.75;
             max-width: 520px;
             margin: 0 auto 44px;
@@ -271,16 +266,15 @@
         }
 
         /* ─── V2: STICKY MOBILE CTA BAR ──────────────────────── */
-        /* Light mode: amber bar with dark text for legibility */
         .sticky-cta-bar {
-            display: none;
+            display: none; /* shown only on mobile via JS + media */
             position: fixed;
             bottom: 0; left: 0; right: 0;
             z-index: 900;
             background: var(--amber);
             padding: 14px 20px;
             text-align: center;
-            box-shadow: 0 -4px 20px rgba(201,139,26,0.25);
+            box-shadow: 0 -4px 20px rgba(201,139,26,0.35);
             transform: translateY(100%);
             transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
         }
@@ -288,7 +282,7 @@
             transform: translateY(0);
         }
         .sticky-cta-bar a {
-            color: #1A1710;          /* dark text on amber — high contrast */
+            color: var(--bg);
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             font-size: 0.95rem;
@@ -300,16 +294,7 @@
         @media (max-width: 640px) {
             .sticky-cta-bar { display: block; }
             body { padding-bottom: 60px; }
-            .section-label {
-                letter-spacing: 0.08em;
-                flex-wrap: wrap;
-                row-gap: 2px;
-            }
-            .mob-br { display: inline; }
-            .mob-dot { display: none; }
         }
-        .mob-br { display: none; }
-        .mob-dot { display: inline; }
 
         /* ─── TRADE SECTION ──────────────────────────────────── */
         .trades {
@@ -340,7 +325,6 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             line-height: 1.2;
-            color: var(--text);
         }
 
         .trade-grid {
@@ -350,14 +334,13 @@
             margin-bottom: 32px;
         }
 
-        /* Light mode: drop shadow on hover instead of border-color change */
         .trade-card {
             position: relative;
-            background: var(--bg);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 28px;
-            transition: box-shadow 0.22s, transform 0.15s, background 0.2s;
+            transition: border-color 0.2s, background 0.2s, transform 0.15s;
             cursor: pointer;
             overflow: hidden;
         }
@@ -369,13 +352,12 @@
             width: 3px;
             background: var(--amber);
             opacity: 0;
-            transition: opacity 0.22s;
+            transition: opacity 0.2s;
         }
 
         .trade-card:hover {
-            /* Shadow-based emphasis instead of border-color shift */
-            box-shadow: 0 6px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
-            background: #fff;
+            border-color: var(--border-amber);
+            background: var(--surface-2);
             transform: translateY(-2px);
         }
         .trade-card:hover::before { opacity: 1; }
@@ -397,14 +379,8 @@
             align-items: center;
             justify-content: center;
             border-radius: 8px;
-            background: rgba(201,139,26,0.1);
-            border: 1px solid rgba(201,139,26,0.2);
-            flex-shrink: 0;
-            margin-bottom: 14px;
-        }
-
-        .trade-card-header {
-            margin-bottom: 4px;
+            background: var(--amber-glow);
+            border: 1px solid var(--border-amber);
         }
 
         .trade-card h3 {
@@ -413,34 +389,42 @@
             font-weight: 700;
             font-size: 1.05rem;
             letter-spacing: -0.01em;
-            margin-top: 0;
-            margin-bottom: 0;
+            margin-top: 16px;
         }
 
         .trade-card p.tagline {
             color: var(--text-muted);
             font-size: 0.875rem;
-            font-weight: 500;
-            margin-top: 0;
+            margin-top: 6px;
             line-height: 1.5;
         }
 
+        /* V2: stat line under tagline */
         .trade-card .trade-stat {
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             margin-top: 10px;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
-            color: #C98B1A;
+            color: var(--amber);
             letter-spacing: 0.01em;
-            line-height: 1.45;
+            opacity: 0.85;
+        }
+        .trade-card .trade-stat::before {
+            content: '';
+            display: block;
+            width: 14px;
+            height: 1px;
+            background: var(--amber);
+            opacity: 0.5;
         }
 
         .trade-notice {
             text-align: center;
-            color: #3A3020;
+            color: var(--text-muted);
             font-size: 0.825rem;
-            font-weight: 600;
             font-style: italic;
         }
 
@@ -449,22 +433,6 @@
             padding: 100px 24px;
             background: var(--bg);
             border-top: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .flywheel::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,139,26,0.12) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .flywheel > * {
-            position: relative;
-            z-index: 1;
         }
 
         .flywheel-head {
@@ -480,7 +448,6 @@
             letter-spacing: -0.02em;
             line-height: 1.2;
             margin-bottom: 18px;
-            color: var(--text);
         }
 
         .flywheel h2 .accent { display: block; margin-top: 4px; }
@@ -488,7 +455,6 @@
         .flywheel-head p {
             color: var(--text-muted);
             font-size: 1rem;
-            font-weight: 500;
             line-height: 1.75;
         }
 
@@ -521,7 +487,7 @@
             border-radius: 8px;
             padding: 22px;
             cursor: default;
-            transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+            transition: border-color 0.25s, background 0.25s;
             position: relative;
             overflow: hidden;
         }
@@ -538,15 +504,14 @@
 
         .fw-card.active {
             border-color: var(--border-amber);
-            background: rgba(201,139,26,0.06);
-            box-shadow: 0 2px 12px rgba(201,139,26,0.12);
+            background: var(--amber-glow);
         }
         .fw-card.active::before { opacity: 1; }
 
         .fw-stage-num {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.65rem;
-            color: #3A3020;
+            color: var(--text-muted);
             letter-spacing: 0.15em;
             text-transform: uppercase;
             font-weight: 600;
@@ -561,7 +526,7 @@
             margin-bottom: 10px;
             transition: color 0.25s;
         }
-        .fw-card.active .fw-stage-name { color: var(--amber-pale); }
+        .fw-card.active .fw-stage-name { color: var(--amber); }
 
         .fw-tagline {
             color: var(--text);
@@ -579,7 +544,6 @@
         .fw-bullet {
             color: var(--text-muted);
             font-size: 0.8rem;
-            font-weight: 600;
             display: flex;
             gap: 8px;
             align-items: flex-start;
@@ -589,7 +553,7 @@
             border: 1px solid var(--border-amber);
             border-radius: 8px;
             padding: 22px 28px;
-            background: rgba(201,139,26,0.06);
+            background: var(--amber-glow);
             margin-top: 44px;
             color: var(--text-muted);
             font-size: 0.925rem;
@@ -618,7 +582,6 @@
             line-height: 1.2;
             max-width: 600px;
             margin: 0 auto 20px;
-            color: var(--text);
         }
 
         .difference p {
@@ -642,16 +605,15 @@
             padding: 6px 16px;
             color: var(--text-muted);
             font-size: 0.825rem;
-            background: var(--bg);
+            background: var(--surface);
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 500;
             letter-spacing: 0.01em;
-            transition: border-color 0.18s, color 0.18s, box-shadow 0.18s;
+            transition: border-color 0.18s, color 0.18s;
         }
         .platform-pill:hover {
             border-color: var(--border-amber);
             color: var(--text);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
 
         /* ─── HOW IT WORKS ───────────────────────────────────── */
@@ -672,7 +634,6 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             line-height: 1.2;
-            color: var(--text);
         }
         .how-it-works h2 .gold { color: var(--amber); }
 
@@ -710,7 +671,7 @@
             height: 48px;
             border-radius: 50%;
             border: 2px solid var(--amber);
-            color: var(--amber-pale);
+            color: var(--amber);
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.05rem;
             font-weight: 700;
@@ -718,14 +679,14 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            background: rgba(201,139,26,0.08);
+            background: var(--amber-glow);
             letter-spacing: -0.01em;
         }
 
         .step-line {
             flex: 1;
             width: 2px;
-            background: linear-gradient(to bottom, rgba(201,139,26,0.3), rgba(201,139,26,0.05));
+            background: linear-gradient(to bottom, rgba(201,139,26,0.25), rgba(201,139,26,0.05));
             margin: 8px 0;
         }
         .step:last-child .step-line { display: none; }
@@ -749,7 +710,6 @@
         .step p {
             color: var(--text-muted);
             font-size: 0.925rem;
-            font-weight: 500;
             line-height: 1.65;
             margin: 0;
         }
@@ -772,14 +732,12 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 10px;
-            color: var(--text);
         }
 
         .pricing .subhead {
             color: var(--text-muted);
             font-style: italic;
             font-size: 0.95rem;
-            font-weight: 500;
         }
 
         .pricing-cards {
@@ -791,27 +749,23 @@
         }
 
         .pricing-card {
-            background: var(--bg);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 36px;
             position: relative;
-            transition: box-shadow 0.2s;
-        }
-        .pricing-card:hover {
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
         }
 
         .pricing-card.popular {
             border-color: var(--amber);
-            background: linear-gradient(160deg, rgba(201,139,26,0.06) 0%, var(--bg) 60%);
+            background: linear-gradient(160deg, rgba(201,139,26,0.07) 0%, var(--surface) 60%);
         }
 
         .popular-badge {
             position: absolute;
             top: 18px; right: 18px;
             background: var(--amber);
-            color: #1A1710;
+            color: var(--bg);
             padding: 4px 12px;
             border-radius: 4px;
             font-size: 0.68rem;
@@ -831,7 +785,7 @@
         }
 
         .pricing-amount {
-            color: var(--amber-pale);
+            color: var(--amber);
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.8rem;
             font-weight: 700;
@@ -873,9 +827,8 @@
 
         .pricing-footer {
             text-align: center;
-            color: #3A3020;
+            color: var(--text-muted);
             font-size: 0.825rem;
-            font-weight: 600;
             font-style: italic;
         }
 
@@ -895,7 +848,7 @@
             bottom: -100px; left: 50%;
             transform: translateX(-50%);
             width: 800px; height: 400px;
-            background: radial-gradient(ellipse at center bottom, rgba(201,139,26,0.08) 0%, transparent 65%);
+            background: radial-gradient(ellipse at center bottom, rgba(201,139,26,0.1) 0%, transparent 65%);
             pointer-events: none;
         }
 
@@ -908,7 +861,6 @@
             letter-spacing: -0.025em;
             line-height: 1.15;
             margin-bottom: 20px;
-            color: var(--text);
         }
 
         .contact .subhead {
@@ -928,7 +880,7 @@
 
         .contact-form input {
             background: var(--surface);
-            border: 1px solid rgba(0,0,0,0.12);
+            border: 1px solid var(--border);
             color: var(--text);
             padding: 13px 16px;
             border-radius: 6px;
@@ -936,18 +888,17 @@
             font-size: 0.9rem;
             flex: 1;
             min-width: 150px;
-            transition: border-color 0.18s, box-shadow 0.18s;
+            transition: border-color 0.18s;
         }
         .contact-form input:focus {
             outline: none;
-            border-color: var(--amber);
-            box-shadow: 0 0 0 3px rgba(201,139,26,0.12);
+            border-color: var(--border-amber);
         }
-        .contact-form input::placeholder { color: #9A8E7A; }
+        .contact-form input::placeholder { color: #555040; }
 
         .contact-form button {
             background: var(--amber);
-            color: #1A1710;
+            color: var(--bg);
             border: none;
             padding: 13px 28px;
             border-radius: 6px;
@@ -976,7 +927,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 16px;
-            background: var(--bg-alt);
+            background: var(--bg);
         }
 
         footer .left {
@@ -1000,7 +951,7 @@
         footer .right a:hover { color: var(--text); }
 
         footer .tagline {
-            color: var(--amber-pale);
+            color: var(--amber);
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
             font-size: 0.85rem;
@@ -1013,208 +964,6 @@
         @media (max-width: 900px) {
             .fw-cards { grid-template-columns: repeat(2, 1fr); }
         }
-
-        /* ─── DARK SECTION — FLYWHEEL ─────────────────────────── */
-        .flywheel {
-            background: #0B0A08;
-            border-top: 1px solid rgba(201,139,26,0.22);
-            border-bottom: 1px solid rgba(201,139,26,0.12);
-        }
-
-        .flywheel .section-label {
-            color: #8A8070;
-        }
-        .flywheel .section-label .hi {
-            color: #C98B1A;
-        }
-
-        .flywheel h2 {
-            color: #F5F0E5;
-        }
-
-        .flywheel-head p {
-            color: #8A8070;
-        }
-
-        /* ─── DARK SECTION — DIFFERENCE ─────────────────────── */
-        .difference {
-            background: #0B0A08;
-            border-top: 1px solid rgba(201,139,26,0.22);
-            border-bottom: 1px solid rgba(201,139,26,0.12);
-        }
-
-        .difference .section-label {
-            color: #8A8070;
-        }
-        .difference .section-label .hi {
-            color: #C98B1A;
-        }
-
-        .difference h2 {
-            color: #F5F0E5;
-        }
-
-        .difference p {
-            color: #8A8070;
-        }
-
-        .difference .platform-pill {
-            background: #141210;
-            border-color: rgba(255,255,255,0.07);
-            color: #8A8070;
-        }
-        .difference .platform-pill:hover {
-            border-color: rgba(201,139,26,0.35);
-            color: #F5F0E5;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-        }
-
-        .fw-card {
-            background: #141210;
-            border-color: rgba(255,255,255,0.07);
-        }
-
-        .fw-card:hover {
-            background: #1C1914;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .fw-card.active {
-            border-color: rgba(201,139,26,0.35);
-            background: rgba(201,139,26,0.07);
-            box-shadow: 0 2px 16px rgba(201,139,26,0.15);
-        }
-
-        .fw-stage-num { color: #8A8070; }
-
-        .fw-stage-name { color: #504840; }
-
-        .fw-card.active .fw-stage-name { color: #C98B1A; }
-
-        .fw-tagline { color: #F5F0E5; }
-
-        .fw-bullet { color: #8A8070; }
-
-        .loop-callout {
-            background: rgba(201,139,26,0.05);
-            border-color: rgba(201,139,26,0.2);
-            color: #8A8070;
-        }
-
-        /* ─── DARK SECTION — PRICING ─────────────────────────────── */
-        .pricing {
-            background: #0B0A08;
-            border-top: 1px solid rgba(201,139,26,0.22);
-        }
-
-        .pricing .section-label,
-        .pricing-head .section-label {
-            color: #8A8070;
-        }
-        .pricing .section-label .hi {
-            color: #C98B1A;
-        }
-
-        .pricing h2 {
-            color: #F5F0E5;
-        }
-
-        .pricing .subhead {
-            color: #8A8070;
-        }
-
-        .pricing-card {
-            background: #141210;
-            border-color: rgba(255,255,255,0.07);
-        }
-        .pricing-card:hover {
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-        }
-
-        .pricing-card h3 {
-            color: #F5F0E5;
-        }
-
-        .pricing-card.popular {
-            border: 2px solid #C98B1A;
-            background: linear-gradient(160deg, rgba(201,139,26,0.1) 0%, #141210 60%);
-        }
-
-        .pricing-amount {
-            color: #C98B1A;
-        }
-
-        .pricing-description {
-            color: #8A8070;
-        }
-
-        .pricing-bullet {
-            color: #8A8070;
-        }
-
-        .pricing-card p {
-            color: #8A8070 !important;
-        }
-
-        .pricing-footer {
-            color: #504840;
-        }
-
-        /* ─── DARK SECTION — CONTACT + FOOTER ───────────────────── */
-        .contact {
-            background: #0B0A08;
-            border-top: 1px solid rgba(201,139,26,0.22);
-        }
-
-        .contact::before {
-            background: radial-gradient(ellipse at center bottom, rgba(201,139,26,0.12) 0%, transparent 65%);
-        }
-
-        .contact h2 {
-            color: #F5F0E5;
-        }
-
-        .contact .subhead {
-            color: #8A8070;
-        }
-
-        .contact .section-label {
-            color: #8A8070;
-        }
-        .contact .section-label .hi {
-            color: #C98B1A;
-        }
-
-        .contact-form input {
-            background: #141210;
-            border-color: rgba(255,255,255,0.08);
-            color: #F5F0E5;
-        }
-        .contact-form input:focus {
-            border-color: #C98B1A;
-            box-shadow: 0 0 0 3px rgba(201,139,26,0.15);
-        }
-        .contact-form input::placeholder { color: #504840; }
-
-        .contact-notice { color: #8A8070; }
-
-        footer {
-            background: #0B0A08;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        footer .left {
-            color: #504840;
-        }
-
-        footer .right,
-        footer .right a {
-            color: #504840;
-        }
-
-        footer .right a:hover { color: #8A8070; }
-
-        footer .tagline { color: #6B5A30; }
 
         @media (max-width: 640px) {
             nav { padding: 0 16px; }
@@ -1246,7 +995,7 @@
     </style>
 </head>
 <body>
-    <!-- V2: Sticky Mobile CTA Bar — amber + dark text for light mode -->
+    <!-- V2: Sticky Mobile CTA Bar -->
     <div class="sticky-cta-bar" id="stickyCTA">
         <a href="#contact">Get your site built free →</a>
     </div>
@@ -1256,7 +1005,7 @@
         <div class="nav-logo">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;flex-shrink:0">
                 <path d="M5 22V12L2 14L6 6L4 8L8 1L10 4.5L12 1L12 22Z" fill="#C98B1A"/>
-                <path d="M19 22V12L22 14L18 6L20 8L16 1L14 4.5L12 1L12 22Z" fill="#2A5A47"/>
+                <path d="M19 22V12L22 14L18 6L20 8L16 1L14 4.5L12 1L12 22Z" fill="#1C3D2F"/>
             </svg>
             Operative
         </div>
@@ -1269,6 +1018,7 @@
 
     <!-- Hero -->
     <section class="hero" id="hero">
+        <!-- V2: Dedicated glow div for animation -->
         <div class="hero-glow"></div>
         <div class="hero-inner">
             <div class="section-label"><span class="hi">Built for local trades</span></div>
@@ -1291,75 +1041,64 @@
     <section id="trades" class="trades">
         <div class="container">
             <div class="trades-head">
-                <div class="section-label"><span class="hi">Start here</span><span class="mob-dot"> · </span><br class="mob-br">Your trade, your page</div>
+                <div class="section-label"><span class="hi">Start here</span> · Your trade, your page</div>
                 <h2>Your trade. Your page. Your system.</h2>
             </div>
             <div class="trade-grid">
+                <!-- V2: Each card now has a stat line -->
                 <div class="trade-card">
                     <a href="/roofing.html" class="card-link" aria-label="Go to Roofing page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M4 10.5V21h16V10.5"/><path d="M13 9l-2.5 4h3.5l-2.5 4"/></svg>
-                        </div>
-                        <h3>Roofing</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M4 10.5V21h16V10.5"/><path d="M13 9l-2.5 4h3.5l-2.5 4"/></svg>
                     </div>
+                    <h3>Roofing</h3>
                     <p class="tagline">Storm hits. They search. You show up first.</p>
-                    <span class="trade-stat">Avg job: $9,500 · First to respond wins the claim</span>
+                    <span class="trade-stat">Avg. $8,400 job · Leads caught in under 2 min</span>
                 </div>
                 <div class="trade-card">
                     <a href="/plumbing.html" class="card-link" aria-label="Go to Plumbing page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg>
-                        </div>
-                        <h3>Plumbing</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg>
                     </div>
+                    <h3>Plumbing</h3>
                     <p class="tagline">Under a sink? The lead still gets caught.</p>
-                    <span class="trade-stat">54% of after-hours calls hit voicemail — never called back</span>
+                    <span class="trade-stat">Avg. $620 job · 74% of callers book same day</span>
                 </div>
                 <div class="trade-card">
                     <a href="/hvac.html" class="card-link" aria-label="Go to HVAC page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
-                        </div>
-                        <h3>HVAC</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
                     </div>
+                    <h3>HVAC</h3>
                     <p class="tagline">July outage. First name they find wins the job.</p>
-                    <span class="trade-stat">Weekend answer rate: 31% · Avg missed call: $1,200</span>
+                    <span class="trade-stat">Avg. $2,100 job · Peak-season fill rate up 38%</span>
                 </div>
                 <div class="trade-card">
                     <a href="/electrical.html" class="card-link" aria-label="Go to Electrical page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        </div>
-                        <h3>Electrical</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
+                    <h3>Electrical</h3>
                     <p class="tagline">The one your whole neighborhood recommends.</p>
-                    <span class="trade-stat">49% of electricians lose jobs to whoever answered first</span>
+                    <span class="trade-stat">Avg. $890 job · Repeat customer rate 3×</span>
                 </div>
                 <div class="trade-card">
                     <a href="/masonry.html" class="card-link" aria-label="Go to Masonry & Concrete page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="9" height="4" rx="0.5"/><rect x="13" y="4" width="9" height="4" rx="0.5"/><rect x="2" y="10" width="4" height="4" rx="0.5"/><rect x="8" y="10" width="8" height="4" rx="0.5"/><rect x="18" y="10" width="4" height="4" rx="0.5"/><rect x="2" y="16" width="9" height="4" rx="0.5"/><rect x="13" y="16" width="9" height="4" rx="0.5"/></svg>
-                        </div>
-                        <h3>Masonry & Concrete</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="9" height="4" rx="0.5"/><rect x="13" y="4" width="9" height="4" rx="0.5"/><rect x="2" y="10" width="4" height="4" rx="0.5"/><rect x="8" y="10" width="8" height="4" rx="0.5"/><rect x="18" y="10" width="4" height="4" rx="0.5"/><rect x="2" y="16" width="9" height="4" rx="0.5"/><rect x="13" y="16" width="9" height="4" rx="0.5"/></svg>
                     </div>
+                    <h3>Masonry & Concrete</h3>
                     <p class="tagline">Big ticket. Won on first impression.</p>
-                    <span class="trade-stat">67% of callers call a competitor within 5 minutes of voicemail</span>
+                    <span class="trade-stat">Avg. $11,200 job · 1 in 3 jobs from referrals</span>
                 </div>
                 <div class="trade-card">
                     <a href="/landscaping.html" class="card-link" aria-label="Go to Landscaping page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17 Q7 10 12 3 Q17 10 12 17"/><path d="M12 17 Q4 15 3 21 Q9 23 12 17"/><path d="M12 17 Q20 15 21 21 Q15 23 12 17"/></svg>
-                        </div>
-                        <h3>Landscaping</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17 Q7 10 12 3 Q17 10 12 17"/><path d="M12 17 Q4 15 3 21 Q9 23 12 17"/><path d="M12 17 Q20 15 21 21 Q15 23 12 17"/></svg>
                     </div>
+                    <h3>Landscaping</h3>
                     <p class="tagline">Seasonal work. Year-round presence.</p>
-                    <span class="trade-stat">85% of unanswered leads never call back</span>
+                    <span class="trade-stat">Avg. $4,600 season · Year-round pipeline built in</span>
                 </div>
             </div>
             <p class="trade-notice">Don't see your trade? Tell us below — finding the rest is literally the job.</p>
@@ -1380,13 +1119,12 @@
 
             <div class="fw-layout">
                 <div class="fw-ring-wrap">
-                    <!-- Light mode flywheel: dark labels for legibility on warm bg -->
                     <svg id="fw-svg" viewBox="-70 -20 460 360" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="160" cy="160" r="120" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1.5"/>
-                        <circle class="fw-halo" data-stage="0" cx="160" cy="40" r="14" fill="#C98B1A" opacity="0.10"/>
-                        <circle class="fw-halo" data-stage="1" cx="280" cy="160" r="14" fill="#C98B1A" opacity="0.10"/>
-                        <circle class="fw-halo" data-stage="2" cx="160" cy="280" r="14" fill="#C98B1A" opacity="0.10"/>
-                        <circle class="fw-halo" data-stage="3" cx="40" cy="160" r="14" fill="#C98B1A" opacity="0.10"/>
+                        <circle cx="160" cy="160" r="120" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+                        <circle class="fw-halo" data-stage="0" cx="160" cy="40" r="14" fill="#C98B1A" opacity="0.12"/>
+                        <circle class="fw-halo" data-stage="1" cx="280" cy="160" r="14" fill="#C98B1A" opacity="0.12"/>
+                        <circle class="fw-halo" data-stage="2" cx="160" cy="280" r="14" fill="#C98B1A" opacity="0.12"/>
+                        <circle class="fw-halo" data-stage="3" cx="40" cy="160" r="14" fill="#C98B1A" opacity="0.12"/>
                         <circle cx="160" cy="40" r="5" fill="#C98B1A"/>
                         <circle cx="280" cy="160" r="5" fill="#C98B1A"/>
                         <circle cx="160" cy="280" r="5" fill="#C98B1A"/>
@@ -1395,14 +1133,14 @@
                         <text x="297" y="165" text-anchor="start" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#F5F0E5" dominant-baseline="middle">Picked</text>
                         <text x="160" y="305" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#F5F0E5">Booked</text>
                         <text x="23" y="165" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#F5F0E5" dominant-baseline="middle">Reviewed</text>
-                        <circle cx="160" cy="160" r="36" fill="none" stroke="#C98B1A" stroke-width="1" stroke-opacity="0.5"/>
+                        <circle cx="160" cy="160" r="36" fill="none" stroke="#C98B1A" stroke-width="1" stroke-opacity="0.4"/>
                         <text x="160" y="155" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" fill="#C98B1A" style="letter-spacing:.2em;">ONE</text>
                         <text x="160" y="170" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" fill="#C98B1A" style="letter-spacing:.2em;">SYSTEM</text>
                         <g id="fw-comet">
                             <path d="M 40 160 A 120 120 0 0 1 75 75" fill="none" stroke="#C98B1A" stroke-width="2" stroke-opacity="0.2" stroke-linecap="round"/>
                             <path d="M 75 75 A 120 120 0 0 1 160 40" fill="none" stroke="#E09F25" stroke-width="2.5" stroke-opacity="0.9" stroke-linecap="round"/>
-                            <circle cx="160" cy="40" r="5" fill="#C98B1A"/>
-                            <circle cx="160" cy="40" r="10" fill="#C98B1A" opacity="0.16"/>
+                            <circle cx="160" cy="40" r="5" fill="#F5D98A"/>
+                            <circle cx="160" cy="40" r="10" fill="#F5D98A" opacity="0.16"/>
                         </g>
                     </svg>
                 </div>
@@ -1461,7 +1199,7 @@
     <!-- The Difference -->
     <section id="diff" class="difference">
         <div class="container">
-            <div class="section-label" style="justify-content:center;"><span class="hi">You run the business</span><span class="mob-dot"> · </span><br class="mob-br">We handle the rest</div>
+            <div class="section-label" style="justify-content:center;"><span class="hi">You run the business</span> · We handle the rest</div>
             <h2>You should be running your business, not editing templates.</h2>
             <p>Hours changed? New service area? Updated pricing? New photos? One message and it's done — same day. No logins. No dashboards. No learning curve.</p>
             <div class="platforms">
@@ -1578,7 +1316,6 @@
                     <input type="text" name="name" placeholder="Name" required>
                     <input type="text" name="company" placeholder="Company">
                     <input type="tel" name="phone" placeholder="Phone" required>
-                    <input type="email" name="email" placeholder="Email">
                     <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
                     <button type="submit">Send it →</button>
                 </form>
@@ -1598,6 +1335,7 @@
     </footer>
 
     <script>
+    // V2: Sticky mobile CTA bar — shows after hero scrolls past
     (function () {
         var bar = document.getElementById('stickyCTA');
         var hero = document.getElementById('hero');
@@ -1680,7 +1418,7 @@
             halos.forEach(function (halo) {
                 var s = parseInt(halo.dataset.stage, 10);
                 var bri = smoothstep(50, 0, angDist(headAngle, STAGE_ANGLES[s]));
-                halo.setAttribute('opacity', (0.10 + bri * 0.45).toFixed(3));
+                halo.setAttribute('opacity', (0.12 + bri * 0.55).toFixed(3));
             });
 
             cards.forEach(function (card, i) {
@@ -1697,18 +1435,5 @@
         }
     }());
     </script>
-
-<script>
-// Pricing cards → scroll to CTA
-document.querySelectorAll('.pricing-card').forEach(function(card) {
-  card.style.cursor = 'pointer';
-  card.addEventListener('click', function(e) {
-    if (!e.target.closest('a, button')) {
-      var target = document.getElementById('contact');
-      if (target) target.scrollIntoView({behavior: 'smooth'});
-    }
-  });
-});
-</script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operative for Electricians — Build it first. Pay only if you keep it.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,16 +28,14 @@
         .section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--amber); flex-shrink: 0; }
         .dk .section-label { color: var(--dk-muted); }
 
-        nav { position: fixed; top: 0; left: 0; right: 0; height: calc(64px + env(safe-area-inset-top));
-    padding-top: env(safe-area-inset-top);
-    background: rgba(244,239,228,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,0.07); display: flex; justify-content: space-between; align-items: center; padding: 0 32px; z-index: 1000; }
+        nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: rgba(244,239,228,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,0.07); display: flex; justify-content: space-between; align-items: center; padding: 0 32px; z-index: 1000; }
         .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.04em; color: #1A1710; display: flex; align-items: center; gap: 9px; text-decoration: none; }
         .nav-links { display: flex; gap: 28px; align-items: center; }
         .nav-links a { color: #6B6050; text-decoration: none; font-size: 0.875rem; font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: 0.01em; transition: color 0.2s; }
         .nav-links a:hover { color: #1A1710; }
         .nav-btn-primary { background: #C98B1A; color: #1A1710 !important; padding: 0.48rem 1.1rem; border-radius: 5px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.02em; text-decoration: none; display: inline-block; transition: background 0.18s, transform 0.1s; }
         .nav-btn-primary:hover { background: #E09F25; transform: translateY(-1px); }
-        @media (max-width: 640px) { nav { padding: 0 16px; } .nav-links a:not(.nav-btn-primary) { display: none; } .nav-links { gap: 12px; } .eyebrow { letter-spacing: 0.08em; white-space: normal; } .section-label { letter-spacing: 0.08em; flex-wrap: wrap; row-gap: 2px; } .mob-br { display: inline; } .mob-dot { display: none; } }
+        @media (max-width: 640px) { nav { padding: 0 16px; } .nav-links a:not(.nav-btn-primary) { display: none; } .nav-links { gap: 12px; } }
 
         .btn-gold { background: var(--amber); color: #1A1710; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 700; padding: 12px 22px; border-radius: 6px; text-decoration: none; display: inline-block; transition: background 0.18s, transform 0.1s; letter-spacing: 0.02em; }
         .btn-gold:hover { background: var(--amber-bright); transform: translateY(-1px); }
@@ -126,19 +124,6 @@
 
         @media (max-width: 640px) { .caps { grid-template-columns: 1fr; } .pricing-cards { grid-template-columns: 1fr; } .contact-form { flex-direction: column; } .contact-form .fld, .contact-form .btn-gold { width: 100%; } footer { flex-direction: column; text-align: center; } }
         @media (max-width: 480px) { .hero h1 { font-size: 1.7rem; } }
-            .mob-br { display: none; }
-        .mob-dot { display: inline; }
-
-        @media (max-width: 640px) {
-            .handles .eyebrow-gold {
-                display: block;
-            }
-            .handles .eyebrow-gold::before {
-                display: inline-block;
-                margin-right: 8px;
-                vertical-align: middle;
-            }
-        }
     </style>
 </head>
 <body>
@@ -244,7 +229,7 @@
 <!-- ─── WE HANDLE IT — light ──────────────────────────────────── -->
 <section class="handles">
     <div class="container">
-        <div class="eyebrow-gold"><span class="gold">We handle it</span><span class="mob-dot"> · </span><br class="mob-br">You stay on the tools</div>
+        <div class="eyebrow-gold"><span class="gold">We handle it ·</span>&nbsp;You stay on the tools</div>
         <div class="lead">Pushing EV chargers this quarter? New generator line?<br><span class="gold">One text. Live same day.</span></div>
         <p class="body">No dashboards, no logins. Want a page promoting EV charger installs before the new rebates kick in, or a generator special before storm season? Text us and it's live. You pull the permits and torque the lugs — we run the system that keeps the qualified leads coming.</p>
     </div>
@@ -312,14 +297,12 @@
     <div class="container">
         <div class="lead">Be the licensed name they find — and trust — first.</div>
         <p>We build your electrical site before you pay a cent. <span class="gold">See it, then decide.</span></p>
-        <form class="contact-form" method="POST" action="/.netlify/functions/contact">
-            <input type="text" class="fld" name="name" placeholder="Name" required>
-            <input type="text" class="fld" name="company" placeholder="Company">
-            <input type="tel" class="fld" name="phone" placeholder="Phone" required>
-            <input type="email" class="fld" name="email" placeholder="Email">
-            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
-            <button type="submit" class="btn-gold">Send it &rarr;</button>
-        </form>
+        <div class="contact-form">
+            <input type="text" class="fld" placeholder="Name">
+            <input type="text" class="fld" placeholder="Company">
+            <input type="text" class="fld" placeholder="Phone">
+            <a href="#" class="btn-gold">Send it &rarr;</a>
+        </div>
         <div class="sign">That's Your Operative.</div>
     </div>
 </section>
@@ -331,18 +314,5 @@
     <span class="tagline">THAT'S YOUR OPERATIVE.</span>
 </footer>
 
-
-<script>
-// Pricing cards → scroll to CTA
-document.querySelectorAll('.pricing-card').forEach(function(card) {
-  card.style.cursor = 'pointer';
-  card.addEventListener('click', function(e) {
-    if (!e.target.closest('a, button')) {
-      var target = document.getElementById('cta');
-      if (target) target.scrollIntoView({behavior: 'smooth'});
-    }
-  });
-});
-</script>
 </body>
 </html>

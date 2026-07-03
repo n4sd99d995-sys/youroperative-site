@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operative - Build Your Site First, Pay Only If You Keep It</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
@@ -33,7 +33,6 @@
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Inter', sans-serif;
-            font-weight: 500;
             line-height: 1.6;
             padding-top: 64px;
         }
@@ -48,7 +47,7 @@
             font-size: 0.68rem;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: #3A3020;
+            color: var(--text-muted);
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
             margin-bottom: 22px;
@@ -74,8 +73,7 @@
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            height: calc(64px + env(safe-area-inset-top));
-            padding-top: env(safe-area-inset-top);
+            height: 64px;
             background: rgba(244,239,228,0.88);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
@@ -83,8 +81,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-left: 32px;
-            padding-right: 32px;
+            padding: 0 32px;
             z-index: 1000;
         }
 
@@ -110,7 +107,7 @@
             text-decoration: none;
             font-size: 0.875rem;
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 0.01em;
             transition: color 0.2s;
         }
@@ -223,7 +220,6 @@
         .hero .subhead {
             color: var(--text-muted);
             font-size: 1.05rem;
-            font-weight: 500;
             line-height: 1.75;
             max-width: 520px;
             margin: 0 auto 44px;
@@ -300,16 +296,7 @@
         @media (max-width: 640px) {
             .sticky-cta-bar { display: block; }
             body { padding-bottom: 60px; }
-            .section-label {
-                letter-spacing: 0.08em;
-                flex-wrap: wrap;
-                row-gap: 2px;
-            }
-            .mob-br { display: inline; }
-            .mob-dot { display: none; }
         }
-        .mob-br { display: none; }
-        .mob-dot { display: inline; }
 
         /* ─── TRADE SECTION ──────────────────────────────────── */
         .trades {
@@ -399,12 +386,6 @@
             border-radius: 8px;
             background: rgba(201,139,26,0.1);
             border: 1px solid rgba(201,139,26,0.2);
-            flex-shrink: 0;
-            margin-bottom: 14px;
-        }
-
-        .trade-card-header {
-            margin-bottom: 4px;
         }
 
         .trade-card h3 {
@@ -413,15 +394,13 @@
             font-weight: 700;
             font-size: 1.05rem;
             letter-spacing: -0.01em;
-            margin-top: 0;
-            margin-bottom: 0;
+            margin-top: 16px;
         }
 
         .trade-card p.tagline {
             color: var(--text-muted);
             font-size: 0.875rem;
-            font-weight: 500;
-            margin-top: 0;
+            margin-top: 6px;
             line-height: 1.5;
         }
 
@@ -430,7 +409,7 @@
             margin-top: 10px;
             font-size: 0.78rem;
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
+            font-weight: 500;
             color: #C98B1A;
             letter-spacing: 0.01em;
             line-height: 1.45;
@@ -438,9 +417,8 @@
 
         .trade-notice {
             text-align: center;
-            color: #3A3020;
+            color: var(--text-muted);
             font-size: 0.825rem;
-            font-weight: 600;
             font-style: italic;
         }
 
@@ -449,22 +427,6 @@
             padding: 100px 24px;
             background: var(--bg);
             border-top: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .flywheel::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,139,26,0.12) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .flywheel > * {
-            position: relative;
-            z-index: 1;
         }
 
         .flywheel-head {
@@ -488,7 +450,6 @@
         .flywheel-head p {
             color: var(--text-muted);
             font-size: 1rem;
-            font-weight: 500;
             line-height: 1.75;
         }
 
@@ -546,7 +507,7 @@
         .fw-stage-num {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.65rem;
-            color: #3A3020;
+            color: var(--text-muted);
             letter-spacing: 0.15em;
             text-transform: uppercase;
             font-weight: 600;
@@ -579,7 +540,6 @@
         .fw-bullet {
             color: var(--text-muted);
             font-size: 0.8rem;
-            font-weight: 600;
             display: flex;
             gap: 8px;
             align-items: flex-start;
@@ -749,7 +709,6 @@
         .step p {
             color: var(--text-muted);
             font-size: 0.925rem;
-            font-weight: 500;
             line-height: 1.65;
             margin: 0;
         }
@@ -779,7 +738,6 @@
             color: var(--text-muted);
             font-style: italic;
             font-size: 0.95rem;
-            font-weight: 500;
         }
 
         .pricing-cards {
@@ -873,9 +831,8 @@
 
         .pricing-footer {
             text-align: center;
-            color: #3A3020;
+            color: var(--text-muted);
             font-size: 0.825rem;
-            font-weight: 600;
             font-style: italic;
         }
 
@@ -1014,208 +971,6 @@
             .fw-cards { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* ─── DARK SECTION — FLYWHEEL ─────────────────────────── */
-        .flywheel {
-            background: #0B0A08;
-            border-top: 1px solid rgba(201,139,26,0.22);
-            border-bottom: 1px solid rgba(201,139,26,0.12);
-        }
-
-        .flywheel .section-label {
-            color: #8A8070;
-        }
-        .flywheel .section-label .hi {
-            color: #C98B1A;
-        }
-
-        .flywheel h2 {
-            color: #F5F0E5;
-        }
-
-        .flywheel-head p {
-            color: #8A8070;
-        }
-
-        /* ─── DARK SECTION — DIFFERENCE ─────────────────────── */
-        .difference {
-            background: #0B0A08;
-            border-top: 1px solid rgba(201,139,26,0.22);
-            border-bottom: 1px solid rgba(201,139,26,0.12);
-        }
-
-        .difference .section-label {
-            color: #8A8070;
-        }
-        .difference .section-label .hi {
-            color: #C98B1A;
-        }
-
-        .difference h2 {
-            color: #F5F0E5;
-        }
-
-        .difference p {
-            color: #8A8070;
-        }
-
-        .difference .platform-pill {
-            background: #141210;
-            border-color: rgba(255,255,255,0.07);
-            color: #8A8070;
-        }
-        .difference .platform-pill:hover {
-            border-color: rgba(201,139,26,0.35);
-            color: #F5F0E5;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-        }
-
-        .fw-card {
-            background: #141210;
-            border-color: rgba(255,255,255,0.07);
-        }
-
-        .fw-card:hover {
-            background: #1C1914;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .fw-card.active {
-            border-color: rgba(201,139,26,0.35);
-            background: rgba(201,139,26,0.07);
-            box-shadow: 0 2px 16px rgba(201,139,26,0.15);
-        }
-
-        .fw-stage-num { color: #8A8070; }
-
-        .fw-stage-name { color: #504840; }
-
-        .fw-card.active .fw-stage-name { color: #C98B1A; }
-
-        .fw-tagline { color: #F5F0E5; }
-
-        .fw-bullet { color: #8A8070; }
-
-        .loop-callout {
-            background: rgba(201,139,26,0.05);
-            border-color: rgba(201,139,26,0.2);
-            color: #8A8070;
-        }
-
-        /* ─── DARK SECTION — PRICING ─────────────────────────────── */
-        .pricing {
-            background: #0B0A08;
-            border-top: 1px solid rgba(201,139,26,0.22);
-        }
-
-        .pricing .section-label,
-        .pricing-head .section-label {
-            color: #8A8070;
-        }
-        .pricing .section-label .hi {
-            color: #C98B1A;
-        }
-
-        .pricing h2 {
-            color: #F5F0E5;
-        }
-
-        .pricing .subhead {
-            color: #8A8070;
-        }
-
-        .pricing-card {
-            background: #141210;
-            border-color: rgba(255,255,255,0.07);
-        }
-        .pricing-card:hover {
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-        }
-
-        .pricing-card h3 {
-            color: #F5F0E5;
-        }
-
-        .pricing-card.popular {
-            border: 2px solid #C98B1A;
-            background: linear-gradient(160deg, rgba(201,139,26,0.1) 0%, #141210 60%);
-        }
-
-        .pricing-amount {
-            color: #C98B1A;
-        }
-
-        .pricing-description {
-            color: #8A8070;
-        }
-
-        .pricing-bullet {
-            color: #8A8070;
-        }
-
-        .pricing-card p {
-            color: #8A8070 !important;
-        }
-
-        .pricing-footer {
-            color: #504840;
-        }
-
-        /* ─── DARK SECTION — CONTACT + FOOTER ───────────────────── */
-        .contact {
-            background: #0B0A08;
-            border-top: 1px solid rgba(201,139,26,0.22);
-        }
-
-        .contact::before {
-            background: radial-gradient(ellipse at center bottom, rgba(201,139,26,0.12) 0%, transparent 65%);
-        }
-
-        .contact h2 {
-            color: #F5F0E5;
-        }
-
-        .contact .subhead {
-            color: #8A8070;
-        }
-
-        .contact .section-label {
-            color: #8A8070;
-        }
-        .contact .section-label .hi {
-            color: #C98B1A;
-        }
-
-        .contact-form input {
-            background: #141210;
-            border-color: rgba(255,255,255,0.08);
-            color: #F5F0E5;
-        }
-        .contact-form input:focus {
-            border-color: #C98B1A;
-            box-shadow: 0 0 0 3px rgba(201,139,26,0.15);
-        }
-        .contact-form input::placeholder { color: #504840; }
-
-        .contact-notice { color: #8A8070; }
-
-        footer {
-            background: #0B0A08;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        footer .left {
-            color: #504840;
-        }
-
-        footer .right,
-        footer .right a {
-            color: #504840;
-        }
-
-        footer .right a:hover { color: #8A8070; }
-
-        footer .tagline { color: #6B5A30; }
-
         @media (max-width: 640px) {
             nav { padding: 0 16px; }
             .nav-links a:not(.btn-primary) { display: none; }
@@ -1291,73 +1046,61 @@
     <section id="trades" class="trades">
         <div class="container">
             <div class="trades-head">
-                <div class="section-label"><span class="hi">Start here</span><span class="mob-dot"> · </span><br class="mob-br">Your trade, your page</div>
+                <div class="section-label"><span class="hi">Start here</span> · Your trade, your page</div>
                 <h2>Your trade. Your page. Your system.</h2>
             </div>
             <div class="trade-grid">
                 <div class="trade-card">
                     <a href="/roofing.html" class="card-link" aria-label="Go to Roofing page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M4 10.5V21h16V10.5"/><path d="M13 9l-2.5 4h3.5l-2.5 4"/></svg>
-                        </div>
-                        <h3>Roofing</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M4 10.5V21h16V10.5"/><path d="M13 9l-2.5 4h3.5l-2.5 4"/></svg>
                     </div>
+                    <h3>Roofing</h3>
                     <p class="tagline">Storm hits. They search. You show up first.</p>
                     <span class="trade-stat">Avg job: $9,500 · First to respond wins the claim</span>
                 </div>
                 <div class="trade-card">
                     <a href="/plumbing.html" class="card-link" aria-label="Go to Plumbing page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg>
-                        </div>
-                        <h3>Plumbing</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg>
                     </div>
+                    <h3>Plumbing</h3>
                     <p class="tagline">Under a sink? The lead still gets caught.</p>
                     <span class="trade-stat">54% of after-hours calls hit voicemail — never called back</span>
                 </div>
                 <div class="trade-card">
                     <a href="/hvac.html" class="card-link" aria-label="Go to HVAC page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
-                        </div>
-                        <h3>HVAC</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
                     </div>
+                    <h3>HVAC</h3>
                     <p class="tagline">July outage. First name they find wins the job.</p>
                     <span class="trade-stat">Weekend answer rate: 31% · Avg missed call: $1,200</span>
                 </div>
                 <div class="trade-card">
                     <a href="/electrical.html" class="card-link" aria-label="Go to Electrical page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        </div>
-                        <h3>Electrical</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
+                    <h3>Electrical</h3>
                     <p class="tagline">The one your whole neighborhood recommends.</p>
                     <span class="trade-stat">49% of electricians lose jobs to whoever answered first</span>
                 </div>
                 <div class="trade-card">
                     <a href="/masonry.html" class="card-link" aria-label="Go to Masonry & Concrete page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="9" height="4" rx="0.5"/><rect x="13" y="4" width="9" height="4" rx="0.5"/><rect x="2" y="10" width="4" height="4" rx="0.5"/><rect x="8" y="10" width="8" height="4" rx="0.5"/><rect x="18" y="10" width="4" height="4" rx="0.5"/><rect x="2" y="16" width="9" height="4" rx="0.5"/><rect x="13" y="16" width="9" height="4" rx="0.5"/></svg>
-                        </div>
-                        <h3>Masonry & Concrete</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="9" height="4" rx="0.5"/><rect x="13" y="4" width="9" height="4" rx="0.5"/><rect x="2" y="10" width="4" height="4" rx="0.5"/><rect x="8" y="10" width="8" height="4" rx="0.5"/><rect x="18" y="10" width="4" height="4" rx="0.5"/><rect x="2" y="16" width="9" height="4" rx="0.5"/><rect x="13" y="16" width="9" height="4" rx="0.5"/></svg>
                     </div>
+                    <h3>Masonry & Concrete</h3>
                     <p class="tagline">Big ticket. Won on first impression.</p>
                     <span class="trade-stat">67% of callers call a competitor within 5 minutes of voicemail</span>
                 </div>
                 <div class="trade-card">
                     <a href="/landscaping.html" class="card-link" aria-label="Go to Landscaping page"></a>
-                    <div class="trade-card-header">
-                        <div class="trade-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17 Q7 10 12 3 Q17 10 12 17"/><path d="M12 17 Q4 15 3 21 Q9 23 12 17"/><path d="M12 17 Q20 15 21 21 Q15 23 12 17"/></svg>
-                        </div>
-                        <h3>Landscaping</h3>
+                    <div class="trade-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17 Q7 10 12 3 Q17 10 12 17"/><path d="M12 17 Q4 15 3 21 Q9 23 12 17"/><path d="M12 17 Q20 15 21 21 Q15 23 12 17"/></svg>
                     </div>
+                    <h3>Landscaping</h3>
                     <p class="tagline">Seasonal work. Year-round presence.</p>
                     <span class="trade-stat">85% of unanswered leads never call back</span>
                 </div>
@@ -1382,7 +1125,7 @@
                 <div class="fw-ring-wrap">
                     <!-- Light mode flywheel: dark labels for legibility on warm bg -->
                     <svg id="fw-svg" viewBox="-70 -20 460 360" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="160" cy="160" r="120" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1.5"/>
+                        <circle cx="160" cy="160" r="120" fill="none" stroke="rgba(0,0,0,0.10)" stroke-width="1.5"/>
                         <circle class="fw-halo" data-stage="0" cx="160" cy="40" r="14" fill="#C98B1A" opacity="0.10"/>
                         <circle class="fw-halo" data-stage="1" cx="280" cy="160" r="14" fill="#C98B1A" opacity="0.10"/>
                         <circle class="fw-halo" data-stage="2" cx="160" cy="280" r="14" fill="#C98B1A" opacity="0.10"/>
@@ -1391,13 +1134,13 @@
                         <circle cx="280" cy="160" r="5" fill="#C98B1A"/>
                         <circle cx="160" cy="280" r="5" fill="#C98B1A"/>
                         <circle cx="40" cy="160" r="5" fill="#C98B1A"/>
-                        <text x="160" y="19" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#F5F0E5">Found</text>
-                        <text x="297" y="165" text-anchor="start" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#F5F0E5" dominant-baseline="middle">Picked</text>
-                        <text x="160" y="305" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#F5F0E5">Booked</text>
-                        <text x="23" y="165" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#F5F0E5" dominant-baseline="middle">Reviewed</text>
+                        <text x="160" y="19" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#1A1710">Found</text>
+                        <text x="297" y="165" text-anchor="start" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#1A1710" dominant-baseline="middle">Picked</text>
+                        <text x="160" y="305" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#1A1710">Booked</text>
+                        <text x="23" y="165" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#1A1710" dominant-baseline="middle">Reviewed</text>
                         <circle cx="160" cy="160" r="36" fill="none" stroke="#C98B1A" stroke-width="1" stroke-opacity="0.5"/>
-                        <text x="160" y="155" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" fill="#C98B1A" style="letter-spacing:.2em;">ONE</text>
-                        <text x="160" y="170" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" fill="#C98B1A" style="letter-spacing:.2em;">SYSTEM</text>
+                        <text x="160" y="155" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" fill="#A36A0F" style="letter-spacing:.2em;">ONE</text>
+                        <text x="160" y="170" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" fill="#A36A0F" style="letter-spacing:.2em;">SYSTEM</text>
                         <g id="fw-comet">
                             <path d="M 40 160 A 120 120 0 0 1 75 75" fill="none" stroke="#C98B1A" stroke-width="2" stroke-opacity="0.2" stroke-linecap="round"/>
                             <path d="M 75 75 A 120 120 0 0 1 160 40" fill="none" stroke="#E09F25" stroke-width="2.5" stroke-opacity="0.9" stroke-linecap="round"/>
@@ -1461,7 +1204,7 @@
     <!-- The Difference -->
     <section id="diff" class="difference">
         <div class="container">
-            <div class="section-label" style="justify-content:center;"><span class="hi">You run the business</span><span class="mob-dot"> · </span><br class="mob-br">We handle the rest</div>
+            <div class="section-label" style="justify-content:center;"><span class="hi">You run the business</span> · We handle the rest</div>
             <h2>You should be running your business, not editing templates.</h2>
             <p>Hours changed? New service area? Updated pricing? New photos? One message and it's done — same day. No logins. No dashboards. No learning curve.</p>
             <div class="platforms">
@@ -1578,7 +1321,6 @@
                     <input type="text" name="name" placeholder="Name" required>
                     <input type="text" name="company" placeholder="Company">
                     <input type="tel" name="phone" placeholder="Phone" required>
-                    <input type="email" name="email" placeholder="Email">
                     <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
                     <button type="submit">Send it →</button>
                 </form>
@@ -1697,18 +1439,5 @@
         }
     }());
     </script>
-
-<script>
-// Pricing cards → scroll to CTA
-document.querySelectorAll('.pricing-card').forEach(function(card) {
-  card.style.cursor = 'pointer';
-  card.addEventListener('click', function(e) {
-    if (!e.target.closest('a, button')) {
-      var target = document.getElementById('contact');
-      if (target) target.scrollIntoView({behavior: 'smooth'});
-    }
-  });
-});
-</script>
 </body>
 </html>
