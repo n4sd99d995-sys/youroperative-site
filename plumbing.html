@@ -1,168 +1,875 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Operative for Plumbers — Build it first. Pay only if you keep it.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #0d0d0d; --bg2: #111110; --line: #232220; --line2: #1e1c1a;
-    --gold: #d4a548; --ink: #f5f5f0; --ink2: #ece9e2;
-    --muted: #888880; --muted2: #9a978e; --faint: #7a786f; --faintest: #56554e;
-    --card: #161513; --cardline: #262420; --proof: #141311; --proofline: #242220;
-  }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; -webkit-font-smoothing: antialiased; }
-  h1, h2, h3, h4, h5, h6, .lead { font-family: 'Space Grotesk', system-ui, sans-serif; }
-  .wrap { max-width: 760px; margin: 0 auto; }
-  .inter { font-family: 'Inter', system-ui, sans-serif; }
-  .gold { color: var(--gold); }
-  a { color: inherit; text-decoration: none; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operative for Plumbers — Build it first. Pay only if you keep it.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css">
+    <style>
+        /* ─── TOKENS ───────────────────────────────────────────── */
+        :root {
+            /* Light */
+            --bg:            #F4EFE4;
+            --bg-alt:        #EDE8DC;
+            --surface:       #EAE4D8;
+            --border:        rgba(0,0,0,0.08);
+            --border-amber:  rgba(201,139,26,0.35);
+            --text:          #1A1710;
+            --text-muted:    #3A3020;
+            --text-sub:      #6B6050;
+            --amber:         #C98B1A;
+            --amber-bright:  #E09F25;
+            --amber-pale:    #A36A0F;
+            --amber-glow:    rgba(201,139,26,0.08);
+            /* Dark */
+            --dk-bg:         #0B0A08;
+            --dk-surface:    #141210;
+            --dk-surface2:   #1C1914;
+            --dk-text:       #F5F0E5;
+            --dk-muted:      #8A8070;
+            --dk-faint:      #504840;
+            --dk-border:     rgba(255,255,255,0.07);
+            --dk-border-top: rgba(201,139,26,0.2);
+        }
 
-  nav { display: flex; align-items: center; justify-content: space-between; padding: 15px 28px; border-bottom: 1px solid var(--line); background: var(--bg2); position: sticky; top: 0; z-index: 10; }
-  nav .logo { font-size: 17px; font-weight: 700; letter-spacing: .02em; }
-  nav .links { display: flex; align-items: center; gap: 18px; }
-  nav .links a { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); }
-  nav .links a.back { color: var(--faint); }
-  nav .cta { background: var(--gold); color: #0e0e0d; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; padding: 8px 15px; border-radius: 7px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
-  @media (max-width: 640px) {
-    nav { flex-wrap: wrap; padding: 12px 16px; }
-    nav .logo { font-size: 15px; flex-basis: auto; }
-    nav .links { width: 100%; order: 3; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    nav .links a { font-size: 11px; padding: 6px 10px; }
-    nav .links a:not(.cta) { display: none; }
-    nav .links a.back { display: inline-block; }
-    nav .links a.cta { flex-grow: 1; text-align: center; padding: 8px 12px; font-size: 11px; }
-  }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            line-height: 1.6;
+            padding-top: 64px;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  section { padding: 30px 28px; border-bottom: 1px solid var(--line); }
-  .alt { background: var(--bg2); }
-  .eyebrow { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); margin-bottom: 13px; }
+        .container { max-width: 860px; margin: 0 auto; padding: 0 28px; }
 
-  .hero { padding: 44px 28px 38px; }
-  .hero h1 { font-size: clamp(26px, 6vw, 34px); line-height: 1.14; font-weight: 700; letter-spacing: -.01em; max-width: 600px; }
-  .hero p { font-family: 'Inter', sans-serif; font-size: 17px; color: var(--muted); line-height: 1.6; max-width: 520px; margin: 18px 0 24px; }
-  .hero em { font-style: italic; color: #cfccc3; }
-  .btns { display: flex; gap: 11px; flex-wrap: wrap; }
-  .btn-gold { background: var(--gold); color: #0e0e0d; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; padding: 11px 20px; border-radius: 7px; }
-  .btn-ghost { border: 1px solid #3a3833; color: #cfccc3; font-family: 'Inter', sans-serif; font-size: 13px; padding: 11px 20px; border-radius: 7px; }
+        /* ─── SECTION LABEL ──────────────────────────────────── */
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--amber);
+            flex-shrink: 0;
+        }
+        .dk .section-label {
+            color: var(--dk-muted);
+        }
 
-  .lead { font-size: clamp(18px, 4.5vw, 21px); font-weight: 700; max-width: 560px; line-height: 1.25; }
-  .body { font-family: 'Inter', sans-serif; font-size: 17px; color: var(--muted); line-height: 1.6; max-width: 560px; margin-top: 14px; }
+        /* ─── NAV — warm frosted glass ───────────── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 64px;
+            background: rgba(244,239,228,0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(0,0,0,0.07);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 32px;
+            z-index: 1000;
+        }
 
-  .stage { padding: 16px 0; border-bottom: 1px solid var(--line2); }
-  .stage:last-child { border-bottom: none; }
-  .stage .label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
-  .stage .headline { font-size: 17px; font-weight: 700; color: var(--ink2); margin-bottom: 6px; }
-  .stage .body { margin-top: 0; }
-  .caps { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 14px; margin-top: 11px; }
-  .cap { display: flex; align-items: flex-start; gap: 8px; }
-  .cap i { font-size: 14px; color: var(--gold); margin-top: 1px; flex-shrink: 0; }
-  .cap span { font-family: 'Inter', sans-serif; font-size: 11.5px; color: var(--muted2); line-height: 1.35; }
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: #1A1710;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            text-decoration: none;
+        }
 
-  .proof { background: var(--proof); border: 1px solid var(--proofline); border-radius: 10px; padding: 16px; }
-  .proof .tag { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; }
-  .proof .big { font-size: 28px; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
-  .proof .q { font-family: 'Inter', sans-serif; font-size: 13px; color: #cbc8bf; line-height: 1.5; max-width: 480px; }
-  .proof .ph { margin-top: 12px; font-family: 'Inter', sans-serif; font-size: 10.5px; color: var(--faintest); font-style: italic; }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
 
-  .form { display: flex; gap: 9px; flex-wrap: wrap; max-width: 470px; }
-  .form .fld { flex: 1; min-width: 110px; background: var(--card); border: 1px solid #2a2824; border-radius: 7px; padding: 10px 13px; font-family: 'Inter', sans-serif; font-size: 12px; color: #6c6a62; }
-  .sign { font-family: 'Inter', sans-serif; font-size: 13px; color: #6c6a62; margin-top: 17px; font-style: italic; }
-  footer { padding: 24px 28px; border-top: 1px solid var(--line); font-family: 'Inter', sans-serif; font-size: 11px; color: var(--faintest); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-</style>
+        .nav-links a {
+            color: #6B6050;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: #1A1710; }
+
+        .nav-btn-primary {
+            background: #C98B1A;
+            color: #1A1710 !important;
+            padding: 0.48rem 1.1rem;
+            border-radius: 5px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.18s, transform 0.1s;
+        }
+        .nav-btn-primary:hover { background: #E09F25; transform: translateY(-1px); }
+
+        @media (max-width: 640px) {
+            nav { padding: 0 16px; }
+            .nav-links a:not(.nav-btn-primary) { display: none; }
+            .nav-links { gap: 12px; }
+        }
+
+        /* ─── BUTTONS ────────────────────────────────────────── */
+        .btn-gold {
+            background: var(--amber);
+            color: #1A1710;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 12px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.18s, transform 0.1s;
+            letter-spacing: 0.02em;
+        }
+        .btn-gold:hover { background: var(--amber-bright); transform: translateY(-1px); }
+
+        .btn-ghost {
+            border: 1.5px solid rgba(201,139,26,0.4);
+            color: var(--amber);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 12px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            transition: border-color 0.18s, background 0.18s;
+        }
+        .btn-ghost:hover { background: var(--amber-glow); border-color: var(--amber); }
+
+        .btns { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+        /* ─── LIGHT SECTIONS ─────────────────────────────────── */
+
+        /* HERO */
+        .hero {
+            background: var(--bg);
+            padding: 72px 28px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -40px; right: -100px;
+            width: 480px; height: 480px;
+            background: radial-gradient(ellipse at center, rgba(201,139,26,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero .container { position: relative; z-index: 1; }
+
+        .hero .eyebrow {
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero .eyebrow::before {
+            content: '';
+            display: block;
+            width: 20px; height: 2px;
+            background: var(--amber);
+            flex-shrink: 0;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.14;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            max-width: 680px;
+            margin-bottom: 14px;
+        }
+        .hero h1 .gold { color: var(--amber); }
+
+        .hero-stat {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--amber);
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hero-stat::before {
+            content: '';
+            display: block;
+            width: 3px; height: 3px;
+            border-radius: 50%;
+            background: var(--amber);
+            flex-shrink: 0;
+        }
+
+        .hero p {
+            color: var(--text-sub);
+            font-size: 1.0rem;
+            font-weight: 500;
+            line-height: 1.7;
+            max-width: 560px;
+            margin-bottom: 28px;
+        }
+        .hero p em { font-style: italic; color: var(--text-muted); }
+
+        /* PROBLEM SECTION (light alt) */
+        .problem {
+            background: var(--bg-alt);
+            padding: 64px 28px;
+            border-top: 1px solid var(--border);
+        }
+
+        .problem .lead {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.3rem, 3vw, 1.75rem);
+            font-weight: 700;
+            line-height: 1.25;
+            max-width: 620px;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+        .problem .lead .gold { color: var(--amber); }
+
+        .problem .body {
+            font-size: 0.975rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+            max-width: 620px;
+        }
+
+        /* WE HANDLE IT (light) */
+        .handles {
+            background: var(--bg);
+            padding: 64px 28px;
+            border-top: 1px solid var(--border);
+        }
+
+        .handles .eyebrow-gold {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .handles .eyebrow-gold .gold { color: var(--amber); }
+        .handles .eyebrow-gold::before {
+            content: '';
+            display: block;
+            width: 20px; height: 2px;
+            background: var(--amber);
+            flex-shrink: 0;
+        }
+
+        .handles .lead {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+            font-weight: 700;
+            line-height: 1.3;
+            max-width: 560px;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+        .handles .lead .gold { color: var(--amber); }
+
+        .handles .body {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+            max-width: 540px;
+        }
+
+        /* ─── DARK SECTIONS ──────────────────────────────────── */
+        .dk {
+            background: var(--dk-bg);
+            border-top: 1px solid var(--dk-border-top);
+            color: var(--dk-text);
+        }
+
+        /* FOUR STAGES — dark flywheel treatment */
+        .stages {
+            padding: 72px 28px;
+        }
+
+        .stages-head {
+            margin-bottom: 48px;
+        }
+
+        .stages-head .lead {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--dk-text);
+        }
+        .stages-head .lead .accent { color: var(--amber); }
+
+        .stages-head p {
+            color: var(--dk-muted);
+            font-size: 0.975rem;
+            margin-top: 12px;
+            max-width: 540px;
+        }
+
+        /* Stage items */
+        .stage-item {
+            padding: 28px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .stage-item:last-child { border-bottom: none; }
+
+        .stage-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .stage-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dk-text);
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .stage-body {
+            font-size: 0.925rem;
+            color: var(--dk-muted);
+            line-height: 1.68;
+            max-width: 620px;
+            margin-bottom: 16px;
+        }
+
+        /* Caps grid */
+        .caps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 20px;
+        }
+
+        .cap {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .cap i {
+            font-size: 13px;
+            color: var(--amber);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .cap span {
+            font-family: 'Inter', sans-serif;
+            font-size: 11.5px;
+            color: var(--dk-muted);
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        /* ─── PRICING — dark ─────────────────────────────────── */
+        .pricing {
+            padding: 72px 28px;
+        }
+
+        .pricing-head {
+            margin-bottom: 44px;
+        }
+
+        .pricing-head .lead {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--dk-text);
+        }
+        .pricing-head .lead .accent { color: var(--amber); }
+
+        .pricing-head p {
+            color: var(--dk-muted);
+            font-size: 0.925rem;
+            margin-top: 12px;
+            font-style: italic;
+            max-width: 480px;
+        }
+
+        .pricing-section-label {
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--dk-muted);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pricing-section-label::before {
+            content: '';
+            display: block;
+            width: 20px; height: 2px;
+            background: var(--amber);
+            flex-shrink: 0;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            max-width: 860px;
+        }
+
+        .pricing-card {
+            background: var(--dk-surface);
+            border: 1px solid var(--dk-border);
+            border-radius: 10px;
+            padding: 32px 28px;
+            position: relative;
+            transition: box-shadow 0.2s;
+        }
+        .pricing-card:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--amber);
+            background: linear-gradient(160deg, rgba(201,139,26,0.10) 0%, var(--dk-surface) 60%);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: var(--amber);
+            color: #1A1710;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.63rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .pricing-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dk-text);
+            margin-bottom: 4px;
+        }
+
+        .pricing-amount {
+            color: var(--amber);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin: 12px 0 4px;
+        }
+        .pricing-amount .period {
+            color: var(--dk-muted);
+            font-size: 0.5em;
+            letter-spacing: 0;
+            font-weight: 500;
+        }
+
+        .pricing-description {
+            color: var(--dk-muted);
+            font-size: 0.85rem;
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
+
+        .pricing-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pricing-bullet {
+            color: var(--dk-muted);
+            font-size: 0.845rem;
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+        }
+
+        .pricing-bullet .check {
+            color: var(--amber);
+            flex-shrink: 0;
+            font-weight: 700;
+            margin-top: 0.05em;
+        }
+
+        .pricing-note {
+            color: var(--dk-faint);
+            font-size: 0.8rem;
+            font-style: italic;
+            margin-top: 32px;
+        }
+
+        /* ─── CTA — dark ─────────────────────────────────────── */
+        .cta-section {
+            padding: 80px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: 50%;
+            transform: translateX(-50%);
+            width: 700px; height: 350px;
+            background: radial-gradient(ellipse at center bottom, rgba(201,139,26,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .cta-section .container { position: relative; z-index: 1; }
+
+        .cta-section .lead {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.15;
+            color: var(--dk-text);
+            margin-bottom: 14px;
+        }
+
+        .cta-section p {
+            color: var(--dk-muted);
+            font-size: 1rem;
+            margin-bottom: 32px;
+        }
+        .cta-section p .gold { color: var(--amber); }
+
+        .contact-form {
+            display: flex;
+            gap: 10px;
+            max-width: 560px;
+            flex-wrap: wrap;
+        }
+
+        .contact-form .fld {
+            flex: 1;
+            min-width: 120px;
+            background: var(--dk-surface);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            padding: 12px 15px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: var(--dk-muted);
+            transition: border-color 0.18s;
+        }
+        .contact-form .fld:focus {
+            outline: none;
+            border-color: var(--amber);
+            box-shadow: 0 0 0 3px rgba(201,139,26,0.12);
+        }
+
+        .sign {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.825rem;
+            color: var(--dk-faint);
+            margin-top: 16px;
+            font-style: italic;
+        }
+
+        /* ─── FOOTER — dark ──────────────────────────────────── */
+        footer {
+            background: var(--dk-bg);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 36px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        footer .left {
+            color: var(--dk-faint);
+            font-size: 0.8rem;
+        }
+
+        footer .right {
+            color: var(--dk-faint);
+            font-size: 0.8rem;
+        }
+
+        footer .tagline {
+            color: #6B5A30;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            flex-basis: 100%;
+            text-align: center;
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 640px) {
+            .caps { grid-template-columns: 1fr; }
+            .pricing-cards { grid-template-columns: 1fr; }
+            .contact-form { flex-direction: column; }
+            .contact-form .fld,
+            .contact-form .btn-gold { width: 100%; }
+            footer { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.7rem; }
+        }
+    </style>
 </head>
 <body>
-<div class="wrap">
+
+<!-- ─── NAV — warm frosted glass ─────────────────────────────── -->
 <nav>
-  <a href="/" class="logo" style="display:flex;align-items:center;gap:8px;">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;flex-shrink:0">
-      <path d="M5 22V12L2 14L6 6L4 8L8 1L10 4.5L12 1L12 22Z" fill="#F2A900"/>
-      <path d="M19 22V12L22 14L18 6L20 8L16 1L14 4.5L12 1L12 22Z" fill="#21453A"/>
-    </svg>
-    Operative
-  </a>
-  <div class="links">
-    <a href="#how">How it works</a>
-    <a href="#pricing">Pricing</a>
-    <a href="/" class="back">&larr; All trades</a>
-    <a href="#cta" class="cta">See your plumbing site</a>
-  </div>
+    <a href="index.html" class="nav-logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;flex-shrink:0">
+            <path d="M5 22V12L2 14L6 6L4 8L8 1L10 4.5L12 1L12 22Z" fill="#C98B1A"/>
+            <path d="M19 22V12L22 14L18 6L20 8L16 1L14 4.5L12 1L12 22Z" fill="#2A5A47"/>
+        </svg>
+        Operative
+    </a>
+    <div class="nav-links">
+        <a href="index.html#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="index.html#trades" class="nav-btn-primary">All trades</a>
+    </div>
 </nav>
 
+<!-- ─── HERO — light ─────────────────────────────────────────── -->
 <section class="hero">
-  <div class="eyebrow">Operative for plumbers</div>
-  <h1>You're under a sink when the phone rings.<br><span class='gold'>By the time you surface, they've called the next guy.</span></h1>
-  <p>You can clear a main line blind and diagnose a water heater by the sound it makes. But none of that skill matters at the moment a homeowner with a flooding kitchen is dialing down a list of plumbers &mdash; whoever answers first wins the job. We make sure that's you. We build your whole site before you pay a dime.</p>
-  <div class="btns">
-    <a href="#cta" class="btn-gold">See your plumbing site &rarr;</a>
-    <a href="#pricing" class="btn-ghost">View pricing</a>
-  </div>
+    <div class="container">
+        <div class="eyebrow">Operative for plumbers</div>
+        <h1>You're under a sink when the phone rings.<br><span class="gold">By the time you surface, they've called the next guy.</span></h1>
+        <div class="hero-stat">54% of after-hours calls hit voicemail — never called back</div>
+        <p>You can clear a main line blind and diagnose a water heater by the sound it makes. But none of that skill matters at the moment a homeowner with a flooding kitchen is dialing down a list of plumbers — whoever answers first wins the job. We make sure that's you. We build your whole site before you pay a dime.</p>
+        <div class="btns">
+            <a href="#cta" class="btn-gold">See your plumbing site &rarr;</a>
+            <a href="#pricing" class="btn-ghost">View pricing</a>
+        </div>
+    </div>
 </section>
 
-<section class="alt">
-  <div class="eyebrow">The speed problem</div>
-  <div class="lead">A burst pipe at 11pm. The homeowner calls three plumbers at once. <span class='gold'>First to respond gets the job.</span></div>
-  <p class="body">That's not a marketing problem &mdash; it's a speed problem. The other two go to voicemail; the Operative system texts them back the second the call misses. Before you've put your tools down, the lead is already in conversation, already booked. The easy emergency money stops leaking to whoever happened to pick up.</p>
+<!-- ─── PROBLEM — light alt ───────────────────────────────────── -->
+<section class="problem">
+    <div class="container">
+        <div class="section-label">The speed problem</div>
+        <div class="lead">A burst pipe at 11pm. The homeowner calls three plumbers at once. <span class="gold">First to respond gets the job.</span></div>
+        <p class="body">That's not a marketing problem — it's a speed problem. The other two go to voicemail; the Operative system texts them back the second the call misses. Before you've put your tools down, the lead is already in conversation, already booked. The easy emergency money stops leaking to whoever happened to pick up.</p>
+    </div>
 </section>
 
-<section id="how">
-  <div class="eyebrow">Four things running, <em class="gold" style="font-style:italic">always.</em></div>
-  <div class="lead">The system runs every month.<br><span class="gold">Each piece feeds the next.</span></div>
-  <div style="margin-top:18px;"><div class="stage">
-  <div class="label">Found.</div>
-  <div class="headline">When a pipe bursts, you&#x27;re the first name they find.</div>
-  <div class="body">Your site ranks for the searches that matter in your area &mdash; emergency plumber, water heater replacement, drain cleaning, repipe. Your Google Business profile is optimized and current. When someone searches at 11pm with water spreading across the floor, you show up first.</div>
-  <div class="caps"><div class="cap"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Google Business, optimized</span></div><div class="cap"><i class="ti ti-search" aria-hidden="true"></i><span>Local SEO on every page</span></div><div class="cap"><i class="ti ti-droplet" aria-hidden="true"></i><span>Ranks for emergency &amp; service work</span></div><div class="cap"><i class="ti ti-world" aria-hidden="true"></i><span>Built to rank in Google &amp; AI search</span></div></div>
-</div><div class="stage">
-  <div class="label">Picked.</div>
-  <div class="headline">You text back before they&#x27;ve hung up.</div>
-  <div class="body">They call three plumbers. The other two go to voicemail. An AI agent sends an automatic text in under a minute &mdash; your name, your availability, a booking link, and a couple quick questions to size up the job. Stacked reviews in the local pack already told them you're the one. That's the job, won before you've resurfaced from under the sink.</div>
-  <div class="caps"><div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI agent answers &amp; qualifies 24/7</span></div><div class="cap"><i class="ti ti-bolt" aria-hidden="true"></i><span>Missed-call text-back</span></div><div class="cap"><i class="ti ti-star" aria-hidden="true"></i><span>Reviews stacked in the local pack</span></div><div class="cap"><i class="ti ti-clock" aria-hidden="true"></i><span>First to reply, every time</span></div></div>
-</div><div class="stage">
-  <div class="label">Booked.</div>
-  <div class="headline">Nothing falls through while you&#x27;re on the job.</div>
-  <div class="body">Every lead &mdash; call, text, form fill &mdash; lands in one inbox. If they don't book, a follow-up goes out automatically until they do or bow out. Online booking so they can lock in a slot while you're still elbow-deep. Clean estimates for the bigger jobs &mdash; repipes, heater swaps &mdash; that go out looking professional.</div>
-  <div class="caps"><div class="cap"><i class="ti ti-inbox" aria-hidden="true"></i><span>One inbox for every lead</span></div><div class="cap"><i class="ti ti-refresh" aria-hidden="true"></i><span>Follow-up till they book</span></div><div class="cap"><i class="ti ti-calendar" aria-hidden="true"></i><span>Online booking</span></div><div class="cap"><i class="ti ti-file-invoice" aria-hidden="true"></i><span>Clean estimates &amp; proposals</span></div></div>
-</div><div class="stage">
-  <div class="label">Reviewed.</div>
-  <div class="headline">The day the water&#x27;s back on, the review request goes out.</div>
-  <div class="body">Automatically. No chasing, no awkward ask. That five-star review is what puts you back at the top of Found for the next homeowner with a burst pipe. Then the system works your past customers &mdash; the water-heater client due for maintenance, the repipe customer who needs a fixture upgrade. Every job wins you the next one.</div>
-  <div class="caps"><div class="cap"><i class="ti ti-message-star" aria-hidden="true"></i><span>Auto review request after the job</span></div><div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI drafts replies to every review</span></div><div class="cap"><i class="ti ti-database" aria-hidden="true"></i><span>Past-customer reactivation</span></div><div class="cap"><i class="ti ti-arrow-back-up" aria-hidden="true"></i><span>Lifts you back into Found</span></div></div>
-</div></div>
+<!-- ─── FOUR STAGES — dark ────────────────────────────────────── -->
+<section class="stages dk" id="how">
+    <div class="container">
+        <div class="stages-head">
+            <div class="section-label">Four things running, <em style="font-style:italic;color:#C98B1A">always.</em></div>
+            <div class="lead">The system runs every month.<br><span class="accent">Each piece feeds the next.</span></div>
+            <p>Found leads to Picked. Picked leads to Booked. Booked leads to Reviewed. Reviewed puts you back at the top of Found.</p>
+        </div>
+
+        <!-- FOUND -->
+        <div class="stage-item">
+            <div class="stage-label">Found.</div>
+            <div class="stage-headline">When a pipe bursts, you're the first name they find.</div>
+            <div class="stage-body">Your site ranks for the searches that matter in your area — emergency plumber, water heater replacement, drain cleaning, repipe. Your Google Business profile is optimized and current. When someone searches at 11pm with water spreading across the floor, you show up first.</div>
+            <div class="caps">
+                <div class="cap"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Google Business, optimized</span></div>
+                <div class="cap"><i class="ti ti-search" aria-hidden="true"></i><span>Local SEO on every page</span></div>
+                <div class="cap"><i class="ti ti-droplet" aria-hidden="true"></i><span>Ranks for emergency &amp; service work</span></div>
+                <div class="cap"><i class="ti ti-world" aria-hidden="true"></i><span>Built to rank in Google &amp; AI search</span></div>
+            </div>
+        </div>
+
+        <!-- PICKED -->
+        <div class="stage-item">
+            <div class="stage-label">Picked.</div>
+            <div class="stage-headline">You text back before they've hung up.</div>
+            <div class="stage-body">They call three plumbers. The other two go to voicemail. An AI agent sends an automatic text in under a minute — your name, your availability, a booking link, and a couple quick questions to size up the job. Stacked reviews in the local pack already told them you're the one. That's the job, won before you've resurfaced from under the sink.</div>
+            <div class="caps">
+                <div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI agent answers &amp; qualifies 24/7</span></div>
+                <div class="cap"><i class="ti ti-bolt" aria-hidden="true"></i><span>Missed-call text-back</span></div>
+                <div class="cap"><i class="ti ti-star" aria-hidden="true"></i><span>Reviews stacked in the local pack</span></div>
+                <div class="cap"><i class="ti ti-clock" aria-hidden="true"></i><span>First to reply, every time</span></div>
+            </div>
+        </div>
+
+        <!-- BOOKED -->
+        <div class="stage-item">
+            <div class="stage-label">Booked.</div>
+            <div class="stage-headline">Nothing falls through while you're on the job.</div>
+            <div class="stage-body">Every lead — call, text, form fill — lands in one inbox. If they don't book, a follow-up goes out automatically until they do or bow out. Online booking so they can lock in a slot while you're still elbow-deep. Clean estimates for the bigger jobs — repipes, heater swaps — that go out looking professional.</div>
+            <div class="caps">
+                <div class="cap"><i class="ti ti-inbox" aria-hidden="true"></i><span>One inbox for every lead</span></div>
+                <div class="cap"><i class="ti ti-refresh" aria-hidden="true"></i><span>Follow-up till they book</span></div>
+                <div class="cap"><i class="ti ti-calendar" aria-hidden="true"></i><span>Online booking</span></div>
+                <div class="cap"><i class="ti ti-file-invoice" aria-hidden="true"></i><span>Clean estimates &amp; proposals</span></div>
+            </div>
+        </div>
+
+        <!-- REVIEWED -->
+        <div class="stage-item">
+            <div class="stage-label">Reviewed.</div>
+            <div class="stage-headline">The day the water's back on, the review request goes out.</div>
+            <div class="stage-body">Automatically. No chasing, no awkward ask. That five-star review is what puts you back at the top of Found for the next homeowner with a burst pipe. Then the system works your past customers — the water-heater client due for maintenance, the repipe customer who needs a fixture upgrade. Every job wins you the next one.</div>
+            <div class="caps">
+                <div class="cap"><i class="ti ti-message-star" aria-hidden="true"></i><span>Auto review request after the job</span></div>
+                <div class="cap"><i class="ti ti-robot" aria-hidden="true"></i><span>AI drafts replies to every review</span></div>
+                <div class="cap"><i class="ti ti-database" aria-hidden="true"></i><span>Past-customer reactivation</span></div>
+                <div class="cap"><i class="ti ti-arrow-back-up" aria-hidden="true"></i><span>Lifts you back into Found</span></div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<section class="alt">
-  <div class="eyebrow"><span class="gold">We handle it &middot;</span> You stay on the tools</div>
-  <div class="lead" style="font-size:19px;">New service area? Running a water-heater special?<br><span class='gold'>One text. Live same day.</span></div>
-  <p class="body" style="font-size:12.5px;">You don't touch a dashboard. Want a drain-cleaning promo up before the weekend or a new service area added? Text us, it's live. No logins, no software to learn. You run the truck, we run everything that gets the phone to ring.</p>
+<!-- ─── WE HANDLE IT — light ──────────────────────────────────── -->
+<section class="handles">
+    <div class="container">
+        <div class="eyebrow-gold"><span class="gold">We handle it ·</span>&nbsp;You stay on the tools</div>
+        <div class="lead">New service area? Running a water-heater special?<br><span class="gold">One text. Live same day.</span></div>
+        <p class="body">You don't touch a dashboard. Want a drain-cleaning promo up before the weekend or a new service area added? Text us, it's live. No logins, no software to learn. You run the truck, we run everything that gets the phone to ring.</p>
+    </div>
 </section>
 
-<section id="pricing" class="alt">
-  <div class="eyebrow">Simple. Honest. No contracts.</div>
-  <div class="lead" style="font-size:19px;">The product keeps you &mdash; <span class="gold">not a contract.</span></div>
-  <p class="body" style="font-size:12.5px;">Foundation $297/mo &middot; Growth $597/mo &middot; Accelerator $1,200/mo. Month-to-month, no setup fees, cancel anytime. Most plumbers start on Growth — that&#x27;s the full flywheel.</p>
+<!-- ─── PRICING — dark ────────────────────────────────────────── -->
+<section class="pricing dk" id="pricing">
+    <div class="container">
+        <div class="pricing-head">
+            <div class="pricing-section-label">Simple. Honest. No contracts.</div>
+            <div class="lead">The product keeps you — <span class="accent">not a contract.</span></div>
+            <p>Month-to-month, no setup fees, cancel anytime. Most plumbers start on Growth — that's the full flywheel.</p>
+        </div>
+
+        <div class="pricing-cards">
+            <!-- FOUNDATION -->
+            <div class="pricing-card">
+                <h3>Foundation</h3>
+                <div class="pricing-amount">$297<span class="period">/mo</span></div>
+                <div class="pricing-description">Your presence, dialed in. The base layer every plumber needs.</div>
+                <div class="pricing-bullets">
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Website built &amp; live</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Google Business Profile setup</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Local SEO for your primary market</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Review request automation</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Missed-call text-back</span></div>
+                </div>
+            </div>
+
+            <!-- GROWTH — most popular, amber border -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Most popular</div>
+                <h3>Growth</h3>
+                <div class="pricing-amount">$597<span class="period">/mo</span></div>
+                <div class="pricing-description">The full flywheel. Found → Picked → Booked → Reviewed, running every month.</div>
+                <div class="pricing-bullets">
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Everything in Foundation</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>AI agent — qualifies leads 24/7</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Multi-area SEO coverage</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Online booking</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>All-in-one lead inbox</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Auto follow-up till they book</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Past-customer reactivation</span></div>
+                </div>
+            </div>
+
+            <!-- ACCELERATOR -->
+            <div class="pricing-card">
+                <h3>Accelerator</h3>
+                <div class="pricing-amount">$1,200<span class="period">/mo</span></div>
+                <div class="pricing-description">For crews scaling fast. More markets, more speed, priority response.</div>
+                <div class="pricing-bullets">
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Everything in Growth</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Unlimited service-area pages</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Priority same-day updates</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Advanced reporting dashboard</span></div>
+                    <div class="pricing-bullet"><span class="check">✓</span><span>Dedicated account manager</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pricing-note">No contracts · Cancel anytime · No setup fees</div>
+    </div>
 </section>
 
-<section id="cta">
-  <div class="lead" style="font-size:22px;">Be the first call answered, every time.</div>
-  <p class="body" style="margin-bottom:17px;">We build your plumbing site before you pay a cent. <span class="gold">See it, then decide.</span></p>
-  <div class="form">
-    <span class="fld">Name</span><span class="fld">Company</span><span class="fld">Phone</span>
-    <a href="#" class="btn-gold">Send it &rarr;</a>
-  </div>
-  <div class="sign">That's Your Operative.</div>
+<!-- ─── CTA — dark ────────────────────────────────────────────── -->
+<section class="cta-section dk" id="cta">
+    <div class="container">
+        <div class="lead">Be the first call answered, every time.</div>
+        <p>We build your plumbing site before you pay a cent. <span class="gold">See it, then decide.</span></p>
+        <div class="contact-form">
+            <input type="text" class="fld" placeholder="Name">
+            <input type="text" class="fld" placeholder="Company">
+            <input type="text" class="fld" placeholder="Phone">
+            <a href="#" class="btn-gold">Send it &rarr;</a>
+        </div>
+        <div class="sign">That's Your Operative.</div>
+    </div>
 </section>
+
+<!-- ─── FOOTER — dark ─────────────────────────────────────────── -->
 <footer>
-  <span>&copy; 2026 Operative &middot; operations@youroperative.com</span>
-  <span>No contracts &middot; Cancel anytime &middot; That's Your Operative.</span>
+    <span class="left">&copy; 2026 Operative · operations@youroperative.com</span>
+    <span class="right">No contracts · Cancel anytime · That's Your Operative.</span>
+    <span class="tagline">THAT'S YOUR OPERATIVE.</span>
 </footer>
-</div>
+
 </body>
 </html>
