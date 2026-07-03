@@ -137,8 +137,6 @@
             .section-label { letter-spacing: 0.08em; flex-wrap: wrap; row-gap: 2px; }
             .mob-br { display: inline; }
             .mob-dot { display: none; }
-            .handles .eyebrow-gold { display: block; }
-            .handles .eyebrow-gold::before { display: inline-block; margin-right: 8px; vertical-align: middle; }
         }
         .mob-br { display: none; }
         .mob-dot { display: inline; }
@@ -545,6 +543,17 @@
             footer { flex-direction: column; text-align: center; }
         }
         @media (max-width: 480px) { .hero h1 { font-size: 1.7rem; } }
+
+        @media (max-width: 640px) {
+            .handles .eyebrow-gold {
+                display: block;
+            }
+            .handles .eyebrow-gold::before {
+                display: inline-block;
+                margin-right: 8px;
+                vertical-align: middle;
+            }
+        }
     </style>
 </head>
 <body>
