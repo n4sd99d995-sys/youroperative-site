@@ -520,7 +520,7 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 22px;
-            cursor: default;
+            cursor: pointer;
             transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
             position: relative;
             overflow: hidden;
@@ -1640,12 +1640,21 @@
         var hoveredStage = -1;
         var lastTime = null;
 
+        var touchHoldTimer = null;
         cards.forEach(function (card) {
             card.addEventListener('mouseenter', function () {
                 hoveredStage = parseInt(card.dataset.stage, 10);
             });
             card.addEventListener('mouseleave', function () {
                 hoveredStage = -1;
+            });
+            // Touch / click: hold stage active for 3s then resume auto-rotate
+            card.addEventListener('click', function () {
+                hoveredStage = parseInt(card.dataset.stage, 10);
+                if (touchHoldTimer) clearTimeout(touchHoldTimer);
+                touchHoldTimer = setTimeout(function () {
+                    hoveredStage = -1;
+                }, 3000);
             });
         });
 
