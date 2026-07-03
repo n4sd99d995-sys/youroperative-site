@@ -135,7 +135,10 @@
             .nav-links { gap: 12px; }
             .eyebrow { letter-spacing: 0.08em; white-space: normal; }
             .section-label { letter-spacing: 0.08em; flex-wrap: wrap; row-gap: 2px; }
+            .mob-br { display: inline; }
+            .mob-dot { display: none; }
         }
+        .mob-br { display: none; }
 
         /* ─── BUTTONS ────────────────────────────────────────── */
         .btn-gold {
@@ -586,7 +589,7 @@
 <section class="stages dk" id="how">
     <div class="container">
         <div class="stages-head">
-            <div class="section-label">How it runs · The HVAC flywheel</div>
+            <div class="section-label">How it runs<span class="mob-dot"> · </span><br class="mob-br">The HVAC flywheel</div>
             <div class="lead">Four things running every month.<br><span class="accent">Each one feeds the next.</span></div>
             <p>Found leads to Picked. Picked leads to Booked. Booked leads to Reviewed. Reviewed puts you back at the top of Found.</p>
         </div>
