@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Operative for Roofers — Build it first. Pay only if you keep it.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,8 +79,9 @@
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            height: 64px;
-            background: rgba(244,239,228,0.88);
+            height: calc(64px + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+    background: rgba(244,239,228,0.88);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(0,0,0,0.07);

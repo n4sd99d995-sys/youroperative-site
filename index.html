@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Operative - Build Your Site First, Pay Only If You Keep It</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
@@ -74,7 +74,8 @@
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            height: 64px;
+            height: calc(64px + env(safe-area-inset-top));
+            padding-top: env(safe-area-inset-top);
             background: rgba(244,239,228,0.88);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
@@ -82,7 +83,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 32px;
+            padding-left: 32px;
+            padding-right: 32px;
             z-index: 1000;
         }
 
